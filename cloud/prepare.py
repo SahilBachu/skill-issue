@@ -151,7 +151,12 @@ def main() -> None:
     skillret(stage / "data")
     skillrouter_inputs(stage / "data")
     zpath = OUT / "bundle.zip"
+    import time as _time
+
+    version = _time.strftime("%Y%m%d-%H%M%S")
+    (OUT / "bundle_version.txt").write_text(version, encoding="utf-8")
     with zipfile.ZipFile(zpath, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:
+        z.writestr("skill-issue/BUNDLE_VERSION", version)
         for sub in ("src", "bench", "training", "cloud"):
             for p in (ROOT / sub).rglob("*"):
                 if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc" and "results" not in p.parts:

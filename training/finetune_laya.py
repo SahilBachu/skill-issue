@@ -174,6 +174,7 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--pairs", default=str(PAIRS), help="training pairs jsonl")
     ap.add_argument("--skills", default=str(SKILLS), help="skill texts json")
     ap.add_argument("--val", default=None, help="validation pairs jsonl (default: computed from the val split)")
+    ap.add_argument("--state", default=None, help="resume file; written at every evaluation, read on start")
     a = ap.parse_args(argv)
 
     torch.manual_seed(a.seed)
@@ -227,10 +228,45 @@ def main(argv: list[str] | None = None) -> None:
     cw = torch.tensor([a.pos_weight, 1.0], device=dev)
     scaler = torch.amp.GradScaler("cuda", enabled=AMP is torch.float16)
     print(f"mixed precision: {AMP}", file=sys.stderr)
-    base_eval = evaluate(model, val_items, tok.pad_token_id, dev)
-    print(f"step 0 val {base_eval}", file=sys.stderr)
-    best = base_eval["ap"]
-    log = [{"step": 0, **base_eval}]
+    trainable = {n: p for n, p in model.named_parameters() if p.requires_grad}
+    state_path = Path(a.state) if a.state else None
+    step = 0
+    mb_i = 0
+    if state_path and state_path.is_file():
+        st = torch.load(state_path, map_location="cpu", weights_only=False)
+        with torch.no_grad():
+            for n, v in st["trainable"].items():
+                trainable[n].copy_(v.to(dev))
+        opt.load_state_dict(st["opt"])
+        sched.load_state_dict(st["sched"])
+        scaler.load_state_dict(st["scaler"])
+        step, mb_i, best, log = st["step"], st["mb_i"], st["best"], st["log"]
+        print(f"resumed from {state_path} at step {step}", file=sys.stderr, flush=True)
+    else:
+        base_eval = evaluate(model, val_items, tok.pad_token_id, dev)
+        print(f"step 0 val {base_eval}", file=sys.stderr)
+        best = base_eval["ap"]
+        log = [{"step": 0, **base_eval}]
+
+    def save_state() -> None:
+        if state_path is None:
+            return
+        tmp = state_path.with_suffix(".tmp")
+        torch.save(
+            {
+                "trainable": {n: p.detach().cpu() for n, p in trainable.items()},
+                "opt": opt.state_dict(),
+                "sched": sched.state_dict(),
+                "scaler": scaler.state_dict(),
+                "step": step,
+                "mb_i": mb_i,
+                "best": best,
+                "log": log,
+            },
+            tmp,
+        )
+        tmp.replace(state_path)
+
     out = ROOT / a.out if not Path(a.out).is_absolute() else Path(a.out)
     meta = {
         "base": a.base,
@@ -240,13 +276,16 @@ def main(argv: list[str] | None = None) -> None:
         "train_rows": len(train_items),
         "args": vars(a),
     }
-    step = 0
-    mb_i = 0
     model.train()
     t0 = time.time()
-    done = False
+    t_step0 = step
+    done = step >= total
+    seen = 0  # micro-batches replayed; the batch order is deterministic, so resume skips mb_i of them
     while not done:
         for mb in batches(train_items, a.micro, rng):
+            seen += 1
+            if seen <= mb_i:
+                continue
             t = collate(mb, tok.pad_token_id, dev)
             labels = torch.tensor([it["label"] for it in mb], device=dev)
             with torch.autocast("cuda", dtype=AMP):
@@ -265,7 +304,7 @@ def main(argv: list[str] | None = None) -> None:
                 if step % 50 == 0:
                     el = time.time() - t0
                     print(
-                        f"step {step}/{total} loss {loss.item() * accum:.4f} {el / step:.2f}s/step "
+                        f"step {step}/{total} loss {loss.item() * accum:.4f} {el / max(1, step - t_step0):.2f}s/step "
                         f"mem {torch.cuda.max_memory_allocated() / 1e9:.2f}GB",
                         file=sys.stderr,
                         flush=True,
@@ -279,9 +318,14 @@ def main(argv: list[str] | None = None) -> None:
                         meta.update({"best_step": step, "val": ev})
                         save(model, base_dir, out, meta)
                         print(f"  saved (best AP {best:.4f})", file=sys.stderr, flush=True)
+                    save_state()
                 if step >= total:
                     done = True
                     break
+    if not (out / "model.safetensors").is_file():
+        # Fine-tuning never beat the base model on validation: ship the final weights, and say so.
+        meta.update({"best_step": step, "note": "no evaluation beat the base model; final weights saved"})
+        save(model, base_dir, out, meta)
     (out.parent / f"{out.name}-trainlog.json").write_text(json.dumps(log, indent=1), encoding="utf-8")
     print(f"done in {(time.time() - t0) / 60:.1f} min, best val AP {best:.4f}", file=sys.stderr)
 

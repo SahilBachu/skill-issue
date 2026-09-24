@@ -73,9 +73,13 @@ def main() -> None:
             r = subprocess.run(
                 [sys.executable, "-m", "skillissue", "daemon", "status"], env=env, capture_output=True, text=True
             )
-            if '"ready"' in r.stdout:
+            try:
+                status = json.loads(r.stdout).get("status")
+            except ValueError:
+                status = None
+            if status == "ready":
                 break
-            if '"error"' in r.stdout or time.time() - t_start > 600:
+            if status == "error" or time.time() - t_start > 600:
                 raise RuntimeError(r.stdout)
             time.sleep(1)
         cold_start_s = time.time() - t_start
@@ -111,8 +115,10 @@ def main() -> None:
                 text=True,
             )
             floor.append((time.perf_counter() - t) * 1000)
-        proc = psutil.Process(daemon.pid)
-        rss_mb = proc.memory_info().rss / 1e6
+        # On Windows the venv's python.exe is a launcher; the daemon is its child.
+        procs = [psutil.Process(daemon.pid), *psutil.Process(daemon.pid).children(recursive=True)]
+        rss_mb = max(p.memory_info().rss for p in procs) / 1e6
+        pids = {p.pid for p in procs}
         gpu_mb = None
         try:
             q = subprocess.run(
@@ -122,7 +128,7 @@ def main() -> None:
             ).stdout
             for line in q.splitlines():
                 pid, mem = (x.strip() for x in line.split(","))
-                if int(pid) == daemon.pid:
+                if int(pid) in pids:
                     gpu_mb = float(mem)
         except (OSError, ValueError):
             pass

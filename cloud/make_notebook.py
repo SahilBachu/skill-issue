@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 
 D = "cloud_data"
+_VERSION_FILE = Path(__file__).resolve().parents[1] / ".cache" / "cloud" / "bundle_version.txt"
+VERSION = _VERSION_FILE.read_text(encoding="utf-8").strip() if _VERSION_FILE.is_file() else "unknown"
 PAIRS = f"--pairs {D}/pairs.jsonl --skills {D}/skills.json --val {D}/val_pairs.jsonl"
 CELLS: list[tuple[str, str]] = [
     (
@@ -23,23 +25,31 @@ Every step writes to `/content/out` and skips work that is already done, so you 
     ("code", "!nvidia-smi --query-gpu=name,memory.total --format=csv"),
     (
         "code",
-        """# Everything is written to Google Drive, so a disconnect or a sleeping laptop loses nothing.
-import os, shutil
+        f"""# Everything is written to Google Drive, so a disconnect or a sleeping laptop loses nothing.
+import os, shutil, zipfile
 from google.colab import drive, files
 drive.mount('/content/drive')
 W = '/content/drive/MyDrive/skill-issue-cloud'
-os.makedirs(f'{W}/out', exist_ok=True)
+EXPECTED = '{VERSION}'
+os.makedirs(f'{{W}}/out', exist_ok=True)
 os.chdir('/content')
-if not os.path.exists('bundle.zip'):
-    if os.path.exists(f'{W}/bundle.zip'):
-        shutil.copy(f'{W}/bundle.zip', 'bundle.zip')
-    else:
-        files.upload()  # choose bundle.zip
-        shutil.copy('bundle.zip', f'{W}/bundle.zip')
+
+def bundle_version(path):
+    try:
+        return zipfile.ZipFile(path).read('skill-issue/BUNDLE_VERSION').decode()
+    except Exception:
+        return None
+
+if bundle_version('bundle.zip') != EXPECTED and bundle_version(f'{{W}}/bundle.zip') == EXPECTED:
+    shutil.copy(f'{{W}}/bundle.zip', 'bundle.zip')
+if bundle_version('bundle.zip') != EXPECTED:
+    files.upload()  # choose .cache/cloud/bundle.zip
+    shutil.copy('bundle.zip', f'{{W}}/bundle.zip')
+assert bundle_version('bundle.zip') == EXPECTED, bundle_version('bundle.zip')
 if not os.path.islink('/content/out'):
     shutil.rmtree('/content/out', ignore_errors=True)
-    os.symlink(f'{W}/out', '/content/out')
-print(os.listdir('/content/out'))""",
+    os.symlink(f'{{W}}/out', '/content/out')
+print(EXPECTED, sorted(os.listdir('/content/out')))""",
     ),
     (
         "code",
@@ -51,13 +61,13 @@ os.environ['USE_TF'] = '0'""",
     ("md", "## Part 1: gte and MiniLM fine-tunes, SkillRouter baseline, SkillRet reranking"),
     (
         "code",
-        f"""!test -f /content/out/gte-mb-ft/skill_issue_gate.json || python -m training.finetune_cross --base Alibaba-NLP/gte-reranker-modernbert-base --out /content/out/gte-mb-ft --runs-dir /content/runs/gte --micro 16 {PAIRS} 2>&1 | grep -vi warn | tail -4
+        f"""!test -f /content/out/gte-mb-ft/skill_issue_gate.json || python -m training.finetune_cross --base Alibaba-NLP/gte-reranker-modernbert-base --out /content/out/gte-mb-ft --runs-dir /content/out/runs/gte --resume --save-steps 250 --epochs 1 --micro 16 {PAIRS} 2>&1 | grep -vi warn | tail -4
 !python -m cloud.score --model cross:/content/out/gte-mb-ft --requests {D}/requests_bench.jsonl --out /content/out/scores_gte-mb-ft_bench.json 2>&1 | tail -1
 !python -m cloud.score --model cross:/content/out/gte-mb-ft --requests {D}/requests_skillret.jsonl --out /content/out/scores_gte-mb-ft_skillret.json 2>&1 | tail -1""",
     ),
     (
         "code",
-        f"""!test -f /content/out/minilm-ft/skill_issue_gate.json || python -m training.finetune_cross --base cross-encoder/ms-marco-MiniLM-L6-v2 --out /content/out/minilm-ft --runs-dir /content/runs/minilm {PAIRS} 2>&1 | grep -vi warn | tail -4
+        f"""!test -f /content/out/minilm-ft/skill_issue_gate.json || python -m training.finetune_cross --base cross-encoder/ms-marco-MiniLM-L6-v2 --out /content/out/minilm-ft --runs-dir /content/out/runs/minilm --resume --save-steps 250 --epochs 1 --micro 16 {PAIRS} 2>&1 | grep -vi warn | tail -4
 !python -m cloud.score --model cross:/content/out/minilm-ft --requests {D}/requests_bench.jsonl --out /content/out/scores_minilm-ft_bench.json 2>&1 | tail -1
 !python -m cloud.score --model cross:/content/out/minilm-ft --requests {D}/requests_skillret.jsonl --out /content/out/scores_minilm-ft_skillret.json 2>&1 | tail -1
 !python -m cloud.score --model cross:Alibaba-NLP/gte-reranker-modernbert-base --requests {D}/requests_skillret.jsonl --out /content/out/scores_gte-mb-zs_skillret.json 2>&1 | tail -1""",
@@ -77,7 +87,7 @@ files.download('/content/out/results_part1.zip')""",
     ("md", "## Part 2: Laya fine-tune (the long one)"),
     (
         "code",
-        f"""!test -f /content/out/laya-ft/skill_issue_gate.json || python -m training.finetune_laya --out /content/out/laya-ft {PAIRS} 2>&1 | grep -E 'step|val|saved|done|precision|trainable|Error' | tail -40
+        f"""!test -f /content/out/laya-ft-trainlog.json || python -m training.finetune_laya --out /content/out/laya-ft --epochs 1 --state /content/out/laya-state.pt {PAIRS} 2>&1 | grep -E 'step|val|saved|done|precision|trainable|Error' | tail -40
 !python -m cloud.score --model laya:/content/out/laya-ft --requests {D}/requests_bench.jsonl --out /content/out/scores_laya-ft_bench.json 2>&1 | tail -1
 !python -m cloud.score --model laya:/content/out/laya-ft --requests {D}/requests_skillret.jsonl --out /content/out/scores_laya-ft_skillret.json 2>&1 | tail -1""",
     ),

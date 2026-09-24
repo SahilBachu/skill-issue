@@ -54,6 +54,8 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--max-length", type=int, default=384)
     ap.add_argument("--seed", type=int, default=13)
     ap.add_argument("--runs-dir", default=None, help="where trainer checkpoints go (default: next to --out)")
+    ap.add_argument("--resume", action="store_true", help="keep full trainer state and resume from the last checkpoint")
+    ap.add_argument("--save-steps", type=int, default=500)
     ap.add_argument("--pairs", default=str(PAIRS), help="training pairs jsonl")
     ap.add_argument("--skills", default=str(SKILLS), help="skill texts json")
     ap.add_argument("--val", default=None, help="validation pairs jsonl (default: computed from the val split)")
@@ -85,11 +87,12 @@ def main(argv: list[str] | None = None) -> None:
         bf16=torch.cuda.is_bf16_supported(),
         fp16=not torch.cuda.is_bf16_supported(),
         eval_strategy="steps",
-        eval_steps=500,
+        eval_steps=a.save_steps,
         save_strategy="steps",
-        save_steps=500,
-        save_total_limit=1,
-        save_only_model=True,
+        save_steps=a.save_steps,
+        save_total_limit=2,
+        # Optimizer state is only needed to resume; it doubles checkpoint size.
+        save_only_model=not a.resume,
         load_best_model_at_end=True,
         metric_for_best_model="eval_loss",
         logging_steps=100,
@@ -98,7 +101,14 @@ def main(argv: list[str] | None = None) -> None:
         dataloader_num_workers=0,
     )
     trainer = CrossEncoderTrainer(model=model, args=args, train_dataset=train, eval_dataset=val, loss=loss)
-    trainer.train()
+    last = None
+    if a.resume and Path(args.output_dir).is_dir():
+        from transformers.trainer_utils import get_last_checkpoint
+
+        last = get_last_checkpoint(args.output_dir)
+        if last:
+            print(f"resuming from {last}", file=sys.stderr)
+    trainer.train(resume_from_checkpoint=last)
     model.save_pretrained(str(out))
     meta = {
         "base": a.base,

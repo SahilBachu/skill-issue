@@ -82,9 +82,21 @@ def test_hook_fails_open_while_loading(running, env):
     assert running["spawned"] == []  # daemon is up, just not ready: don't spawn another
 
 
+def _dead_pid() -> int:
+    import subprocess
+    import sys
+
+    p = subprocess.Popen([sys.executable, "-c", "pass"])
+    p.wait()
+    return p.pid
+
+
 def test_hook_fails_open_and_restarts_when_daemon_is_gone(running, env):
     running["server"].shutdown()
     running["server"].server_close()
+    rt = daemon.read_runtime()
+    rt["pid"] = _dead_pid()  # what a crashed daemon leaves behind
+    daemon.paths.runtime_file().write_text(json.dumps(rt), encoding="utf-8")
     t = time.perf_counter()
     assert hook.cmd_prompt(event("extract the tables from this pdf file", env["tmp"])) == ""
     assert time.perf_counter() - t < 2.0
@@ -102,6 +114,9 @@ def test_hook_fails_open_on_timeout(running, env, monkeypatch):
     t = time.perf_counter()
     assert hook.cmd_prompt(event("extract the tables from this pdf file", env["tmp"])) == ""
     assert time.perf_counter() - t < 1.5
+    # Regression: a slow daemon is alive. It must not be treated as dead and restarted.
+    assert running["spawned"] == []
+    assert daemon.paths.runtime_file().exists()
 
 
 def test_hook_without_runtime_starts_daemon(env, monkeypatch):

@@ -161,16 +161,51 @@ def post(route: str, payload: dict[str, Any], timeout: float) -> dict[str, Any] 
             return body
     except urllib.error.HTTPError:
         return None  # 503 while loading, 403, 500: fail open
-    except (urllib.error.URLError, ConnectionError, OSError):
-        # Stale runtime file (daemon died): remove it and start a new one.
-        try:
-            runtime_file().unlink()
-        except OSError:
-            pass
-        start_daemon()
+    except (urllib.error.URLError, OSError) as e:
+        if _daemon_is_gone(e, rt.get("pid")):
+            # Stale runtime file (daemon died): remove it and start a new one.
+            try:
+                runtime_file().unlink()
+            except OSError:
+                pass
+            start_daemon()
+        # Anything else, above all a timeout on a slow request, just fails open. The daemon is
+        # alive and busy; restarting it would make things worse.
         return None
     except ValueError:
         return None
+
+
+def _daemon_is_gone(e: BaseException, pid: Any) -> bool:
+    """True when the daemon is really dead, not just slow.
+
+    A refused connection means nothing is listening. A timeout is ambiguous: on Windows even a
+    dead localhost port times out instead of refusing, so check the recorded pid."""
+    reason = getattr(e, "reason", e)
+    if isinstance(reason, (ConnectionRefusedError, ConnectionResetError)):
+        return True
+    return isinstance(pid, int) and not _pid_alive(pid)
+
+
+def _pid_alive(pid: int) -> bool:
+    if os.name == "nt":
+        import ctypes
+
+        kernel32 = ctypes.windll.kernel32  # type: ignore[attr-defined]
+        handle = kernel32.OpenProcess(0x00100000, False, pid)  # SYNCHRONIZE
+        if not handle:
+            return False
+        try:
+            return bool(kernel32.WaitForSingleObject(handle, 0) == 0x102)  # WAIT_TIMEOUT: still running
+        finally:
+            kernel32.CloseHandle(handle)
+    try:
+        os.kill(pid, 0)  # POSIX: signal 0 only checks existence
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
 
 
 def cmd_prompt(stdin_text: str) -> str:

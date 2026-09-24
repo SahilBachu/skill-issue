@@ -74,11 +74,12 @@ def main() -> None:
     ap.add_argument("--n", type=int, default=1000)
     ap.add_argument("--rerank-k", type=int, default=20)
     ap.add_argument("--seed", type=int, default=3)
+    ap.add_argument("--device", default="cpu")
     a = ap.parse_args()
     skills, queries = load()
     queries = random.Random(a.seed).sample(queries, min(a.n, len(queries)))
     print(f"SkillRet: {len(skills)} skills, {len(queries)} queries", file=sys.stderr)
-    emb = STEmbedder(EMBED_MODEL, device="cuda")
+    emb = STEmbedder(EMBED_MODEL, device=a.device)
     vec_path = CACHE / "skillret_test_bge.npy"
     if vec_path.is_file():
         vecs = np.load(vec_path)
@@ -109,10 +110,24 @@ def main() -> None:
         if name in ("bm25", "dense", "hybrid"):
             continue
         system = SYSTEMS[name]
+        t0 = time.time()
+        pre = CACHE / "bench" / "skillret_scores" / f"{name}.json"
+        if pre.is_file():  # scored elsewhere (cloud/score.py), keyed "sr:<query id>|<skill id>"
+            sc = json.loads(pre.read_text(encoding="utf-8"))
+            rank = {}
+            for q in queries:
+                top = cands_hybrid[q["id"]][: a.rerank_k]
+                raw = np.array([sc[f"sr:{q['id']}|{c.skill.id}"] for c in top])
+                order = np.argsort(-raw, kind="stable")
+                rank[q["id"]] = [top[i].skill.id for i in order] + [
+                    c.skill.id for c in cands_hybrid[q["id"]][a.rerank_k :]
+                ]
+            results["systems"][name] = evaluate(rank, queries)
+            print(name, results["systems"][name], file=sys.stderr)
+            continue
         if system.model and system.model.startswith("checkpoints/") and not (ROOT / system.model).exists():
             print(f"skip {name}: not trained", file=sys.stderr)
             continue
-        t0 = time.time()
         if system.retrieval == "srouter":
             from bench.skillrouter import SkillRouterEmbedder
 

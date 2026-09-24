@@ -17,6 +17,7 @@ import os
 import pickle
 import sys
 import time
+from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -77,12 +78,16 @@ def query_vecs(prompts: list[dict[str, Any]], mode: str = "hybrid") -> dict[str,
     return {p["id"]: _QVECS[(kind, p["id"])] for p in prompts}
 
 
+def retrieval_cache_path(mode: str, split: str, size: int, prompts: list[dict[str, Any]], top_k: int = 40) -> Path:
+    key = hashlib.sha1(json.dumps([mode, split, size, top_k, [p["id"] for p in prompts]]).encode()).hexdigest()[:16]
+    return RETR_CACHE / f"{mode}-{split}-{size}-{key}.pkl"
+
+
 def retrieval_runs(
     mode: str, split: str, size: int, prompts: list[dict[str, Any]], top_k: int = 40
 ) -> dict[str, dict[str, Any]]:
     """{prompt id: {"cands": [...], "ms": retrieval ms}} for one retrieval mode and catalog size."""
-    key = hashlib.sha1(json.dumps([mode, split, size, top_k, [p["id"] for p in prompts]]).encode()).hexdigest()[:16]
-    path = RETR_CACHE / f"{mode}-{split}-{size}-{key}.pkl"
+    path = retrieval_cache_path(mode, split, size, prompts, top_k)
     if path.is_file():
         with path.open("rb") as f:
             cached: dict[str, dict[str, Any]] = pickle.load(f)
@@ -322,8 +327,17 @@ def main(argv: list[str] | None = None) -> None:
         system = SYSTEMS[name]
         if a.n_gate:
             system = System(**{**system.__dict__, "n_gate": a.n_gate, "name": f"{system.name}-g{a.n_gate}"})
-        if system.model and system.model.startswith("checkpoints/") and not (ROOT / system.model).exists():
-            print(f"skip {name}: {system.model} not found (train it first)", file=sys.stderr)
+        cached = system.cache_key and (SCORE_CACHE / f"{system.cache_key}.pkl").is_file()
+        if (
+            system.model
+            and system.model.startswith("checkpoints/")
+            and not (ROOT / system.model).exists()
+            and not cached
+        ):
+            print(
+                f"skip {name}: {system.model} not found and no cached scores (train it, or ingest cloud scores)",
+                file=sys.stderr,
+            )
             continue
         print(f"== {system.name}", file=sys.stderr)
         run_system(system, a.sizes, a.quick)

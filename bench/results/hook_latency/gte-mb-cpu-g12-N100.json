@@ -1,0 +1,17 @@
+{
+ "gate": "cross-encoder",
+ "model": "Alibaba-NLP/gte-reranker-modernbert-base",
+ "max_candidates": 12,
+ "catalog": 100,
+ "n": 60,
+ "device": "cpu",
+ "p50_ms": 1982.876900001429,
+ "p95_ms": 2193.50740002119,
+ "mean_ms": 1996.8115599995751,
+ "process_floor_p50_ms": 324.31614998495206,
+ "injected_fraction": 0.0,
+ "daemon_rss_mb": 876.4,
+ "daemon_gpu_mb": null,
+ "cold_start_s": 106.1,
+ "platform": "win32"
+}

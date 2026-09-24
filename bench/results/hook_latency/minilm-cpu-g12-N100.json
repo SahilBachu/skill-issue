@@ -1,0 +1,17 @@
+{
+ "gate": "cross-encoder",
+ "model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+ "max_candidates": 12,
+ "catalog": 100,
+ "n": 60,
+ "device": "cpu",
+ "p50_ms": 518.9020500110928,
+ "p95_ms": 638.2078999886289,
+ "mean_ms": 523.0449083372756,
+ "process_floor_p50_ms": 163.90174999833107,
+ "injected_fraction": 0.0,
+ "daemon_rss_mb": 1275.6,
+ "daemon_gpu_mb": null,
+ "cold_start_s": 42.6,
+ "platform": "win32"
+}
