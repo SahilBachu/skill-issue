@@ -91,6 +91,7 @@ include = ["src/skillissue", "README.md", "LICENSE", "NOTICE"]
 line-length = 120
 target-version = "py310"
 src = ["src", "."]
+extend-exclude = ["*.ipynb"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["skillissue", "bench", "training", "tests"]
@@ -104,6 +105,7 @@ ignore = ["E501", "RUF001", "RUF002", "RUF003", "B905", "SIM105", "PTH109", "PTH
 "hooks/**" = ["PTH"]
 "bench/**" = ["N806", "N803", "N812"]
 "training/**" = ["N806", "N812", "N803"]
+"cloud/**" = ["N806"]
 
 [tool.mypy]
 python_version = "3.12"

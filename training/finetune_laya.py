@@ -2,7 +2,8 @@
 
     python -m training.finetune_laya --out checkpoints/laya-ft
 
-Memory plan (RTX 4050 Laptop, 6 GB): fp32 master weights, bf16 autocast, gradient
+Memory plan (RTX 4050 Laptop, 6 GB): fp32 master weights, bf16 autocast (fp16 + loss scaling
+on GPUs without bf16, such as a Colab T4), gradient
 checkpointing in the encoder, 8-bit AdamW (bitsandbytes), and the token embeddings plus the
 lowest encoder layers frozen. The task framing is exactly what inference uses
 (skillissue.gates.laya_gate.encode_rows): one two-option choice question per (request, skill).
@@ -34,11 +35,13 @@ from skillissue.gates.laya_gate import encode_rows
 from skillissue.skill import Skill
 
 PAIRS = CACHE / "train" / "pairs.jsonl"
+# bf16 where the GPU supports it (Ampere+), else fp16 with loss scaling (for example a Colab T4).
+AMP = torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float16
 SKILLS = CACHE / "train" / "skills.json"
 
 
-def load_pairs(max_neg_ratio: float, seed: int) -> list[dict[str, Any]]:
-    rows = [json.loads(x) for x in PAIRS.open(encoding="utf-8")]
+def load_pairs(max_neg_ratio: float, seed: int, path: Path = PAIRS) -> list[dict[str, Any]]:
+    rows = [json.loads(x) for x in Path(path).read_text(encoding="utf-8").splitlines() if x.strip()]
     pos = [r for r in rows if r["label"]]
     neg = [r for r in rows if not r["label"]]
     rng = random.Random(seed)
@@ -46,6 +49,17 @@ def load_pairs(max_neg_ratio: float, seed: int) -> list[dict[str, Any]]:
     neg = neg[: int(len(pos) * max_neg_ratio)]
     out = pos + neg
     rng.shuffle(out)
+    return out
+
+
+def load_val(path: Path | None) -> list[dict[str, Any]]:
+    """Validation pairs from a file (as written by cloud/prepare.py) or computed locally."""
+    if path is None:
+        return val_pairs()
+    out = []
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        r = json.loads(line)
+        out.append({"prompt": r["prompt"], "skill_obj": Skill(**r["skill"]), "label": r["label"]})
     return out
 
 
@@ -108,7 +122,7 @@ def evaluate(model: Any, items: list[dict[str, Any]], pad_id: int, dev: torch.de
     raws, ys = [], []
     for b in batches(items, bs, random.Random(0), shuffle=False):
         t = collate(b, pad_id, dev)
-        with torch.autocast("cuda", dtype=torch.bfloat16):
+        with torch.autocast("cuda", dtype=AMP):
             logits, _ = model(t["input_ids"], t["attention_mask"], t["marker_pos"], t["marker_mask"], t["qtype"])
         lg = logits.float()
         raws += (lg[:, 0] - lg[:, 1]).cpu().tolist()
@@ -157,6 +171,9 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--eval-every", type=int, default=400)
     ap.add_argument("--seed", type=int, default=13)
     ap.add_argument("--max-steps", type=int, default=0)
+    ap.add_argument("--pairs", default=str(PAIRS), help="training pairs jsonl")
+    ap.add_argument("--skills", default=str(SKILLS), help="skill texts json")
+    ap.add_argument("--val", default=None, help="validation pairs jsonl (default: computed from the val split)")
     a = ap.parse_args(argv)
 
     torch.manual_seed(a.seed)
@@ -190,10 +207,10 @@ def main(argv: list[str] | None = None) -> None:
         ]
     )
 
-    skills = json.loads(SKILLS.read_text(encoding="utf-8"))
+    skills = json.loads(Path(a.skills).read_text(encoding="utf-8"))
     t0 = time.time()
-    train_items = tokenize(tok, load_pairs(a.neg_ratio, a.seed), skills, a.body_chars)
-    val_items = tokenize(tok, val_pairs(), skills, a.body_chars)
+    train_items = tokenize(tok, load_pairs(a.neg_ratio, a.seed, Path(a.pairs)), skills, a.body_chars)
+    val_items = tokenize(tok, load_val(Path(a.val) if a.val else None), skills, a.body_chars)
     print(
         f"train {len(train_items)} rows, val {len(val_items)} rows, tokenized in {time.time() - t0:.0f}s; "
         f"mean len {np.mean([len(i['ids']) for i in train_items]):.0f}",
@@ -208,6 +225,8 @@ def main(argv: list[str] | None = None) -> None:
         opt, lambda s: min(1.0, (s + 1) / warm) * max(0.0, (total - s) / max(1, total - warm))
     )
     cw = torch.tensor([a.pos_weight, 1.0], device=dev)
+    scaler = torch.amp.GradScaler("cuda", enabled=AMP is torch.float16)
+    print(f"mixed precision: {AMP}", file=sys.stderr)
     base_eval = evaluate(model, val_items, tok.pad_token_id, dev)
     print(f"step 0 val {base_eval}", file=sys.stderr)
     best = base_eval["ap"]
@@ -230,14 +249,16 @@ def main(argv: list[str] | None = None) -> None:
         for mb in batches(train_items, a.micro, rng):
             t = collate(mb, tok.pad_token_id, dev)
             labels = torch.tensor([it["label"] for it in mb], device=dev)
-            with torch.autocast("cuda", dtype=torch.bfloat16):
+            with torch.autocast("cuda", dtype=AMP):
                 logits, _ = model(t["input_ids"], t["attention_mask"], t["marker_pos"], t["marker_mask"], t["qtype"])
             loss = F.cross_entropy(logits.float()[:, :2], labels, weight=cw) / accum
-            loss.backward()
+            scaler.scale(loss).backward()
             mb_i += 1
             if mb_i % accum == 0:
+                scaler.unscale_(opt)
                 torch.nn.utils.clip_grad_norm_([p for g in opt.param_groups for p in g["params"]], 1.0)
-                opt.step()
+                scaler.step(opt)
+                scaler.update()
                 sched.step()
                 opt.zero_grad(set_to_none=True)
                 step += 1

@@ -164,6 +164,7 @@ def run_with_retry(*args: Any, retries: int = 4, **kwargs: Any) -> dict[str, Any
 
 def start_daemon(home: Path, empty_claude: Path) -> subprocess.Popen[bytes]:
     cfg = (ROOT / "bench" / "agent_daemon.toml").read_text(encoding="utf-8")
+    cfg = cfg.replace('"checkpoints/', '"' + (ROOT / "checkpoints").as_posix() + "/")
     (home / "config.toml").write_text(cfg, encoding="utf-8")
     env = {**os.environ, "SKILL_ISSUE_HOME": str(home), "CLAUDE_CONFIG_DIR": str(empty_claude)}
     p = subprocess.Popen(

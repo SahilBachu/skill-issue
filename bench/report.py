@@ -15,11 +15,11 @@ from typing import Any
 import matplotlib
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.ticker import FixedLocator, NullLocator, PercentFormatter  # noqa: E402
+import matplotlib.pyplot as plt
+from matplotlib.ticker import FixedLocator, NullLocator, PercentFormatter
 
-from bench.corpus import ROOT  # noqa: E402
-from bench.data import RESULTS  # noqa: E402
+from bench.corpus import ROOT
+from bench.data import RESULTS
 
 CHARTS = ROOT / "assets" / "charts"
 README = ROOT / "README.md"

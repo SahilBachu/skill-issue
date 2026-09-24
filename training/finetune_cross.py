@@ -22,7 +22,7 @@ import torch
 from bench.corpus import ROOT
 from skillissue.gates.base import clip_prompt, gate_text
 from skillissue.skill import Skill
-from training.finetune_laya import SKILLS, load_pairs, val_pairs
+from training.finetune_laya import PAIRS, SKILLS, load_pairs, load_val
 
 
 def to_columns(pairs: list[dict], skills: dict, body_chars: int) -> dict[str, list]:
@@ -53,6 +53,10 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--body-chars", type=int, default=300)
     ap.add_argument("--max-length", type=int, default=384)
     ap.add_argument("--seed", type=int, default=13)
+    ap.add_argument("--runs-dir", default=None, help="where trainer checkpoints go (default: next to --out)")
+    ap.add_argument("--pairs", default=str(PAIRS), help="training pairs jsonl")
+    ap.add_argument("--skills", default=str(SKILLS), help="skill texts json")
+    ap.add_argument("--val", default=None, help="validation pairs jsonl (default: computed from the val split)")
     a = ap.parse_args(argv)
 
     from datasets import Dataset
@@ -61,16 +65,16 @@ def main(argv: list[str] | None = None) -> None:
 
     random.seed(a.seed)
     torch.manual_seed(a.seed)
-    skills = json.loads(SKILLS.read_text(encoding="utf-8"))
-    train = Dataset.from_dict(to_columns(load_pairs(a.neg_ratio, a.seed), skills, a.body_chars))
-    val = Dataset.from_dict(to_columns(val_pairs(), skills, a.body_chars))
+    skills = json.loads(Path(a.skills).read_text(encoding="utf-8"))
+    train = Dataset.from_dict(to_columns(load_pairs(a.neg_ratio, a.seed, Path(a.pairs)), skills, a.body_chars))
+    val = Dataset.from_dict(to_columns(load_val(Path(a.val) if a.val else None), skills, a.body_chars))
     print(f"train {len(train)} val {len(val)}", file=sys.stderr)
 
     model = CrossEncoder(a.base, num_labels=1, max_length=a.max_length)
     loss = BinaryCrossEntropyLoss(model, pos_weight=torch.tensor(a.pos_weight))
-    out = ROOT / a.out
+    out = ROOT / a.out if not Path(a.out).is_absolute() else Path(a.out)
     args = CrossEncoderTrainingArguments(
-        output_dir=str(out.parent / f"{out.name}-runs"),
+        output_dir=a.runs_dir or str(out.parent / f"{out.name}-runs"),
         num_train_epochs=a.epochs,
         per_device_train_batch_size=a.micro,
         gradient_accumulation_steps=max(1, a.bs // a.micro),
@@ -78,12 +82,14 @@ def main(argv: list[str] | None = None) -> None:
         per_device_eval_batch_size=32,
         learning_rate=a.lr,
         warmup_steps=0.05,
-        bf16=True,
+        bf16=torch.cuda.is_bf16_supported(),
+        fp16=not torch.cuda.is_bf16_supported(),
         eval_strategy="steps",
         eval_steps=500,
         save_strategy="steps",
         save_steps=500,
         save_total_limit=1,
+        save_only_model=True,
         load_best_model_at_end=True,
         metric_for_best_model="eval_loss",
         logging_steps=100,
