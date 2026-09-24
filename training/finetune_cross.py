@@ -44,12 +44,14 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--base", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--epochs", type=float, default=2.0)
-    ap.add_argument("--bs", type=int, default=16)
+    ap.add_argument("--bs", type=int, default=16, help="effective batch size")
+    ap.add_argument("--micro", type=int, default=8, help="per-step batch; the rest is gradient accumulation")
+    ap.add_argument("--grad-ckpt", action=argparse.BooleanOptionalAction, default=False)
     ap.add_argument("--lr", type=float, default=2e-5)
     ap.add_argument("--neg-ratio", type=float, default=8.0)
     ap.add_argument("--pos-weight", type=float, default=2.0)
     ap.add_argument("--body-chars", type=int, default=300)
-    ap.add_argument("--max-length", type=int, default=512)
+    ap.add_argument("--max-length", type=int, default=384)
     ap.add_argument("--seed", type=int, default=13)
     a = ap.parse_args(argv)
 
@@ -70,10 +72,12 @@ def main(argv: list[str] | None = None) -> None:
     args = CrossEncoderTrainingArguments(
         output_dir=str(out.parent / f"{out.name}-runs"),
         num_train_epochs=a.epochs,
-        per_device_train_batch_size=a.bs,
-        per_device_eval_batch_size=64,
+        per_device_train_batch_size=a.micro,
+        gradient_accumulation_steps=max(1, a.bs // a.micro),
+        gradient_checkpointing=a.grad_ckpt,
+        per_device_eval_batch_size=32,
         learning_rate=a.lr,
-        warmup_ratio=0.05,
+        warmup_steps=0.05,
         bf16=True,
         eval_strategy="steps",
         eval_steps=500,

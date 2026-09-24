@@ -33,6 +33,8 @@ class CrossEncoderGate(Gate):
             calibration or Calibration.from_dict(meta.get("calibration")), int(meta.get("body_chars", body_chars))
         )
         self.model_ref = str(model)
+        # A fine-tuned checkpoint records the max length it was trained with.
+        max_length = int((meta.get("args") or {}).get("max_length", max_length))
         dev = resolve_device(device)
         import torch
 

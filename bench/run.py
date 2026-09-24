@@ -50,22 +50,31 @@ class _NullEmbedder:
         raise RuntimeError("query vectors are precomputed")
 
 
-_QVECS: dict[str, np.ndarray] = {}
+_QVECS: dict[tuple[str, str], np.ndarray] = {}
 
 
-def query_vecs(prompts: list[dict[str, Any]]) -> dict[str, np.ndarray]:
-    missing = [p for p in prompts if p["id"] not in _QVECS]
+def query_vecs(prompts: list[dict[str, Any]], mode: str = "hybrid") -> dict[str, np.ndarray]:
+    """Query embeddings: bge-small for our retrievers, SR-Emb for the SkillRouter baseline."""
+    kind = "sr" if mode == "srouter" else "bge"
+    missing = [p for p in prompts if (kind, p["id"]) not in _QVECS]
     if missing:
-        emb = STEmbedder(EMBED_MODEL, device="cuda")
-        vecs = emb.model.encode(
-            [emb.prefix + p["prompt"] for p in missing],
-            batch_size=128,
-            normalize_embeddings=True,
-            show_progress_bar=False,
-        )
+        if kind == "sr":
+            from bench.skillrouter import SkillRouterEmbedder
+
+            sr = SkillRouterEmbedder()
+            vecs = sr.encode_queries([p["prompt"] for p in missing])
+            del sr
+        else:
+            emb = STEmbedder(EMBED_MODEL, device="cuda")
+            vecs = emb.model.encode(
+                [emb.prefix + p["prompt"] for p in missing],
+                batch_size=128,
+                normalize_embeddings=True,
+                show_progress_bar=False,
+            )
         for p, v in zip(missing, vecs):
-            _QVECS[p["id"]] = np.asarray(v, dtype=np.float32)
-    return _QVECS
+            _QVECS[(kind, p["id"])] = np.asarray(v, dtype=np.float32)
+    return {p["id"]: _QVECS[(kind, p["id"])] for p in prompts}
 
 
 def retrieval_runs(
@@ -79,17 +88,22 @@ def retrieval_runs(
             cached: dict[str, dict[str, Any]] = pickle.load(f)
             return cached
     P = pool()
-    qv = query_vecs(prompts)
+    qv = query_vecs(prompts, mode)
+    doc_vecs = P.vecs
+    if mode == "srouter":
+        from bench.skillrouter import pool_vectors
+
+        doc_vecs = pool_vectors(P.skills, [s.id for s in P.skills])
     out: dict[str, dict[str, Any]] = {}
     chunks = build_chunks(prompts, size, P)
     for ch in chunks:
         skills = [P.skills[i] for i in ch.catalog]
-        use_dense = mode in ("hybrid", "dense")
+        use_dense = mode in ("hybrid", "dense", "srouter")
         r = HybridRetriever(
             skills,
             _NullEmbedder() if use_dense else None,
             use_bm25=mode in ("hybrid", "bm25"),
-            doc_vecs=P.vecs[ch.catalog] if use_dense else None,
+            doc_vecs=doc_vecs[ch.catalog] if use_dense else None,
         )
         for p in ch.prompts:
             t = time.perf_counter()

@@ -1,0 +1,10 @@
+# Daemon config for the "router" arm of bench.agent_baseline: only the temp project's skills.
+[sources]
+claude_user = false
+claude_plugins = false
+agents = false
+claude_project = true
+
+[gate]
+name = "cross-encoder"
+model = "checkpoints/gte-mb-ft"

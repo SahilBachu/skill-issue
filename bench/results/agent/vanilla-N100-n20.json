@@ -1,0 +1,39 @@
+{
+ "arm": "vanilla",
+ "size": 100,
+ "n": 20,
+ "model": "sonnet",
+ "metrics": {
+  "n": 20,
+  "n_labeled": 13,
+  "n_none": 7,
+  "recall@1": 0.0,
+  "recall@3": 0.0,
+  "recall@5": 0.0,
+  "recall@10": 0.0,
+  "recall@20": 0.0,
+  "recall@40": 0.0,
+  "top1": 0.0,
+  "precision": 1.0,
+  "recall": 0.8,
+  "f1": 0.888888888888889,
+  "exact_match": 0.85,
+  "false_injection_rate": 0.0,
+  "none_accuracy": 1.0,
+  "hit_rate": 0.8461538461538461,
+  "ece": NaN,
+  "brier": NaN,
+  "exact_by_kind": {
+   "hard_negative_none": 1.0,
+   "hard_negative_sibling": 1.0,
+   "multi": 0.5,
+   "none": 1.0,
+   "positive": 0.75
+  },
+  "latency_ms_p50": 6900.0,
+  "latency_ms_p95": 25535.0
+ },
+ "reported_cost_usd_total": 1.9057,
+ "reported_cost_usd_mean": 0.0953,
+ "note": "Cost is Claude Code's own reported total_cost_usd; the runs used a subscription login, not an API key."
+}

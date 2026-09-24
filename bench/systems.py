@@ -21,7 +21,7 @@ RawFn = Callable[[str, Sequence[Candidate]], np.ndarray]
 @dataclass
 class System:
     name: str
-    retrieval: str  # hybrid | bm25 | dense
+    retrieval: str  # hybrid | bm25 | dense | srouter
     scorer: str  # laya | cross | features | skillrouter
     model: str | None = None
     n_gate: int = 12
@@ -57,6 +57,14 @@ SYSTEMS: dict[str, System] = {
         ),
         System(
             "minilm-zs", "hybrid", "cross", "cross-encoder/ms-marco-MiniLM-L6-v2", label="Hybrid + ms-marco-MiniLM-L6"
+        ),
+        System(
+            "skillrouter",
+            "srouter",
+            "skillrouter",
+            "pipizhao/SkillRouter-Reranker-0.6B",
+            n_gate=20,
+            label="SkillRouter (SR-Emb-0.6B + SR-Rank-0.6B)",
         ),
         System("laya-ft", "hybrid", "laya", "checkpoints/laya-ft", label="Hybrid + Laya (fine-tuned)"),
         System(
