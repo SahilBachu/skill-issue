@@ -1,0 +1,20 @@
+{
+  "name": "skill-issue",
+  "owner": {
+    "name": "Sahil Bachu",
+    "url": "https://github.com/SahilBachu"
+  },
+  "metadata": {
+    "description": "skill-issue: a fast local skill router for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "skill-issue",
+      "source": "./",
+      "description": "Routes each prompt to the Agent Skills that fit (or none) with a local hybrid retriever and a calibrated gate model.",
+      "version": "0.1.0",
+      "license": "Apache-2.0",
+      "category": "productivity"
+    }
+  ]
+}

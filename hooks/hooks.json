@@ -1,0 +1,27 @@
+{
+  "description": "skill-issue: warm the router at session start, route every prompt. Both hooks fail open.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.sh\" session-start",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.sh\" prompt",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

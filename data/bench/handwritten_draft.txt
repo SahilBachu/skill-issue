@@ -1,0 +1,67 @@
+# Hand-written draft set. DRAFT: pending review by the project owner.
+# Format: labels (comma separated skill names, "-" for none) <TAB> kind <TAB> prompt
+# Names are test-split skill names (e.g. "session-report" is the Claude Code plugin one, "gsd:session-report" the GSD one).
+linear	positive	make a linear ticket for the flaky auth test and assign it to me
+linear	positive	what's still open in our Q3 infra project in linear? just the titles
+gh-fix-ci	positive	ci is red on my PR again, figure out why
+gh-fix-ci	positive	the lint job passes locally but fails in actions on this branch. check the run logs and tell me what's different
+gh-address-comments	positive	go through the review comments on my open PR and fix the ones that are clearly right
+yeet	positive	stage everything, commit it with a decent message, push and open the PR
+vercel-deploy	positive	ship this next app to vercel and send me the preview url
+cloudflare-deploy	positive	put this static site on cloudflare pages
+render-deploy	positive	can you get this fastapi service running on render with a postgres db
+jupyter-notebook	positive	set up a notebook that loads data/sales.csv and plots monthly revenue
+huggingface-datasets	positive	how many rows does the test split of openai/gsm8k have and what are the columns
+hf-mem	positive	will Qwen3-32B in bf16 fit on two 24gb cards? estimate the memory
+huggingface-local-models	positive	i want to run a coding model locally on my m2 macbook with llama.cpp, which gguf quant should i grab
+slack-gif-creator	positive	make a little party parrot style gif for our slack channel when a deploy succeeds
+brand-guidelines	positive	restyle this one-pager so it uses anthropic's colors and fonts
+math-olympiad	positive	prove that for every positive integer n, n^5 - n is divisible by 30. make sure the proof is airtight
+database-schema-designer	positive	design the tables for a library app: books, copies, members, loans, holds. include the FKs
+terraform-patterns	positive	our terraform state is one giant file for all envs. how should i split it into modules and workspaces
+feature-flags-architect	positive	we have like 60 feature flags and half are dead. help me audit which ones can be removed
+pnpm	positive	convert this repo from npm to a pnpm workspace with packages/api and packages/web
+azure-postgres-ts	positive	connect my express app to azure postgres flexible server using pg with entra id auth
+azure-resource-lookup	positive	list every storage account across my azure subscriptions
+azure-ai-contentsafety-ts	positive	moderate user comments for hate and self-harm before we save them, we're on azure, node backend
+obsidian-markdown	positive	turn my meeting notes into proper obsidian notes with wikilinks to the people pages
+obsidian-bases	positive	make an obsidian base that shows all my book notes as a table sorted by rating
+social-content	positive	write a week of linkedin posts announcing our open source launch
+meeting-insights-analyzer	positive	here are transcripts from my last 10 one-on-ones. am i dominating the conversation?
+proposal-drafter	positive	draft a proposal for this upwork job posting, use my background from resume.md
+remediation	positive	how do i fix CVE-2024-24790 in our go service without breaking the build
+exploits-search	positive	are there public exploits for any of the critical vulns in our npm deps
+session-report	positive	make me an html report of where my claude code tokens went this month
+ios-debugger-agent	positive	build the ios app and launch it on the booted simulator, then screenshot the home screen
+bazel-build-optimization	positive	our bazel builds take 40 minutes in ci. set up remote caching and find the slow targets
+deep-work	positive	plan tomorrow as a deep work day around the migration, i have 3 meetings i can't move
+-	none	rename getUserData to fetchUser everywhere in src/
+-	none	why is this returning undefined? const x = arr.find(i => { i.id === id })
+-	none	what's the difference between a mutex and a semaphore
+-	none	add a --verbose flag to cli.py that sets the log level to debug
+-	none	thanks, that fixed it
+-	none	explain what this regex does: ^(?=.*\d)(?=.*[a-z]).{8,}$
+-	none	bump the version in package.json to 2.3.0
+-	none	write a docstring for the parse_config function
+-	none	sort this list of dicts by the 'created' key, newest first
+-	none	the test in tests/test_math.py fails with an off by one, can you fix the loop
+-	none	is it bad to catch Exception broadly in python?
+-	none	convert this for loop to a list comprehension
+-	none	what does git rebase --onto do, in plain words
+-	none	add type hints to utils.py
+-	none	why is my docker image 2gb? here's the Dockerfile
+-	none	make the error message in validate_email more helpful
+-	hard_negative_none	what's the difference between vercel and netlify for a hobby project
+-	hard_negative_none	fix the typo in the README section about deploying to cloudflare
+-	hard_negative_none	does linear or jira have better keyboard shortcuts, just curious
+-	hard_negative_none	what is a GGUF file anyway
+-	hard_negative_none	rename the notebook folder to notebooks
+-	hard_negative_none	why does pnpm use a content-addressable store, conceptually
+gh-fix-ci	hard_negative_sibling	my PR has 14 review comments and the build is also failing, start with the failing build
+huggingface-datasets	hard_negative_sibling	what are the column names in the HuggingFaceFW/fineweb dataset
+database-schema-designer,azure-postgres-ts	multi	design a schema for a multi-tenant invoicing app and wire up the node data layer to azure postgres
+gh-fix-ci,yeet	multi	fix whatever is breaking CI on this branch, then commit, push, and open the PR
+huggingface-local-models,hf-mem	multi	figure out if Llama-3.3-70B fits on my 48gb mac and if so which gguf quant to run with llama.cpp
+remediation,exploits-search	multi	check if the vulns in our lockfile have public exploits and give me a fix plan for the ones that do
+vercel-deploy,linear	multi	deploy the preview to vercel and post the link on the linear ticket ENG-412
+obsidian-markdown,meeting-insights-analyzer	multi	analyze my standup transcripts for patterns and write the findings into obsidian notes linking each teammate

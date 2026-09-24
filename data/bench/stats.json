@@ -1,0 +1,44 @@
+{
+  "errors": 0,
+  "exact_duplicates_removed": 1,
+  "cross_split_near_dups_removed": 8,
+  "train": {
+    "total": 1782,
+    "kinds": {
+      "none": 268,
+      "multi": 80,
+      "positive": 1079,
+      "hard_negative_none": 176,
+      "hard_negative_sibling": 179
+    },
+    "skills": 180,
+    "positives_naming_skill": "60/1079",
+    "sha256": "edcc6e144b843c5e36901bf378efecc6ff9cbf003ac7bbbe9c27189e4df016b3"
+  },
+  "val": {
+    "total": 312,
+    "kinds": {
+      "none": 67,
+      "multi": 20,
+      "positive": 135,
+      "hard_negative_none": 45,
+      "hard_negative_sibling": 45
+    },
+    "skills": 45,
+    "positives_naming_skill": "6/135",
+    "sha256": "813671f9f42ee84a347c708267362368eebc0b4aa25e8d0eb25f87494c7c7726"
+  },
+  "test": {
+    "total": 527,
+    "kinds": {
+      "none": 112,
+      "multi": 40,
+      "positive": 225,
+      "hard_negative_none": 75,
+      "hard_negative_sibling": 75
+    },
+    "skills": 75,
+    "positives_naming_skill": "11/225",
+    "sha256": "538c56fdc69f326955eed1059a823ca735f80fb42a84032f0d652c9e665d798b"
+  }
+}

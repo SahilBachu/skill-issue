@@ -1,0 +1,14 @@
+{
+  "name": "skill-issue",
+  "displayName": "skill-issue",
+  "description": "Local skill router. On every prompt it picks the Agent Skills that fit, or none, and tells Claude to load them.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Sahil Bachu"
+  },
+  "homepage": "https://github.com/SahilBachu/skill-issue",
+  "repository": "https://github.com/SahilBachu/skill-issue",
+  "license": "Apache-2.0",
+  "keywords": ["skills", "router", "agent-skills", "hooks", "retrieval"],
+  "hooks": "./hooks/hooks.json"
+}

@@ -1,0 +1,118 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "skillissue"
+version = "0.1.0"
+description = "A fast local skill router for coding agents. Picks the Agent Skills that matter for each prompt, or none."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.10"
+authors = [{ name = "Sahil Bachu" }]
+keywords = ["agent-skills", "claude-code", "skills", "router", "retrieval", "mcp", "codex", "gemini-cli"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Operating System :: POSIX :: Linux",
+  "Operating System :: MacOS",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Typing :: Typed",
+]
+dependencies = [
+  "numpy>=1.26",
+  "pyyaml>=6.0",
+  "platformdirs>=4.2",
+  "bm25s>=0.2.10",
+  "PyStemmer>=2.2",
+  "huggingface_hub>=0.25",
+  "torch>=2.4",
+  "transformers>=4.48",
+  "safetensors>=0.4",
+  "sentence-transformers>=3.3",
+  "laya>=0.3.12",
+  "tomli>=2.0; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+mcp = ["mcp>=2.2"]
+
+[project.scripts]
+skill-issue = "skillissue.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/SahilBachu/skill-issue"
+Issues = "https://github.com/SahilBachu/skill-issue/issues"
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3",
+  "pytest-timeout>=2.3",
+  "ruff>=0.8",
+  "mypy>=1.13",
+  "types-pyyaml",
+  "mcp>=2.2",
+]
+bench = [
+  "matplotlib>=3.9",
+  "psutil>=6.0",
+  "datasets>=3.0",
+]
+train = [
+  "bitsandbytes>=0.45; sys_platform != 'darwin'",
+  "peft>=0.14",
+  "accelerate>=1.2",
+]
+
+[tool.uv]
+default-groups = ["dev", "bench", "train"]
+
+[tool.uv.sources]
+# Windows wheels on PyPI are CPU-only; Linux (CUDA) and macOS (MPS) PyPI wheels already work.
+torch = [{ index = "pytorch-cu128", marker = "sys_platform == 'win32'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/skillissue"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/skillissue", "README.md", "LICENSE", "NOTICE"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests", "bench", "training"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF", "PTH", "N"]
+ignore = ["E501", "RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["PTH", "N802"]
+"hooks/**" = ["PTH"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src/skillissue"]
+strict = true
+ignore_missing_imports = true
+warn_unused_ignores = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+timeout = 300
+markers = [
+  "slow: loads real models or downloads weights",
+  "gpu: needs a CUDA device",
+  "e2e: end-to-end tests that spawn the daemon and hook",
+]
+addopts = "-m 'not slow'"

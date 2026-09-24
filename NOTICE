@@ -1,0 +1,12 @@
+skill-issue
+Copyright 2026 Sahil Bachu
+
+This product includes software developed by Sahil Bachu (https://github.com/SahilBachu/skill-issue).
+
+The approved skill index (src/skillissue/data/approved-index.json) contains names, descriptions
+and short excerpts of third-party Agent Skills under their own licenses. See
+src/skillissue/data/APPROVED_NOTICES.md for sources and licenses.
+
+The benchmark uses the SkillRet dataset (ThakiCloud/SKILLRET, Apache-2.0) and public skill
+repositories pinned in data/corpus/sources.lock.json. Skill content is not redistributed in
+this repository; only metadata and hashes are committed.

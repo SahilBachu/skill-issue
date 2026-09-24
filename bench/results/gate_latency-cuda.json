@@ -1,0 +1,342 @@
+{
+ "device": "cuda",
+ "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+ "results": [
+  {
+   "model": "laya",
+   "body_chars": 0,
+   "candidates": 4,
+   "p50_ms": 58.94685000384925,
+   "p95_ms": 74.57280000380706
+  },
+  {
+   "model": "laya",
+   "body_chars": 0,
+   "candidates": 8,
+   "p50_ms": 107.65895000076853,
+   "p95_ms": 139.47199999529403
+  },
+  {
+   "model": "laya",
+   "body_chars": 0,
+   "candidates": 12,
+   "p50_ms": 162.8471000076388,
+   "p95_ms": 269.61750000191387
+  },
+  {
+   "model": "laya",
+   "body_chars": 0,
+   "candidates": 20,
+   "p50_ms": 275.32564999273745,
+   "p95_ms": 448.96979999612086
+  },
+  {
+   "model": "laya",
+   "body_chars": 300,
+   "candidates": 4,
+   "p50_ms": 74.28529999015154,
+   "p95_ms": 111.88680000486784
+  },
+  {
+   "model": "laya",
+   "body_chars": 300,
+   "candidates": 8,
+   "p50_ms": 145.55770000151824,
+   "p95_ms": 211.07710000069346
+  },
+  {
+   "model": "laya",
+   "body_chars": 300,
+   "candidates": 12,
+   "p50_ms": 254.97230000473792,
+   "p95_ms": 467.95879999990575
+  },
+  {
+   "model": "laya",
+   "body_chars": 300,
+   "candidates": 20,
+   "p50_ms": 506.4981500036083,
+   "p95_ms": 753.4335999953328
+  },
+  {
+   "model": "laya",
+   "body_chars": 600,
+   "candidates": 4,
+   "p50_ms": 105.5159499956062,
+   "p95_ms": 126.12349999835715
+  },
+  {
+   "model": "laya",
+   "body_chars": 600,
+   "candidates": 8,
+   "p50_ms": 199.9869999999646,
+   "p95_ms": 268.49690001108684
+  },
+  {
+   "model": "laya",
+   "body_chars": 600,
+   "candidates": 12,
+   "p50_ms": 329.56845000444446,
+   "p95_ms": 441.5480000025127
+  },
+  {
+   "model": "laya",
+   "body_chars": 600,
+   "candidates": 20,
+   "p50_ms": 609.117950007203,
+   "p95_ms": 757.5987000018358
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 0,
+   "candidates": 4,
+   "p50_ms": 31.364900001790375,
+   "p95_ms": 39.95629999553785
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 0,
+   "candidates": 8,
+   "p50_ms": 55.81510000047274,
+   "p95_ms": 81.44480000191834
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 0,
+   "candidates": 12,
+   "p50_ms": 89.99564999976428,
+   "p95_ms": 113.50259999744594
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 0,
+   "candidates": 20,
+   "p50_ms": 158.17349999269936,
+   "p95_ms": 208.87380000203848
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 300,
+   "candidates": 4,
+   "p50_ms": 38.1654000011622,
+   "p95_ms": 51.62009999912698
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 300,
+   "candidates": 8,
+   "p50_ms": 71.96210000256542,
+   "p95_ms": 93.99170000688173
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 300,
+   "candidates": 12,
+   "p50_ms": 125.03384999581613,
+   "p95_ms": 158.73750000901055
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 300,
+   "candidates": 20,
+   "p50_ms": 185.3299499998684,
+   "p95_ms": 259.56679999944754
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 600,
+   "candidates": 4,
+   "p50_ms": 52.227899999707006,
+   "p95_ms": 64.24749999132473
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 600,
+   "candidates": 8,
+   "p50_ms": 104.29199999634875,
+   "p95_ms": 144.5320999919204
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 600,
+   "candidates": 12,
+   "p50_ms": 162.01175000605872,
+   "p95_ms": 199.93800000520423
+  },
+  {
+   "model": "bge-m3",
+   "body_chars": 600,
+   "candidates": 20,
+   "p50_ms": 271.80999999836786,
+   "p95_ms": 367.61319999641273
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 0,
+   "candidates": 4,
+   "p50_ms": 20.229200010362547,
+   "p95_ms": 23.951800001668744
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 0,
+   "candidates": 8,
+   "p50_ms": 30.299600002763327,
+   "p95_ms": 39.538299999549054
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 0,
+   "candidates": 12,
+   "p50_ms": 43.25960000278428,
+   "p95_ms": 79.32429999345914
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 0,
+   "candidates": 20,
+   "p50_ms": 100.92354999505915,
+   "p95_ms": 150.06329999596346
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 300,
+   "candidates": 4,
+   "p50_ms": 22.602199991524685,
+   "p95_ms": 29.747199994744733
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 300,
+   "candidates": 8,
+   "p50_ms": 45.99535000306787,
+   "p95_ms": 67.11220000579488
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 300,
+   "candidates": 12,
+   "p50_ms": 70.99754999944707,
+   "p95_ms": 104.26320000260603
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 300,
+   "candidates": 20,
+   "p50_ms": 152.4068999933661,
+   "p95_ms": 199.13249999808613
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 600,
+   "candidates": 4,
+   "p50_ms": 29.529250001360197,
+   "p95_ms": 36.563600006047636
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 600,
+   "candidates": 8,
+   "p50_ms": 60.702700007823296,
+   "p95_ms": 89.59640000830404
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 600,
+   "candidates": 12,
+   "p50_ms": 96.72294999472797,
+   "p95_ms": 137.04850000794977
+  },
+  {
+   "model": "gte-mb",
+   "body_chars": 600,
+   "candidates": 20,
+   "p50_ms": 203.22635000775335,
+   "p95_ms": 248.832900004345
+  },
+  {
+   "model": "minilm",
+   "body_chars": 0,
+   "candidates": 4,
+   "p50_ms": 12.369750002108049,
+   "p95_ms": 18.921000009868294
+  },
+  {
+   "model": "minilm",
+   "body_chars": 0,
+   "candidates": 8,
+   "p50_ms": 10.68189999932656,
+   "p95_ms": 18.112199992174283
+  },
+  {
+   "model": "minilm",
+   "body_chars": 0,
+   "candidates": 12,
+   "p50_ms": 12.653399993723724,
+   "p95_ms": 17.900599996210076
+  },
+  {
+   "model": "minilm",
+   "body_chars": 0,
+   "candidates": 20,
+   "p50_ms": 11.484099995868746,
+   "p95_ms": 23.93080000183545
+  },
+  {
+   "model": "minilm",
+   "body_chars": 300,
+   "candidates": 4,
+   "p50_ms": 7.972350002091844,
+   "p95_ms": 10.036899999249727
+  },
+  {
+   "model": "minilm",
+   "body_chars": 300,
+   "candidates": 8,
+   "p50_ms": 12.578299996675923,
+   "p95_ms": 16.780299993115477
+  },
+  {
+   "model": "minilm",
+   "body_chars": 300,
+   "candidates": 12,
+   "p50_ms": 13.792100005957764,
+   "p95_ms": 19.691399997100234
+  },
+  {
+   "model": "minilm",
+   "body_chars": 300,
+   "candidates": 20,
+   "p50_ms": 20.160199994279537,
+   "p95_ms": 27.142999999341555
+  },
+  {
+   "model": "minilm",
+   "body_chars": 600,
+   "candidates": 4,
+   "p50_ms": 7.660099996428471,
+   "p95_ms": 8.879100001649931
+  },
+  {
+   "model": "minilm",
+   "body_chars": 600,
+   "candidates": 8,
+   "p50_ms": 11.787699993874412,
+   "p95_ms": 13.688899998669513
+  },
+  {
+   "model": "minilm",
+   "body_chars": 600,
+   "candidates": 12,
+   "p50_ms": 16.361800000595395,
+   "p95_ms": 21.631199997500516
+  },
+  {
+   "model": "minilm",
+   "body_chars": 600,
+   "candidates": 20,
+   "p50_ms": 25.813450003624894,
+   "p95_ms": 29.28270000847988
+  }
+ ]
+}

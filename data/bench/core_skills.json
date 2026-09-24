@@ -1,0 +1,3906 @@
+{
+ "seed": 20260924,
+ "embed_model": "BAAI/bge-small-en-v1.5",
+ "skills": [
+  {
+   "id": "openai/skills:skills/.curated/speech",
+   "name": "speech",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/transcribe",
+    "openai/skills:skills/.system/imagegen",
+    "skillret:cc9a8fb5-870e-4bee-91d8-2986a85970a6"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/playground/skills/playground",
+   "name": "playground",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/skills:skills/web-artifacts-builder",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/command-development",
+    "alirezarezvani/claude-skills:marketing-skill/skills/free-tool-strategy"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-trackio",
+   "name": "huggingface-trackio",
+   "split": "val",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-zerogpu",
+    "huggingface/skills:skills/huggingface-lora-space-builder",
+    "huggingface/skills:skills/huggingface-gradio"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/linear",
+   "name": "linear",
+   "split": "test",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.system/openai-docs",
+    "huggingface/skills:hf-mcp/skills/hf-mcp",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-enterprise-infra-planner"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/security-ownership-map",
+   "name": "security-ownership-map",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-changelog",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-qa",
+    "openai/skills:skills/.curated/security-threat-model"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.system/openai-docs",
+   "name": "openai-docs",
+   "split": "test",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:hf-mcp/skills/hf-mcp",
+    "openai/skills:skills/.curated/cli-creator",
+    "openai/skills:skills/.curated/linear"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/hf-mem",
+   "name": "hf-mem",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-local-models",
+    "huggingface/skills:hf-mcp/skills/hf-mcp",
+    "huggingface/skills:skills/hf-cloud-serving-image-selection"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/mcp-server-dev/skills/build-mcp-server",
+   "name": "build-mcp-server",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/skills:skills/mcp-builder",
+    "anthropics/claude-plugins-official:plugins/mcp-server-dev/skills/build-mcpb",
+    "anthropics/claude-plugins-official:plugins/claude-code-setup/skills/claude-automation-recommender"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-gradio",
+   "name": "huggingface-gradio",
+   "split": "val",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-lora-space-builder",
+    "huggingface/skills:skills/huggingface-zerogpu",
+    "huggingface/skills:skills/huggingface-trackio"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/internal-comms",
+   "name": "internal-comms",
+   "split": "train",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/writing-skills",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/skill-development",
+    "skillret:2ca9a5c0-b72c-4aa9-8af2-4333eca0c45e"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/mcp-builder",
+   "name": "mcp-builder",
+   "split": "train",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/mcp-server-dev/skills/build-mcp-server",
+    "anthropics/claude-plugins-official:plugins/mcp-server-dev/skills/build-mcpb",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-projects-ts"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/trl-training",
+   "name": "trl-training",
+   "split": "train",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "skillret:9e4d5778-a852-4cfc-9385-3911700067aa",
+    "huggingface/skills:skills/huggingface-vision-trainer",
+    "huggingface/skills:skills/transformers-js"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/cwc-makers/skills/cardputer-buddy",
+   "name": "cardputer-buddy",
+   "split": "val",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/skills/copilot-sdk",
+    "huggingface/skills:skills/huggingface-zerogpu",
+    "huggingface/skills:skills/huggingface-gradio"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/notion-spec-to-implementation",
+   "name": "notion-spec-to-implementation",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/notion-research-documentation",
+    "openai/skills:skills/.curated/notion-meeting-intelligence",
+    "openai/skills:skills/.curated/notion-knowledge-capture"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/hf-cloud-serving-image-selection",
+   "name": "hf-cloud-serving-image-selection",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/hf-cloud-sagemaker-deployment-planner",
+    "huggingface/skills:skills/hf-cloud-sagemaker-production-defaults",
+    "huggingface/skills:skills/huggingface-local-models"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/chatgpt-apps",
+   "name": "chatgpt-apps",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/mcp-server-dev/skills/build-mcp-server",
+    "skillret:ab6ab2a3-9d2c-4cce-801d-deb0c437b030",
+    "openai/skills:skills/.curated/notion-knowledge-capture"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/claude-api",
+   "name": "claude-api",
+   "split": "train",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "skillret:36e67877-bd5b-4c8e-ae18-64dcaedc0311",
+    "anthropics/claude-plugins-official:plugins/claude-code-setup/skills/claude-automation-recommender",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/plugin-dev/skills/hook-development",
+   "name": "hook-development",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "skillret:dcdf6c61-52ef-4b74-912a-446c87ac7829",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development",
+    "alirezarezvani/claude-skills:engineering/security-guidance/skills/security-guidance"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/screenshot",
+   "name": "screenshot",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.system/imagegen",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember",
+    "openai/skills:skills/.curated/hatch-pet"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:external_plugins/imessage/skills/access",
+   "name": "access",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:external_plugins/telegram/skills/configure",
+    "anthropics/skills:skills/internal-comms",
+    "alirezarezvani/claude-skills:engineering/security-guidance/skills/security-guidance"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/sentry",
+   "name": "sentry",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering-team/google-workspace-cli/skills/google-workspace-cli",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-qa",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/x-research"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/security-best-practices",
+   "name": "security-best-practices",
+   "split": "val",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/using-superpowers",
+    "davepoon/buildwithclaude:plugins/ultracost/skills/ultracost",
+    "microsoft/skills:.github/plugins/azure-skills/skills/appinsights-instrumentation"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/session-report/skills/session-report",
+   "name": "session-report",
+   "split": "test",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/receipts/skills/receipts",
+    "davepoon/buildwithclaude:plugins/gsd/skills/session-report",
+    "davepoon/buildwithclaude:plugins/origin/skills/read"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/hatch-pet",
+   "name": "hatch-pet",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.system/imagegen",
+    "alirezarezvani/claude-skills:research/patent/skills/patent",
+    "alirezarezvani/claude-skills:marketing/landing/skills/landing"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/academy-guide",
+   "name": "academy-guide",
+   "split": "test",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "skillret:292856a8-83aa-4b4b-828c-73dc439a35b9",
+    "anthropics/claude-plugins-official:plugins/session-report/skills/session-report",
+    "skillret:fc1793e3-db85-477a-8104-2f1a461a4f42"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/canvas-design",
+   "name": "canvas-design",
+   "split": "train",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/skills:skills/algorithmic-art",
+    "anthropics/skills:skills/frontend-design",
+    "obra/superpowers:skills/brainstorming"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development",
+   "name": "agent-development",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/skills/agent-designer",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/command-development",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/skill-development"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/notion-research-documentation",
+   "name": "notion-research-documentation",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/notion-meeting-intelligence",
+    "openai/skills:skills/.curated/notion-knowledge-capture",
+    "openai/skills:skills/.curated/notion-spec-to-implementation"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/discernment-nudge",
+   "name": "discernment-nudge",
+   "split": "train",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/behuman/skills/behuman",
+    "obra/superpowers:skills/brainstorming",
+    "openai/skills:skills/.curated/define-goal"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/plugin-dev/skills/command-development",
+   "name": "command-development",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/skill-development",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development",
+    "anthropics/claude-plugins-official:plugins/example-plugin/skills/example-command"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/hookify/skills/writing-rules",
+   "name": "writing-hookify-rules",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/hook-development",
+    "alirezarezvani/claude-skills:engineering/security-guidance/skills/security-guidance",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/command-development"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-datasets",
+   "name": "huggingface-datasets",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-tool-builder",
+    "huggingface/skills:hf-mcp/skills/hf-mcp",
+    "huggingface/skills:skills/huggingface-paper-publisher"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/train-sentence-transformers",
+   "name": "train-sentence-transformers",
+   "split": "val",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-textanalytics-py",
+    "alirezarezvani/claude-skills:c-level-advisor/skills/internal-narrative",
+    "openai/skills:skills/.system/skill-installer"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/define-goal",
+   "name": "define-goal",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "skillret:096bad5d-2b55-4d7e-abde-33e8faf64da8",
+    "obra/superpowers:skills/brainstorming",
+    "obra/superpowers:skills/writing-plans"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/mcp-server-dev/skills/build-mcpb",
+   "name": "build-mcpb",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/mcp-server-dev/skills/build-mcp-server",
+    "anthropics/skills:skills/mcp-builder",
+    "alirezarezvani/claude-skills:agent-launcher/skills/stage-launch"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/plugin-dev/skills/plugin-settings",
+   "name": "plugin-settings",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/plugin-structure",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/hook-development"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/brand-guidelines",
+   "name": "brand-guidelines",
+   "split": "test",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/skills:skills/academy-guide",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-contentsafety-ts",
+    "huggingface/skills:skills/huggingface-tool-builder"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:external_plugins/telegram/skills/configure",
+   "name": "configure",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:external_plugins/imessage/skills/access",
+    "alirezarezvani/claude-skills:agent-launcher/skills/stage-launch",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/plugin-settings"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/plugin-dev/skills/skill-development",
+   "name": "skill-development",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/command-development",
+    "obra/superpowers:skills/writing-skills",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/claude-code-setup/skills/claude-automation-recommender",
+   "name": "claude-automation-recommender",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/claude-md-management/skills/claude-md-improver",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/plugin-structure",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/memory-review"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-paper-publisher",
+   "name": "huggingface-paper-publisher",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-tool-builder",
+    "huggingface/skills:hf-mcp/skills/hf-mcp",
+    "huggingface/skills:skills/huggingface-datasets"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/hf-cloud-python-env-setup",
+   "name": "hf-cloud-python-env-setup",
+   "split": "train",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "skillret:ef999b9a-a00d-40b5-a7cb-e5470c8794cf",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-projects-ts",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/m365-agents-py"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-lora-space-builder",
+   "name": "huggingface-lora-space-builder",
+   "split": "val",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-zerogpu",
+    "huggingface/skills:skills/huggingface-gradio",
+    "huggingface/skills:skills/huggingface-trackio"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/frontend-design",
+   "name": "frontend-design",
+   "split": "train",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/brainstorming",
+    "anthropics/skills:skills/canvas-design",
+    "alirezarezvani/claude-skills:marketing-skill/skills/free-tool-strategy"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/security-threat-model",
+   "name": "security-threat-model",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/security-ownership-map",
+    "skillret:9b5dc27a-57ce-455d-a1e7-bbca8066c1e1",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-qa"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/migrate-to-codex",
+   "name": "migrate-to-codex",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor",
+    "alirezarezvani/claude-skills:agent-launcher/skills/stage-launch",
+    "alirezarezvani/claude-skills:engineering/skills/agent-designer"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/notion-meeting-intelligence",
+   "name": "notion-meeting-intelligence",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/notion-research-documentation",
+    "openai/skills:skills/.curated/notion-knowledge-capture",
+    "openai/skills:skills/.curated/notion-spec-to-implementation"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.system/plugin-creator",
+   "name": "plugin-creator",
+   "split": "val",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.system/skill-installer",
+    "davepoon/buildwithclaude:plugins/ultracost/skills/ultracost",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/envelope-team"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/gh-address-comments",
+   "name": "gh-address-comments",
+   "split": "test",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/gh-fix-ci",
+    "openai/skills:skills/.curated/yeet",
+    "openai/skills:skills/.curated/cli-creator"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.system/skill-installer",
+   "name": "skill-installer",
+   "split": "val",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.system/plugin-creator",
+    "obra/superpowers:skills/using-superpowers",
+    "anthropics/claude-plugins-official:plugins/skill-creator/skills/skill-creator"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/netlify-deploy",
+   "name": "netlify-deploy",
+   "split": "val",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-voicelive-py",
+    "microsoft/skills:.github/skills/copilot-sdk",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-microsoft-playwright-testing-ts"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/web-artifacts-builder",
+   "name": "web-artifacts-builder",
+   "split": "train",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/project-artifact/skills/project-artifact",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/hook-development",
+    "anthropics/claude-plugins-official:plugins/playground/skills/playground"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/playwright-interactive",
+   "name": "playwright-interactive",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/skills:skills/webapp-testing",
+    "openai/skills:skills/.curated/playwright",
+    "alirezarezvani/claude-skills:engineering-team/playwright-pro/skills/pw-init"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/example-plugin/skills/example-command",
+   "name": "example-command",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/command-development",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/extract",
+    "obra/superpowers:skills/writing-skills"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/receipts/skills/receipts",
+   "name": "receipts",
+   "split": "test",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/session-report/skills/session-report",
+    "davepoon/buildwithclaude:plugins/gsd/skills/session-report",
+    "alirezarezvani/claude-skills:engineering-team/skills/senior-fullstack"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/transcribe",
+   "name": "transcribe",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/speech",
+    "skillret:cc9a8fb5-870e-4bee-91d8-2986a85970a6",
+    "alirezarezvani/claude-skills:engineering/collab-proof/skills/collab-proof"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/cli-creator",
+   "name": "cli-creator",
+   "split": "test",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-tool-builder",
+    "openai/skills:skills/.system/openai-docs",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/sequenzy-email-marketing"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/aspnet-core",
+   "name": "aspnet-core",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-ai-agents-persistent-dotnet",
+    "alirezarezvani/claude-skills:engineering-team/skills/senior-architect",
+    "anthropics/claude-plugins-official:plugins/mcp-server-dev/skills/build-mcp-server"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/yeet",
+   "name": "yeet",
+   "split": "test",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/gh-fix-ci",
+    "openai/skills:skills/.curated/gh-address-comments",
+    "openai/skills:skills/.curated/cli-creator"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/math-olympiad/skills/math-olympiad",
+   "name": "math-olympiad",
+   "split": "test",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:c-level-advisor/executive-mentor/skills/board-prep",
+    "davepoon/buildwithclaude:plugins/gsd/skills/plan-phase",
+    "davepoon/buildwithclaude:plugins/gsd/skills/list-phase-assumptions"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/webapp-testing",
+   "name": "webapp-testing",
+   "split": "train",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/playwright-interactive",
+    "alirezarezvani/claude-skills:engineering-team/playwright-pro/skills/pw-init",
+    "openai/skills:skills/.curated/playwright"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/algorithmic-art",
+   "name": "algorithmic-art",
+   "split": "train",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/skills:skills/canvas-design",
+    "openai/skills:skills/.system/imagegen",
+    "openai/skills:skills/.curated/hatch-pet"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/hf-cloud-aws-context-discovery",
+   "name": "hf-cloud-aws-context-discovery",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/hf-cloud-sagemaker-iam-preflight",
+    "huggingface/skills:skills/hf-cloud-sagemaker-deployment-planner",
+    "huggingface/skills:skills/hf-cloud-sagemaker-production-defaults"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-zerogpu",
+   "name": "huggingface-zerogpu",
+   "split": "val",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-lora-space-builder",
+    "huggingface/skills:skills/huggingface-gradio",
+    "huggingface/skills:skills/huggingface-trackio"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/playwright",
+   "name": "playwright",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/playwright-interactive",
+    "anthropics/skills:skills/webapp-testing",
+    "alirezarezvani/claude-skills:engineering-team/playwright-pro/skills/pw-init"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-local-models",
+   "name": "huggingface-local-models",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:hf-mcp/skills/hf-mcp",
+    "huggingface/skills:skills/hf-mem",
+    "huggingface/skills:skills/huggingface-tool-builder"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/skill-creator/skills/skill-creator",
+   "name": "skill-creator",
+   "split": "val",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.system/skill-installer",
+    "obra/superpowers:skills/using-superpowers",
+    "openai/skills:skills/.curated/security-best-practices"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/theme-factory",
+   "name": "theme-factory",
+   "split": "train",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/skills:skills/web-artifacts-builder",
+    "alirezarezvani/claude-skills:markdown-html/skills/design-system",
+    "openai/skills:skills/.system/imagegen"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-community-evals",
+   "name": "huggingface-community-evals",
+   "split": "train",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-vision-trainer",
+    "huggingface/skills:skills/huggingface-best",
+    "skillret:f443dfbb-974c-4e58-88b7-cb0fbee476f0"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/winui-app",
+   "name": "winui-app",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/chatgpt-apps",
+    "skillret:ef999b9a-a00d-40b5-a7cb-e5470c8794cf",
+    "obra/superpowers:skills/brainstorming"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/hf-cloud-sagemaker-iam-preflight",
+   "name": "hf-cloud-sagemaker-iam-preflight",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/hf-cloud-sagemaker-production-defaults",
+    "huggingface/skills:skills/hf-cloud-sagemaker-deployment-planner",
+    "huggingface/skills:skills/hf-cloud-aws-context-discovery"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/transformers-js",
+   "name": "transformers-js",
+   "split": "train",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/trl-training",
+    "huggingface/skills:skills/huggingface-community-evals",
+    "huggingface/skills:skills/huggingface-vision-trainer"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/claude-md-management/skills/claude-md-improver",
+   "name": "claude-md-improver",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor",
+    "anthropics/claude-plugins-official:plugins/claude-code-setup/skills/claude-automation-recommender",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/memory-review"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/vercel-deploy",
+   "name": "vercel-deploy",
+   "split": "test",
+   "repo": "openai/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/render-deploy",
+    "openai/skills:skills/.curated/cloudflare-deploy",
+    "huggingface/skills:skills/hf-cloud-sagemaker-deployment-planner"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/notion-knowledge-capture",
+   "name": "notion-knowledge-capture",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/notion-research-documentation",
+    "openai/skills:skills/.curated/notion-meeting-intelligence",
+    "openai/skills:skills/.curated/notion-spec-to-implementation"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/gh-fix-ci",
+   "name": "gh-fix-ci",
+   "split": "test",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/yeet",
+    "openai/skills:skills/.curated/gh-address-comments",
+    "davepoon/buildwithclaude:plugins/gsd/skills/plan-phase"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/cloudflare-deploy",
+   "name": "cloudflare-deploy",
+   "split": "test",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/hf-cloud-sagemaker-deployment-planner",
+    "openai/skills:skills/.curated/render-deploy",
+    "openai/skills:skills/.curated/vercel-deploy"
+   ]
+  },
+  {
+   "id": "huggingface/skills:hf-mcp/skills/hf-mcp",
+   "name": "hf-mcp",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-tool-builder",
+    "huggingface/skills:skills/huggingface-local-models",
+    "huggingface/skills:skills/hf-mem"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.system/imagegen",
+   "name": "imagegen",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/hatch-pet",
+    "openai/skills:skills/.curated/speech",
+    "openai/skills:skills/.curated/screenshot"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-vision-trainer",
+   "name": "huggingface-vision-trainer",
+   "split": "train",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-community-evals",
+    "huggingface/skills:skills/huggingface-best",
+    "huggingface/skills:skills/trl-training"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/plugin-dev/skills/plugin-structure",
+   "name": "plugin-structure",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/plugin-settings",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/skill-development",
+    "anthropics/claude-plugins-official:plugins/claude-code-setup/skills/claude-automation-recommender"
+   ]
+  },
+  {
+   "id": "anthropics/skills:skills/slack-gif-creator",
+   "name": "slack-gif-creator",
+   "split": "test",
+   "repo": "anthropics/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/render-deploy",
+    "alirezarezvani/claude-skills:marketing-skill/skills/social-content",
+    "huggingface/skills:hf-mcp/skills/hf-mcp"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/jupyter-notebook",
+   "name": "jupyter-notebook",
+   "split": "test",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-tool-builder",
+    "anthropics/claude-plugins-official:plugins/session-report/skills/session-report",
+    "huggingface/skills:skills/huggingface-paper-publisher"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/render-deploy",
+   "name": "render-deploy",
+   "split": "test",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/cloudflare-deploy",
+    "openai/skills:skills/.curated/vercel-deploy",
+    "huggingface/skills:skills/hf-cloud-sagemaker-deployment-planner"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-best",
+   "name": "huggingface-best",
+   "split": "train",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-vision-trainer",
+    "huggingface/skills:skills/huggingface-community-evals",
+    "skillret:ab6ab2a3-9d2c-4cce-801d-deb0c437b030"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/hf-cloud-sagemaker-deployment-planner",
+   "name": "hf-cloud-sagemaker-deployment-planner",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/hf-cloud-sagemaker-production-defaults",
+    "huggingface/skills:skills/hf-cloud-serving-image-selection",
+    "huggingface/skills:skills/hf-cloud-sagemaker-iam-preflight"
+   ]
+  },
+  {
+   "id": "anthropics/claude-plugins-official:plugins/project-artifact/skills/project-artifact",
+   "name": "project-artifact",
+   "split": "train",
+   "repo": "anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "anthropics/skills:skills/web-artifacts-builder",
+    "skillret:ab6ab2a3-9d2c-4cce-801d-deb0c437b030",
+    "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-status"
+   ]
+  },
+  {
+   "id": "openai/skills:skills/.curated/pdf",
+   "name": "pdf",
+   "split": "train",
+   "repo": "openai/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.system/imagegen",
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor",
+    "obra/superpowers:skills/requesting-code-review"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/huggingface-tool-builder",
+   "name": "huggingface-tool-builder",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-datasets",
+    "huggingface/skills:hf-mcp/skills/hf-mcp",
+    "huggingface/skills:skills/huggingface-paper-publisher"
+   ]
+  },
+  {
+   "id": "huggingface/skills:skills/hf-cloud-sagemaker-production-defaults",
+   "name": "hf-cloud-sagemaker-production-defaults",
+   "split": "test",
+   "repo": "huggingface/skills",
+   "license": "Apache-2.0",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/hf-cloud-sagemaker-deployment-planner",
+    "huggingface/skills:skills/hf-cloud-sagemaker-iam-preflight",
+    "huggingface/skills:skills/hf-cloud-serving-image-selection"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/behuman/skills/behuman",
+   "name": "behuman",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "anthropics/skills:skills/discernment-nudge",
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor",
+    "skillret:f27a5c80-038b-4a0d-b5a2-9d5c19e5f7d1"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/doc-ocr",
+   "name": "doc-ocr",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/pdf",
+    "openai/skills:skills/.curated/transcribe",
+    "openai/skills:skills/.system/imagegen"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/skills/copilot-sdk",
+   "name": "copilot-sdk",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-eventgrid-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-voicelive-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-mgmt-apimanagement-py"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/writing-skills",
+   "name": "writing-skills",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/skill-development",
+    "obra/superpowers:skills/writing-plans",
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor"
+   ]
+  },
+  {
+   "id": "skillret:d830f78f-2aee-4a5e-93bc-1d5537e1e48b",
+   "name": "kiro-skill",
+   "split": "train",
+   "repo": "feiskyer/claude-code-settings",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "openai/skills:skills/.curated/notion-spec-to-implementation",
+    "obra/superpowers:skills/brainstorming",
+    "obra/superpowers:skills/writing-plans"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:ra-qm-team/skills/fda-consultant-specialist",
+   "name": "fda-consultant-specialist",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:ra-qm-team/skills/risk-management-specialist",
+    "alirezarezvani/claude-skills:finance/skills/saas-metrics-coach",
+    "alirezarezvani/claude-skills:ra-qm-team/skills/soc2-compliance"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/hubspot-automation",
+   "name": "hubspot-automation",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/supabase-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/twitter-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/datadog-automation"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-resource-visualizer",
+   "name": "azure-resource-visualizer",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering-team/skills/senior-architect",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-architect",
+    "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-resource-manager-redis-dotnet"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/requesting-code-review",
+   "name": "requesting-code-review",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/receiving-code-review",
+    "skillret:480da141-1ee9-4e3c-a0e0-ff5b3c6258ac",
+    "anthropics/claude-plugins-official:plugins/claude-code-setup/skills/claude-automation-recommender"
+   ]
+  },
+  {
+   "id": "skillret:480da141-1ee9-4e3c-a0e0-ff5b3c6258ac",
+   "name": "PR Review",
+   "split": "train",
+   "repo": "openshift/oc",
+   "license": "Apache-2.0",
+   "origin": "skillret",
+   "siblings": [
+    "obra/superpowers:skills/requesting-code-review",
+    "obra/superpowers:skills/receiving-code-review",
+    "davepoon/buildwithclaude:plugins/gsd/skills/inbox"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:marketing-skill/skills/churn-prevention",
+   "name": "churn-prevention",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/venture-capital-intelligence/skills/financial-model",
+    "alirezarezvani/claude-skills:finance/skills/saas-metrics-coach",
+    "alirezarezvani/claude-skills:business-operations/skills/process-mapper"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/proposal-drafter",
+   "name": "proposal-drafter",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-paper-publisher",
+    "alirezarezvani/claude-skills:marketing-skill/skills/social-content",
+    "skillret:fc1793e3-db85-477a-8104-2f1a461a4f42"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-postgres-ts",
+   "name": "azure-postgres-ts",
+   "split": "test",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-communication-common-java",
+    "alirezarezvani/claude-skills:engineering/skills/database-schema-designer",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-contentsafety-ts"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/systematic-debugging",
+   "name": "systematic-debugging",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/test-driven-development",
+    "obra/superpowers:skills/verification-before-completion",
+    "skillret:dcdf6c61-52ef-4b74-912a-446c87ac7829"
+   ]
+  },
+  {
+   "id": "skillret:28876b1e-d048-4894-8536-36e8e11543a0",
+   "name": "execute-plan",
+   "split": "val",
+   "repo": "antinomyhq/forge",
+   "license": "Apache-2.0",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:928a6d8b-7ba4-44a0-b4e8-aeef8a8a554b",
+    "alirezarezvani/claude-skills:marketing-skill/skills/onboarding-cro",
+    "davepoon/buildwithclaude:plugins/ultracost/skills/ultracost"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering-team/playwright-pro/skills/pw-init",
+   "name": "pw-init",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "anthropics/skills:skills/webapp-testing",
+    "openai/skills:skills/.curated/playwright-interactive",
+    "openai/skills:skills/.curated/playwright"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/workstreams",
+   "name": "gsd:workstreams",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/gsd/skills/list-workspaces",
+    "davepoon/buildwithclaude:plugins/gsd/skills/forensics",
+    "davepoon/buildwithclaude:plugins/gsd/skills/note"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-enterprise-infra-planner",
+   "name": "azure-enterprise-infra-planner",
+   "split": "test",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/terraform-patterns/skills/terraform-patterns",
+    "huggingface/skills:skills/hf-cloud-sagemaker-deployment-planner",
+    "openai/skills:skills/.curated/cloudflare-deploy"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/test-driven-development",
+   "name": "test-driven-development",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/systematic-debugging",
+    "obra/superpowers:skills/writing-plans",
+    "skillret:a0ee1e99-e6a6-4ca8-82cf-9ef40378a767"
+   ]
+  },
+  {
+   "id": "skillret:7e6664a8-512f-49af-8453-f9c1b3ed358f",
+   "name": "axiom-storage",
+   "split": "test",
+   "repo": "CharlesWiltgen/Axiom",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "openai/skills:skills/.system/openai-docs",
+    "huggingface/skills:skills/hf-cloud-serving-image-selection",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-resource-lookup"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:marketing-skill/skills/programmatic-seo",
+   "name": "programmatic-seo",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:marketing-skill/skills/seo-audit",
+    "alirezarezvani/claude-skills:marketing-skill/skills/free-tool-strategy",
+    "alirezarezvani/claude-skills:marketing/landing/skills/landing"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-architect",
+   "name": "wiki-architect",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-qa",
+    "alirezarezvani/claude-skills:engineering-team/skills/senior-architect",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-changelog"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/executing-plans",
+   "name": "executing-plans",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/writing-plans",
+    "obra/superpowers:skills/dispatching-parallel-agents",
+    "obra/superpowers:skills/test-driven-development"
+   ]
+  },
+  {
+   "id": "skillret:cc76823d-a12e-4cdb-84fb-1193d65cfa24",
+   "name": "service-mesh-observability",
+   "split": "train",
+   "repo": "wshobson/agents",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/collab-proof/skills/collab-proof",
+    "obra/superpowers:skills/systematic-debugging",
+    "anthropics/skills:skills/mcp-builder"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:finance/skills/saas-metrics-coach",
+   "name": "saas-metrics-coach",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/venture-capital-intelligence/skills/financial-model",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-forecaster",
+    "alirezarezvani/claude-skills:c-level-advisor/skills/cmo-advisor"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/envelope-team",
+   "name": "envelope-team",
+   "split": "val",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:product-team/skills/product-strategist",
+    "alirezarezvani/claude-skills:c-level-advisor/skills/internal-narrative",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-mgmt-mongodbatlas-dotnet",
+   "name": "azure-mgmt-mongodbatlas-dotnet",
+   "split": "test",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-resource-lookup",
+    "huggingface/skills:hf-mcp/skills/hf-mcp",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-aigateway"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/diagnosing-superpowers",
+   "name": "diagnosing-superpowers",
+   "split": "test",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/gsd/skills/session-report",
+    "anthropics/claude-plugins-official:plugins/session-report/skills/session-report",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/meeting-insights-analyzer"
+   ]
+  },
+  {
+   "id": "skillret:ca8c7f1c-4192-4bb0-bb72-397528d8a163",
+   "name": "Git Commit Format",
+   "split": "train",
+   "repo": "openshift/hypershift",
+   "license": "Apache-2.0",
+   "origin": "skillret",
+   "siblings": [
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-changelog",
+    "skillret:c758bd53-dd63-4ca3-836c-78db34cc6903",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-qa"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:research/patent/skills/patent",
+   "name": "patent",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:research-ops/skills/research-ops-skills",
+    "alirezarezvani/claude-skills:marketing-skill/skills/free-tool-strategy",
+    "openai/skills:skills/.curated/hatch-pet"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-storage-file-share-ts",
+   "name": "azure-storage-file-share-ts",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-search-documents-ts",
+    "skillret:ef999b9a-a00d-40b5-a7cb-e5470c8794cf",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-web-pubsub-ts"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/writing-plans",
+   "name": "writing-plans",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/executing-plans",
+    "obra/superpowers:skills/writing-skills",
+    "obra/superpowers:skills/test-driven-development"
+   ]
+  },
+  {
+   "id": "skillret:86b2b3c6-30fc-4556-b60a-24853f8f7c07",
+   "name": "tech-debt-analyzer",
+   "split": "train",
+   "repo": "ailabs-393/ai-labs-claude-skills",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/claude-code-setup/skills/claude-automation-recommender",
+    "alirezarezvani/claude-skills:engineering-team/skills/senior-architect",
+    "skillret:dcdf6c61-52ef-4b74-912a-446c87ac7829"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:product-team/skills/saas-scaffolder",
+   "name": "saas-scaffolder",
+   "split": "test",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering-team/skills/senior-fullstack",
+    "alirezarezvani/claude-skills:engineering/skills/database-schema-designer",
+    "openai/skills:skills/.curated/cloudflare-deploy"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/x-research",
+   "name": "x-research",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/twitter-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/twitter-algorithm-optimizer"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-web-pubsub-ts",
+   "name": "azure-web-pubsub-ts",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-storage-file-share-ts",
+    "skillret:c758bd53-dd63-4ca3-836c-78db34cc6903",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-projects-ts"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/using-git-worktrees",
+   "name": "using-git-worktrees",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/finishing-a-development-branch",
+    "openai/skills:skills/.curated/security-ownership-map",
+    "obra/superpowers:skills/writing-plans"
+   ]
+  },
+  {
+   "id": "skillret:3d1e5efb-4200-409b-9b4d-c693d10cacda",
+   "name": "bazel-build-optimization",
+   "split": "test",
+   "repo": "wshobson/agents",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/feature-flags-architect/skills/feature-flags-architect",
+    "alirezarezvani/claude-skills:engineering/terraform-patterns/skills/terraform-patterns",
+    "alirezarezvani/claude-skills:engineering-team/skills/senior-fullstack"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/skills/agent-designer",
+   "name": "agent-designer",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development",
+    "obra/superpowers:skills/dispatching-parallel-agents",
+    "skillret:096bad5d-2b55-4d7e-abde-33e8faf64da8"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/szamlazz-invoicing",
+   "name": "szamlazz-invoicing",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:ra-qm-team/skills/agent-decision-receipts",
+    "alirezarezvani/claude-skills:marketing-skill/skills/churn-prevention",
+    "anthropics/skills:skills/claude-api"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-cost/skills/cost-estimation",
+   "name": "cost-estimation",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-compute",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-forecaster",
+    "alirezarezvani/claude-skills:commercial/skills/pricing-strategist"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/brainstorming",
+   "name": "brainstorming",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/writing-plans",
+    "openai/skills:skills/.curated/define-goal",
+    "alirezarezvani/claude-skills:research-ops/skills/product-research"
+   ]
+  },
+  {
+   "id": "skillret:c0b4094e-0128-4207-b1f7-d591b5f535ae",
+   "name": "electron-chromium-upgrade",
+   "split": "train",
+   "repo": "electron/electron",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "obra/superpowers:skills/systematic-debugging",
+    "obra/superpowers:skills/finishing-a-development-branch",
+    "skillret:d5ad70fa-1a5a-4e3b-8f17-a95db53b8bcc"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/skills/database-schema-designer",
+   "name": "database-schema-designer",
+   "split": "test",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:product-team/skills/saas-scaffolder",
+    "alirezarezvani/claude-skills:engineering/terraform-patterns/skills/terraform-patterns",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-enterprise-infra-planner"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/eval-review",
+   "name": "gsd:eval-review",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/memory-review",
+    "davepoon/buildwithclaude:plugins/gsd/skills/forensics",
+    "anthropics/claude-plugins-official:plugins/claude-md-management/skills/claude-md-improver"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-speech-to-text-rest-py",
+   "name": "azure-speech-to-text-rest-py",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-voicelive-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-storage-queue-py"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/dispatching-parallel-agents",
+   "name": "dispatching-parallel-agents",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/skills/agent-designer",
+    "obra/superpowers:skills/executing-plans",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development"
+   ]
+  },
+  {
+   "id": "skillret:b87a14e8-3fda-490d-b3c6-aa8cb4b8b27d",
+   "name": "android-kotlin",
+   "split": "train",
+   "repo": "alinaqi/claude-bootstrap",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:480da141-1ee9-4e3c-a0e0-ff5b3c6258ac",
+    "skillret:ef999b9a-a00d-40b5-a7cb-e5470c8794cf",
+    "alirezarezvani/claude-skills:engineering/boost-asio-pro"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/skills/performance-profiler",
+   "name": "performance-profiler",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "skillret:cc76823d-a12e-4cdb-84fb-1193d65cfa24",
+    "alirezarezvani/claude-skills:business-operations/skills/process-mapper",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/memory-review"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/list-workspaces",
+   "name": "gsd:list-workspaces",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/gsd/skills/workstreams",
+    "alirezarezvani/claude-skills:engineering-team/google-workspace-cli/skills/google-workspace-cli",
+    "davepoon/buildwithclaude:plugins/gsd/skills/forensics"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-monitor-ingestion-java",
+   "name": "azure-monitor-ingestion-java",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-monitor-opentelemetry-ts",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-cosmos-java",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-eventgrid-java"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/receiving-code-review",
+   "name": "receiving-code-review",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/requesting-code-review",
+    "skillret:480da141-1ee9-4e3c-a0e0-ff5b3c6258ac",
+    "obra/superpowers:skills/test-driven-development"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:c-level-advisor/executive-mentor/skills/board-prep",
+   "name": "board-prep",
+   "split": "test",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:c-level-advisor/executive-mentor/skills/executive-mentor",
+    "alirezarezvani/claude-skills:c-level-advisor/chief-customer-officer-advisor/skills/chief-customer-officer-advisor",
+    "anthropics/claude-plugins-official:plugins/math-olympiad/skills/math-olympiad"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/tubeify",
+   "name": "tubeify",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "skillret:fc1793e3-db85-477a-8104-2f1a461a4f42",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-contentsafety-ts",
+    "anthropics/skills:skills/slack-gif-creator"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-eventgrid-py",
+   "name": "azure-eventgrid-py",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-eventgrid-java",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-mgmt-apimanagement-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-storage-queue-py"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/using-superpowers",
+   "name": "using-superpowers",
+   "split": "val",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.system/skill-installer",
+    "openai/skills:skills/.curated/security-best-practices",
+    "alirezarezvani/claude-skills:marketing-skill/skills/onboarding-cro"
+   ]
+  },
+  {
+   "id": "skillret:9b5dc27a-57ce-455d-a1e7-bbca8066c1e1",
+   "name": "security-compliance",
+   "split": "train",
+   "repo": "davila7/claude-code-templates",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:ra-qm-team/skills/soc2-compliance",
+    "openai/skills:skills/.curated/security-threat-model",
+    "davepoon/buildwithclaude:plugins/cc-best/skills/architecture"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:c-level-advisor/skills/company-os",
+   "name": "company-os",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:business-operations/skills/process-mapper",
+    "alirezarezvani/claude-skills:product-team/agile-product-owner/skills/agile-product-owner",
+    "alirezarezvani/claude-skills:research-ops/skills/product-research"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/remove-workspace",
+   "name": "gsd:remove-workspace",
+   "split": "val",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/ultracost/skills/ultracost",
+    "huggingface/skills:skills/huggingface-zerogpu",
+    "openai/skills:skills/.system/plugin-creator"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-quotas",
+   "name": "azure-quotas",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-compute",
+    "microsoft/skills:.github/plugins/azure-cost/skills/cost-estimation",
+    "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-deploy"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/finishing-a-development-branch",
+   "name": "finishing-a-development-branch",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/using-git-worktrees",
+    "obra/superpowers:skills/verification-before-completion",
+    "obra/superpowers:skills/systematic-debugging"
+   ]
+  },
+  {
+   "id": "skillret:928a6d8b-7ba4-44a0-b4e8-aeef8a8a554b",
+   "name": "completion-check",
+   "split": "val",
+   "repo": "parcadei/Continuous-Claude-v3",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/ultracost/skills/ultracost",
+    "skillret:28876b1e-d048-4894-8536-36e8e11543a0",
+    "openai/skills:skills/.curated/security-best-practices"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:c-level-advisor/chief-customer-officer-advisor/skills/chief-customer-officer-advisor",
+   "name": "chief-customer-officer-advisor",
+   "split": "test",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:c-level-advisor/executive-mentor/skills/executive-mentor",
+    "alirezarezvani/claude-skills:engineering/feature-flags-architect/skills/feature-flags-architect",
+    "alirezarezvani/claude-skills:c-level-advisor/executive-mentor/skills/board-prep"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/nextjs-expert/skills/server-components",
+   "name": "server-components",
+   "split": "val",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-rust/skills/azure-eventhub-rust",
+    "huggingface/skills:skills/huggingface-gradio",
+    "davepoon/buildwithclaude:plugins/ultracost/skills/ultracost"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-storage-queue-py",
+   "name": "azure-storage-queue-py",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-eventgrid-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-mgmt-apimanagement-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-voicelive-py"
+   ]
+  },
+  {
+   "id": "obra/superpowers:skills/verification-before-completion",
+   "name": "verification-before-completion",
+   "split": "train",
+   "repo": "obra/superpowers",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/test-driven-development",
+    "obra/superpowers:skills/finishing-a-development-branch",
+    "obra/superpowers:skills/systematic-debugging"
+   ]
+  },
+  {
+   "id": "skillret:73430584-625c-43c2-8485-e38a874ec5a5",
+   "name": "channel-capacity",
+   "split": "train",
+   "repo": "parcadei/Continuous-Claude-v3",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:91b28e3a-2743-4143-8861-2a30fa759cdf",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/twitter-algorithm-optimizer",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-skills"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:c-level-agents/skills/boardroom",
+   "name": "boardroom",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:c-level-advisor/skills/cmo-advisor",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-skills",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-forecaster"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/submit-to-agentlaunch",
+   "name": "submit-to-agentlaunch",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development",
+    "alirezarezvani/claude-skills:agent-launcher/skills/stage-launch",
+    "skillret:cc9a8fb5-870e-4bee-91d8-2986a85970a6"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-microsoft-playwright-testing-ts",
+   "name": "azure-microsoft-playwright-testing-ts",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-speech-to-text-rest-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-voicelive-py"
+   ]
+  },
+  {
+   "id": "skillret:d5ad70fa-1a5a-4e3b-8f17-a95db53b8bcc",
+   "name": "update-jj",
+   "split": "train",
+   "repo": "gulbanana/gg",
+   "license": "Apache-2.0",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:c758bd53-dd63-4ca3-836c-78db34cc6903",
+    "skillret:69dcd0a6-653f-4332-be1f-30339ea692b7",
+    "alirezarezvani/claude-skills:engineering-team/google-workspace-cli/skills/google-workspace-cli"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:marketing-skill/skills/onboarding-cro",
+   "name": "onboarding-cro",
+   "split": "val",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:marketing-skill/skills/page-cro",
+    "davepoon/buildwithclaude:plugins/ultracost/skills/ultracost",
+    "obra/superpowers:skills/using-superpowers"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/inbox",
+   "name": "gsd:inbox",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/gsd/skills/forensics",
+    "skillret:480da141-1ee9-4e3c-a0e0-ff5b3c6258ac",
+    "obra/superpowers:skills/requesting-code-review"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py",
+   "name": "azure-ai-translation-document-py",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-textanalytics-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-voicelive-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-mgmt-apimanagement-py"
+   ]
+  },
+  {
+   "id": "skillret:a0ee1e99-e6a6-4ca8-82cf-9ef40378a767",
+   "name": "Writing Tests",
+   "split": "train",
+   "repo": "hotovo/aider-desk",
+   "license": "Apache-2.0",
+   "origin": "skillret",
+   "siblings": [
+    "obra/superpowers:skills/test-driven-development",
+    "obra/superpowers:skills/systematic-debugging",
+    "obra/superpowers:skills/writing-plans"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor",
+   "name": "skill-doctor",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/writing-skills",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/skill-development",
+    "anthropics/claude-plugins-official:plugins/claude-md-management/skills/claude-md-improver"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-voicelive-py",
+   "name": "azure-ai-voicelive-py",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-speech-to-text-rest-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-storage-queue-py"
+   ]
+  },
+  {
+   "id": "skillret:bd112de6-b647-4101-b3b6-1778cf65bcf8",
+   "name": "go-testing",
+   "split": "test",
+   "repo": "alex-ilgayev/MCPSpy",
+   "license": "Apache-2.0",
+   "origin": "skillret",
+   "siblings": [
+    "openai/skills:skills/.curated/gh-fix-ci",
+    "openai/skills:skills/.system/openai-docs",
+    "openai/skills:skills/.curated/yeet"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/memory-review",
+   "name": "memory-review",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember",
+    "anthropics/claude-plugins-official:plugins/claude-md-management/skills/claude-md-improver",
+    "anthropics/claude-plugins-official:plugins/claude-code-setup/skills/claude-automation-recommender"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/ultracost/skills/ultracost",
+   "name": "ultracost",
+   "split": "val",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "skillret:928a6d8b-7ba4-44a0-b4e8-aeef8a8a554b",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py",
+    "alirezarezvani/claude-skills:marketing-skill/skills/onboarding-cro"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/microsoft-365-agents-toolkit/skills/declarative-agent-developer",
+   "name": "declarative-agent-developer",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/m365-agents-py",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development",
+    "skillret:cc9a8fb5-870e-4bee-91d8-2986a85970a6"
+   ]
+  },
+  {
+   "id": "skillret:98400b31-5a43-4472-a5f6-c9c4f82b67ac",
+   "name": "mflux-model-porting",
+   "split": "test",
+   "repo": "filipstrand/mflux",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "huggingface/skills:skills/hf-mem",
+    "huggingface/skills:hf-mcp/skills/hf-mcp",
+    "huggingface/skills:skills/hf-cloud-serving-image-selection"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:productivity/deep-work/skills/deep-work",
+   "name": "deep-work",
+   "split": "test",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "skillret:1c2cf483-ed12-43b4-81d4-bbed32e1a357",
+    "huggingface/skills:skills/huggingface-tool-builder",
+    "alirezarezvani/claude-skills:engineering/feature-flags-architect/skills/feature-flags-architect"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/session-report",
+   "name": "gsd:session-report",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/session-report/skills/session-report",
+    "davepoon/buildwithclaude:plugins/gsd/skills/extract_learnings",
+    "anthropics/claude-plugins-official:plugins/receipts/skills/receipts"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-monitor-opentelemetry-ts",
+   "name": "azure-monitor-opentelemetry-ts",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-monitor-opentelemetry-py",
+    "microsoft/skills:.github/plugins/azure-skills/skills/appinsights-instrumentation",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-monitor-ingestion-java"
+   ]
+  },
+  {
+   "id": "skillret:c758bd53-dd63-4ca3-836c-78db34cc6903",
+   "name": "messages",
+   "split": "train",
+   "repo": "githubnext/gh-aw",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:cc9a8fb5-870e-4bee-91d8-2986a85970a6",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-web-pubsub-ts",
+    "skillret:ca8c7f1c-4192-4bb0-bb72-397528d8a163"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/boost-asio-pro",
+   "name": "boost-asio-pro",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "skillret:cc76823d-a12e-4cdb-84fb-1193d65cfa24",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember",
+    "skillret:b87a14e8-3fda-490d-b3c6-aa8cb4b8b27d"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/list-phase-assumptions",
+   "name": "gsd:list-phase-assumptions",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/gsd/skills/plan-phase",
+    "davepoon/buildwithclaude:plugins/gsd/skills/extract_learnings",
+    "davepoon/buildwithclaude:plugins/gsd/skills/session-report"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-communication-common-java",
+   "name": "azure-communication-common-java",
+   "split": "test",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-communication-chat-java",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-ai-vision-imageanalysis-java",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-contentsafety-ts"
+   ]
+  },
+  {
+   "id": "skillret:69dcd0a6-653f-4332-be1f-30339ea692b7",
+   "name": "readme-updater",
+   "split": "train",
+   "repo": "alirezarezvani/claude-code-tresor",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:9214e54a-c0a2-4a8b-a977-1933c3ab3e10",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/plugin-settings",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:research-ops/skills/research-ops-skills",
+   "name": "research-ops-skills",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:product-team/skills/product-skills",
+    "alirezarezvani/claude-skills:research-ops/skills/product-research",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-skills"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/ctrl-clip",
+   "name": "ctrl-clip",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/speech",
+    "davepoon/buildwithclaude:plugins/gsd/skills/note",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-qa",
+   "name": "wiki-qa",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-architect",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-changelog",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-llms-txt"
+   ]
+  },
+  {
+   "id": "skillret:2ca9a5c0-b72c-4aa9-8af2-4333eca0c45e",
+   "name": "scientific-writing",
+   "split": "train",
+   "repo": "K-Dense-AI/claude-scientific-writer",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "obra/superpowers:skills/writing-skills",
+    "alirezarezvani/claude-skills:research-ops/skills/research-ops-skills",
+    "anthropics/skills:skills/internal-comms"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/collab-proof/skills/collab-proof",
+   "name": "collab-proof",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "skillret:f27a5c80-038b-4a0d-b5a2-9d5c19e5f7d1",
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/datadog-automation",
+   "name": "datadog-automation",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/supabase-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/twitter-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/bamboohr-automation"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-eventgrid-java",
+   "name": "azure-eventgrid-java",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-eventgrid-py",
+    "microsoft/skills:.github/plugins/azure-sdk-rust/skills/azure-eventhub-rust",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-cosmos-java"
+   ]
+  },
+  {
+   "id": "skillret:7b9430b6-bdea-427c-be9f-acbcaf61cbc1",
+   "name": "sonoscli",
+   "split": "train",
+   "repo": "clawdbot/clawdbot",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/hubspot-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/supabase-automation",
+    "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-status"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering-team/skills/senior-architect",
+   "name": "senior-architect",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/cc-best/skills/architecture",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-resource-visualizer",
+    "alirezarezvani/claude-skills:engineering/skills/agent-designer"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/vulnetix/skills/remediation",
+   "name": "remediation",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/vulnetix/skills/exploits-search",
+    "huggingface/skills:skills/hf-cloud-serving-image-selection",
+    "huggingface/skills:skills/huggingface-tool-builder"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-ai-anomalydetector-java",
+   "name": "azure-ai-anomalydetector-java",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-search-documents-ts",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-projects-ts",
+    "skillret:cc76823d-a12e-4cdb-84fb-1193d65cfa24"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:product-team/agile-product-owner/skills/agile-product-owner",
+   "name": "agile-product-owner",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:product-team/skills/product-skills",
+    "alirezarezvani/claude-skills:research-ops/skills/product-research",
+    "alirezarezvani/claude-skills:marketing-skill/skills/free-tool-strategy"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/plan-phase",
+   "name": "gsd:plan-phase",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/gsd/skills/list-phase-assumptions",
+    "davepoon/buildwithclaude:plugins/gsd/skills/extract_learnings",
+    "davepoon/buildwithclaude:plugins/gsd/skills/session-report"
+   ]
+  },
+  {
+   "id": "skillret:9214e54a-c0a2-4a8b-a977-1933c3ab3e10",
+   "name": "prowler-changelog",
+   "split": "train",
+   "repo": "prowler-cloud/prowler",
+   "license": "Apache-2.0",
+   "origin": "skillret",
+   "siblings": [
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-changelog",
+    "skillret:69dcd0a6-653f-4332-be1f-30339ea692b7",
+    "skillret:c758bd53-dd63-4ca3-836c-78db34cc6903"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:product-team/skills/product-strategist",
+   "name": "product-strategist",
+   "split": "val",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:c-level-advisor/skills/internal-narrative",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/envelope-team",
+    "alirezarezvani/claude-skills:marketing-skill/skills/onboarding-cro"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/cc-best/skills/architecture",
+   "name": "architecture",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering-team/skills/senior-architect",
+    "alirezarezvani/claude-skills:engineering/skills/agent-designer",
+    "obra/superpowers:skills/brainstorming"
+   ]
+  },
+  {
+   "id": "skillret:d9c95f58-3343-43f8-8046-4a56c949119b",
+   "name": "javascript-mastery",
+   "split": "train",
+   "repo": "sickn33/antigravity-awesome-skills",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/hook-development",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/skill-development",
+    "obra/superpowers:skills/test-driven-development"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:business-operations/skills/process-mapper",
+   "name": "process-mapper",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "skillret:096bad5d-2b55-4d7e-abde-33e8faf64da8",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-forecaster",
+    "alirezarezvani/claude-skills:product-team/agile-product-owner/skills/agile-product-owner"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-ai-agents-persistent-dotnet",
+   "name": "azure-ai-agents-persistent-dotnet",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-projects-ts",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development",
+    "alirezarezvani/claude-skills:engineering/skills/agent-designer"
+   ]
+  },
+  {
+   "id": "skillret:36e67877-bd5b-4c8e-ae18-64dcaedc0311",
+   "name": "llm-application-dev",
+   "split": "train",
+   "repo": "skillcreatorai/Ai-Agent-Skills",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:ab6ab2a3-9d2c-4cce-801d-deb0c437b030",
+    "anthropics/skills:skills/claude-api",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-llms-txt"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:commercial/skills/commercial-skills",
+   "name": "commercial-skills",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:research-ops/skills/research-ops-skills",
+    "alirezarezvani/claude-skills:product-team/skills/product-skills",
+    "alirezarezvani/claude-skills:commercial/skills/pricing-strategist"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-skills/skills/appinsights-instrumentation",
+   "name": "appinsights-instrumentation",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-monitor-opentelemetry-ts",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-monitor-opentelemetry-py",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-monitor-ingestion-java"
+   ]
+  },
+  {
+   "id": "skillret:c717b19f-f168-407b-a77d-b8731ddc7a75",
+   "name": "fields",
+   "split": "test",
+   "repo": "parcadei/Continuous-Claude-v3",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/math-olympiad/skills/math-olympiad",
+    "alirezarezvani/claude-skills:c-level-advisor/executive-mentor/skills/board-prep",
+    "alirezarezvani/claude-skills:engineering/skills/database-schema-designer"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:markdown-html/skills/design-system",
+   "name": "design-system",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:marketing/landing/skills/landing",
+    "anthropics/skills:skills/theme-factory",
+    "anthropics/skills:skills/frontend-design"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-llms-txt",
+   "name": "wiki-llms-txt",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "skillret:36e67877-bd5b-4c8e-ae18-64dcaedc0311",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-qa",
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-architect"
+   ]
+  },
+  {
+   "id": "skillret:ab6ab2a3-9d2c-4cce-801d-deb0c437b030",
+   "name": "chroma",
+   "split": "train",
+   "repo": "zechenzhangAGI/AI-research-SKILLs",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:36e67877-bd5b-4c8e-ae18-64dcaedc0311",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-search-documents-ts",
+    "anthropics/skills:skills/claude-api"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/terraform-patterns/skills/terraform-patterns",
+   "name": "terraform-patterns",
+   "split": "test",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-enterprise-infra-planner",
+    "skillret:292856a8-83aa-4b4b-828c-73dc439a35b9",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/obsidian-bases"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/forensics",
+   "name": "gsd:forensics",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/gsd/skills/inbox",
+    "obra/superpowers:skills/finishing-a-development-branch",
+    "davepoon/buildwithclaude:plugins/gsd/skills/eval-review"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-rust/skills/azure-keyvault-certificates-rust",
+   "name": "azure-keyvault-certificates-rust",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-storage-file-share-ts",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-web-pubsub-ts",
+    "skillret:ef999b9a-a00d-40b5-a7cb-e5470c8794cf"
+   ]
+  },
+  {
+   "id": "skillret:096bad5d-2b55-4d7e-abde-33e8faf64da8",
+   "name": "workflow-router",
+   "split": "train",
+   "repo": "parcadei/Continuous-Claude-v3",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/skills/agent-designer",
+    "openai/skills:skills/.curated/define-goal",
+    "alirezarezvani/claude-skills:business-operations/skills/process-mapper"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:ra-qm-team/skills/agent-decision-receipts",
+   "name": "agent-decision-receipts",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "skillret:f27a5c80-038b-4a0d-b5a2-9d5c19e5f7d1",
+    "obra/superpowers:skills/verification-before-completion",
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/venture-capital-intelligence/skills/financial-model",
+   "name": "financial-model",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:finance/skills/saas-metrics-coach",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-forecaster",
+    "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-gtm"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-textanalytics-py",
+   "name": "azure-ai-textanalytics-py",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-voicelive-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-monitor-opentelemetry-py"
+   ]
+  },
+  {
+   "id": "skillret:eb4654c7-1abd-4628-8c50-dd5e755f9a97",
+   "name": "voting-status",
+   "split": "val",
+   "repo": "pollinations/pollinations",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-textanalytics-py",
+    "huggingface/skills:skills/huggingface-lora-space-builder",
+    "openai/skills:skills/.system/plugin-creator"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:marketing-skill/skills/free-tool-strategy",
+   "name": "free-tool-strategy",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:marketing-skill/skills/programmatic-seo",
+    "alirezarezvani/claude-skills:marketing-skill/skills/seo-audit",
+    "alirezarezvani/claude-skills:c-level-advisor/skills/cmo-advisor"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/twitter-automation",
+   "name": "twitter-automation",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/datadog-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/hubspot-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/google-calendar-automation"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-kusto-graph-skills/skills/azure-kusto-irql-graph",
+   "name": "azure-kusto-irql-graph",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-resource-visualizer",
+    "skillret:ab6ab2a3-9d2c-4cce-801d-deb0c437b030",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-search-documents-ts"
+   ]
+  },
+  {
+   "id": "skillret:292856a8-83aa-4b4b-828c-73dc439a35b9",
+   "name": "opc-architecture",
+   "split": "test",
+   "repo": "parcadei/Continuous-Claude-v3",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/terraform-patterns/skills/terraform-patterns",
+    "anthropics/skills:skills/academy-guide",
+    "anthropics/claude-plugins-official:plugins/session-report/skills/session-report"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:agent-launcher/skills/stage-launch",
+   "name": "stage-launch",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/m365-agents-py",
+    "anthropics/skills:skills/claude-api",
+    "anthropics/claude-plugins-official:plugins/mcp-server-dev/skills/build-mcp-server"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-cosmos-java",
+   "name": "azure-cosmos-java",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-eventgrid-java",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-storage-queue-py"
+   ]
+  },
+  {
+   "id": "skillret:50e9bb8e-d7ad-4fb7-9841-a463ec7b762b",
+   "name": "matchms",
+   "split": "test",
+   "repo": "K-Dense-AI/claude-scientific-skills",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-datasets",
+    "huggingface/skills:skills/huggingface-paper-publisher",
+    "skillret:98400b31-5a43-4472-a5f6-c9c4f82b67ac"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering-team/skills/senior-fullstack",
+   "name": "senior-fullstack",
+   "split": "test",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:product-team/skills/saas-scaffolder",
+    "skillret:a3332eeb-bdf7-46ee-896f-f8679daea49e",
+    "huggingface/skills:skills/huggingface-tool-builder"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/obsidian-markdown",
+   "name": "obsidian-markdown",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/obsidian-bases",
+    "skillret:1c2cf483-ed12-43b4-81d4-bbed32e1a357",
+    "anthropics/skills:skills/academy-guide"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-rust/skills/azure-eventhub-rust",
+   "name": "azure-eventhub-rust",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-eventgrid-py",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-eventgrid-java",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-storage-queue-py"
+   ]
+  },
+  {
+   "id": "skillret:9e4d5778-a852-4cfc-9385-3911700067aa",
+   "name": "simpo-training",
+   "split": "train",
+   "repo": "zechenzhangAGI/AI-research-SKILLs",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "huggingface/skills:skills/trl-training",
+    "huggingface/skills:skills/huggingface-vision-trainer",
+    "huggingface/skills:skills/huggingface-best"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:ra-qm-team/skills/risk-management-specialist",
+   "name": "risk-management-specialist",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:ra-qm-team/skills/fda-consultant-specialist",
+    "alirezarezvani/claude-skills:ra-qm-team/skills/soc2-compliance",
+    "alirezarezvani/claude-skills:business-operations/skills/process-mapper"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/startup-superpowers/skills/market-research",
+   "name": "market-research",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:marketing-skill/skills/social-content",
+    "alirezarezvani/claude-skills:c-level-advisor/chief-customer-officer-advisor/skills/chief-customer-officer-advisor",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/meeting-insights-analyzer"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-ai-vision-imageanalysis-java",
+   "name": "azure-ai-vision-imageanalysis-java",
+   "split": "test",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-contentsafety-ts",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-communication-chat-java",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-communication-common-java"
+   ]
+  },
+  {
+   "id": "skillret:fc1793e3-db85-477a-8104-2f1a461a4f42",
+   "name": "script-writer",
+   "split": "test",
+   "repo": "ailabs-393/ai-labs-claude-skills",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/session-report/skills/session-report",
+    "anthropics/skills:skills/academy-guide",
+    "alirezarezvani/claude-skills:marketing-skill/skills/social-content"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:commercial/skills/commercial-forecaster",
+   "name": "commercial-forecaster",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:finance/skills/saas-metrics-coach",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-skills",
+    "davepoon/buildwithclaude:plugins/venture-capital-intelligence/skills/financial-model"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-deploy",
+   "name": "ops-deploy",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-status",
+    "skillret:cc76823d-a12e-4cdb-84fb-1193d65cfa24",
+    "alirezarezvani/claude-skills:agent-launcher/skills/stage-launch"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-projects-ts",
+   "name": "azure-ai-projects-ts",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-ai-agents-persistent-dotnet",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-search-documents-ts",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/m365-agents-py"
+   ]
+  },
+  {
+   "id": "skillret:7a037fcc-6c6f-4f3f-ad32-33f918e071f0",
+   "name": "chain-integration",
+   "split": "test",
+   "repo": "shapeshift/web",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/terraform-patterns/skills/terraform-patterns",
+    "alirezarezvani/claude-skills:product-team/skills/saas-scaffolder",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/sequenzy-email-marketing"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/security-guidance/skills/security-guidance",
+   "name": "security-guidance",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/hook-development",
+    "anthropics/claude-plugins-official:plugins/hookify/skills/writing-rules",
+    "skillret:dcdf6c61-52ef-4b74-912a-446c87ac7829"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/vulnetix/skills/exploits-search",
+   "name": "exploits-search",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/vulnetix/skills/remediation",
+    "alirezarezvani/claude-skills:engineering/terraform-patterns/skills/terraform-patterns",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-resource-lookup"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-aigateway",
+   "name": "azure-aigateway",
+   "split": "test",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/hf-cloud-sagemaker-deployment-planner",
+    "openai/skills:skills/.system/openai-docs",
+    "huggingface/skills:hf-mcp/skills/hf-mcp"
+   ]
+  },
+  {
+   "id": "skillret:06e892fd-9551-4b94-9bbf-2c8d2e1776e8",
+   "name": "mflux-dev-env",
+   "split": "val",
+   "repo": "filipstrand/mflux",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "openai/skills:skills/.system/plugin-creator",
+    "davepoon/buildwithclaude:plugins/ultracost/skills/ultracost",
+    "microsoft/skills:.github/skills/copilot-sdk"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:marketing/landing/skills/landing",
+   "name": "landing",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:markdown-html/skills/design-system",
+    "alirezarezvani/claude-skills:marketing-skill/skills/programmatic-seo",
+    "openai/skills:skills/.curated/hatch-pet"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-gtm",
+   "name": "ops-gtm",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:c-level-advisor/skills/cmo-advisor",
+    "davepoon/buildwithclaude:plugins/venture-capital-intelligence/skills/financial-model",
+    "alirezarezvani/claude-skills:research-ops/skills/research-ops-skills"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-contentsafety-ts",
+   "name": "azure-ai-contentsafety-ts",
+   "split": "test",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-ai-vision-imageanalysis-java",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-resource-lookup",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-communication-common-java"
+   ]
+  },
+  {
+   "id": "skillret:8793cb64-f391-4c52-814e-c245f72a1101",
+   "name": "django-drf",
+   "split": "train",
+   "repo": "prowler-cloud/prowler",
+   "license": "Apache-2.0",
+   "origin": "skillret",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/fastapi-router-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/pydantic-models-py",
+    "alirezarezvani/claude-skills:engineering/security-guidance/skills/security-guidance"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember",
+   "name": "remember",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/memory-review",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/extract",
+    "anthropics/claude-plugins-official:plugins/claude-md-management/skills/claude-md-improver"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/drill-me/skills/status",
+   "name": "drill-status",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/memory-review",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember"
+   ]
+  },
+  {
+   "id": "skillret:995f5118-ea3e-473e-b875-ba8f98359a71",
+   "name": "explicit-identity",
+   "split": "train",
+   "repo": "parcadei/Continuous-Claude-v3",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:f27a5c80-038b-4a0d-b5a2-9d5c19e5f7d1",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember",
+    "alirezarezvani/claude-skills:engineering/security-guidance/skills/security-guidance"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/feature-flags-architect/skills/feature-flags-architect",
+   "name": "feature-flags-architect",
+   "split": "test",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "skillret:1c2cf483-ed12-43b4-81d4-bbed32e1a357",
+    "alirezarezvani/claude-skills:c-level-advisor/executive-mentor/skills/executive-mentor",
+    "alirezarezvani/claude-skills:c-level-advisor/chief-customer-officer-advisor/skills/chief-customer-officer-advisor"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/m365-agents-py",
+   "name": "m365-agents-py",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/microsoft-365-agents-toolkit/skills/declarative-agent-developer",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-projects-ts",
+    "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-ai-agents-persistent-dotnet"
+   ]
+  },
+  {
+   "id": "skillret:32dcedc8-9704-4fce-bec3-9ad0c5654757",
+   "name": "pnpm",
+   "split": "test",
+   "repo": "antfu/skills",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "huggingface/skills:skills/hf-cloud-serving-image-selection",
+    "skillret:3d1e5efb-4200-409b-9b4d-c693d10cacda",
+    "huggingface/skills:skills/huggingface-tool-builder"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering-team/google-workspace-cli/skills/google-workspace-cli",
+   "name": "google-workspace-cli",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/google-calendar-automation",
+    "skillret:cc9a8fb5-870e-4bee-91d8-2986a85970a6",
+    "openai/skills:skills/.curated/sentry"
+   ]
+  },
+  {
+   "id": "skillret:eabfb4a1-5371-4a35-9d8f-4e014d021201",
+   "name": "things-mac",
+   "split": "val",
+   "repo": "clawdbot/clawdbot",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:8f668f85-575a-42f6-aa3b-6136e430b9c9",
+    "microsoft/skills:.github/plugins/azure-sdk-rust/skills/azure-eventhub-rust",
+    "skillret:06e892fd-9551-4b94-9bbf-2c8d2e1776e8"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:c-level-advisor/skills/cmo-advisor",
+   "name": "cmo-advisor",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:commercial/skills/pricing-strategist",
+    "alirezarezvani/claude-skills:marketing-skill/skills/free-tool-strategy",
+    "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-gtm"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/origin/skills/debrief",
+   "name": "debrief",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember",
+    "alirezarezvani/claude-skills:engineering/collab-proof/skills/collab-proof",
+    "skillret:995f5118-ea3e-473e-b875-ba8f98359a71"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/fastapi-router-py",
+   "name": "fastapi-router-py",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/pydantic-models-py",
+    "skillret:8793cb64-f391-4c52-814e-c245f72a1101",
+    "anthropics/skills:skills/mcp-builder"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:c-level-advisor/skills/internal-narrative",
+   "name": "internal-narrative",
+   "split": "val",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/using-superpowers",
+    "alirezarezvani/claude-skills:product-team/skills/product-strategist",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/envelope-team"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/mortgage/skills/about-atlantic-home-mortgage",
+   "name": "about-atlantic-home-mortgage",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:finance/skills/saas-metrics-coach",
+    "davepoon/buildwithclaude:plugins/venture-capital-intelligence/skills/financial-model",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-forecaster"
+   ]
+  },
+  {
+   "id": "skillret:a3332eeb-bdf7-46ee-896f-f8679daea49e",
+   "name": "project-bootstrapper",
+   "split": "test",
+   "repo": "mhattingpete/claude-skills-marketplace",
+   "license": "Apache-2.0",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering-team/skills/senior-fullstack",
+    "alirezarezvani/claude-skills:product-team/skills/saas-scaffolder",
+    "openai/skills:skills/.curated/linear"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:research-ops/skills/product-research",
+   "name": "product-research",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:research-ops/skills/research-ops-skills",
+    "alirezarezvani/claude-skills:product-team/skills/product-skills",
+    "alirezarezvani/claude-skills:product-team/agile-product-owner/skills/agile-product-owner"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-resource-lookup",
+   "name": "azure-resource-lookup",
+   "split": "test",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-mgmt-mongodbatlas-dotnet",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-contentsafety-ts",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-enterprise-infra-planner"
+   ]
+  },
+  {
+   "id": "skillret:f27a5c80-038b-4a0d-b5a2-9d5c19e5f7d1",
+   "name": "braintrust-tracing",
+   "split": "train",
+   "repo": "parcadei/Continuous-Claude-v3",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/collab-proof/skills/collab-proof",
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor",
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/agent-development"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:marketing-skill/skills/social-content",
+   "name": "social-content",
+   "split": "test",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/startup-superpowers/skills/market-research",
+    "skillret:fc1793e3-db85-477a-8104-2f1a461a4f42",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/proposal-drafter"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/google-calendar-automation",
+   "name": "google-calendar-automation",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/datadog-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/twitter-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/hubspot-automation"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/meeting-insights-analyzer",
+   "name": "meeting-insights-analyzer",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/session-report/skills/session-report",
+    "obra/superpowers:skills/diagnosing-superpowers",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-communication-chat-java"
+   ]
+  },
+  {
+   "id": "skillret:dcdf6c61-52ef-4b74-912a-446c87ac7829",
+   "name": "debug-hooks",
+   "split": "train",
+   "repo": "parcadei/Continuous-Claude-v2",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/hook-development",
+    "alirezarezvani/claude-skills:engineering/security-guidance/skills/security-guidance",
+    "obra/superpowers:skills/systematic-debugging"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/extract",
+   "name": "extract",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/skill-development",
+    "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/bamboohr-automation",
+   "name": "bamboohr-automation",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/datadog-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/supabase-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/hubspot-automation"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-search-documents-ts",
+   "name": "azure-search-documents-ts",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-projects-ts",
+    "skillret:ab6ab2a3-9d2c-4cce-801d-deb0c437b030",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-storage-file-share-ts"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:marketing-skill/skills/seo-audit",
+   "name": "seo-audit",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:marketing-skill/skills/programmatic-seo",
+    "alirezarezvani/claude-skills:marketing-skill/skills/free-tool-strategy",
+    "anthropics/claude-plugins-official:plugins/claude-md-management/skills/claude-md-improver"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/supabase-automation",
+   "name": "supabase-automation",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/datadog-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/hubspot-automation",
+    "davepoon/buildwithclaude:plugins/all-skills/skills/bamboohr-automation"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-mgmt-apimanagement-py",
+   "name": "azure-mgmt-apimanagement-py",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-eventgrid-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-storage-queue-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py"
+   ]
+  },
+  {
+   "id": "skillret:ebc2e403-0718-40bd-99d7-1aff2337d77c",
+   "name": "microservices-patterns",
+   "split": "test",
+   "repo": "wshobson/agents",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/terraform-patterns/skills/terraform-patterns",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-enterprise-infra-planner",
+    "alirezarezvani/claude-skills:engineering/skills/database-schema-designer"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:c-level-agents/skills/ciso-review",
+   "name": "ciso-review",
+   "split": "val",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:marketing-skill/skills/onboarding-cro",
+    "alirezarezvani/claude-skills:ra-qm-team/skills/isms-audit-expert",
+    "alirezarezvani/claude-skills:marketing-skill/skills/page-cro"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-monitor-opentelemetry-py",
+   "name": "azure-monitor-opentelemetry-py",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-monitor-opentelemetry-ts",
+    "microsoft/skills:.github/plugins/azure-skills/skills/appinsights-instrumentation",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-storage-queue-py"
+   ]
+  },
+  {
+   "id": "skillret:f443dfbb-974c-4e58-88b7-cb0fbee476f0",
+   "name": "evaluate-presets",
+   "split": "train",
+   "repo": "mikeyobrien/ralph-orchestrator",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "anthropics/claude-plugins-official:plugins/plugin-dev/skills/hook-development",
+    "huggingface/skills:skills/huggingface-community-evals",
+    "alirezarezvani/claude-skills:engineering/security-guidance/skills/security-guidance"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:commercial/skills/pricing-strategist",
+   "name": "pricing-strategist",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:commercial/skills/commercial-skills",
+    "alirezarezvani/claude-skills:c-level-advisor/skills/cmo-advisor",
+    "alirezarezvani/claude-skills:research-ops/skills/product-research"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-maps-search-dotnet",
+   "name": "azure-maps-search-dotnet",
+   "split": "val",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-translation-document-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-eventgrid-py",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-speech-to-text-rest-py"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:ra-qm-team/skills/isms-audit-expert",
+   "name": "isms-audit-expert",
+   "split": "val",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:c-level-agents/skills/ciso-review",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-monitor-opentelemetry-ts",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-mgmt-apimanagement-py"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/twitter-algorithm-optimizer",
+   "name": "twitter-algorithm-optimizer",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/x-research",
+    "huggingface/skills:skills/huggingface-vision-trainer",
+    "huggingface/skills:skills/huggingface-best"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-compute",
+   "name": "azure-compute",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-cost/skills/cost-estimation",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-quotas",
+    "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-ai-agents-persistent-dotnet"
+   ]
+  },
+  {
+   "id": "skillret:ef999b9a-a00d-40b5-a7cb-e5470c8794cf",
+   "name": "data-layer",
+   "split": "train",
+   "repo": "ethereum/ethereum-org-website",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-storage-file-share-ts",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember",
+    "openai/skills:skills/.curated/security-ownership-map"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:engineering/autoresearch-agent/skills/ar-status",
+   "name": "ar-status",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-status",
+    "anthropics/claude-plugins-official:plugins/project-artifact/skills/project-artifact",
+    "davepoon/buildwithclaude:plugins/gsd/skills/list-workspaces"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/note",
+   "name": "gsd:note",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "obra/superpowers:skills/executing-plans",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/remember",
+    "davepoon/buildwithclaude:plugins/gsd/skills/inbox"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-changelog",
+   "name": "wiki-changelog",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/deep-wiki/skills/wiki-qa",
+    "skillret:9214e54a-c0a2-4a8b-a977-1933c3ab3e10",
+    "skillret:ca8c7f1c-4192-4bb0-bb72-397528d8a163"
+   ]
+  },
+  {
+   "id": "skillret:1c2cf483-ed12-43b4-81d4-bbed32e1a357",
+   "name": "task-execution-engine",
+   "split": "test",
+   "repo": "davila7/claude-code-templates",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:engineering/feature-flags-architect/skills/feature-flags-architect",
+    "alirezarezvani/claude-skills:productivity/deep-work/skills/deep-work",
+    "huggingface/skills:skills/huggingface-tool-builder"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:product-team/skills/product-skills",
+   "name": "product-skills",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:research-ops/skills/research-ops-skills",
+    "alirezarezvani/claude-skills:research-ops/skills/product-research",
+    "alirezarezvani/claude-skills:commercial/skills/commercial-skills"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/sequenzy-email-marketing",
+   "name": "sequenzy-email-marketing",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "openai/skills:skills/.curated/cli-creator",
+    "alirezarezvani/claude-skills:engineering/feature-flags-architect/skills/feature-flags-architect",
+    "huggingface/skills:skills/huggingface-tool-builder"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-resource-manager-redis-dotnet",
+   "name": "azure-resource-manager-redis-dotnet",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-resource-visualizer",
+    "microsoft/skills:.github/plugins/azure-sdk-dotnet/skills/azure-ai-agents-persistent-dotnet",
+    "microsoft/skills:.github/plugins/azure-skills/skills/azure-compute"
+   ]
+  },
+  {
+   "id": "skillret:62892db4-35d7-4807-99e5-4f316c4527f9",
+   "name": "axiom-liquid-glass",
+   "split": "train",
+   "repo": "CharlesWiltgen/Axiom",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "alirezarezvani/claude-skills:research/patent/skills/patent",
+    "anthropics/skills:skills/theme-factory",
+    "alirezarezvani/claude-skills:engineering-team/self-improving-agent/skills/extract"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:c-level-advisor/executive-mentor/skills/executive-mentor",
+   "name": "executive-mentor",
+   "split": "test",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:c-level-advisor/executive-mentor/skills/board-prep",
+    "alirezarezvani/claude-skills:c-level-advisor/chief-customer-officer-advisor/skills/chief-customer-officer-advisor",
+    "alirezarezvani/claude-skills:engineering/feature-flags-architect/skills/feature-flags-architect"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/gsd/skills/extract_learnings",
+   "name": "gsd:extract-learnings",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/gsd/skills/plan-phase",
+    "davepoon/buildwithclaude:plugins/gsd/skills/list-phase-assumptions",
+    "davepoon/buildwithclaude:plugins/gsd/skills/session-report"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-python/skills/pydantic-models-py",
+   "name": "pydantic-models-py",
+   "split": "train",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/fastapi-router-py",
+    "anthropics/skills:skills/mcp-builder",
+    "skillret:8793cb64-f391-4c52-814e-c245f72a1101"
+   ]
+  },
+  {
+   "id": "skillret:91b28e3a-2743-4143-8861-2a30fa759cdf",
+   "name": "sigma-algebras",
+   "split": "train",
+   "repo": "parcadei/Continuous-Claude-v3",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "skillret:73430584-625c-43c2-8485-e38a874ec5a5",
+    "alirezarezvani/claude-skills:engineering/collab-proof/skills/collab-proof",
+    "alirezarezvani/claude-skills:ra-qm-team/skills/soc2-compliance"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:marketing-skill/skills/page-cro",
+   "name": "page-cro",
+   "split": "val",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:marketing-skill/skills/onboarding-cro",
+    "davepoon/buildwithclaude:plugins/ultracost/skills/ultracost",
+    "microsoft/skills:.github/plugins/azure-sdk-python/skills/azure-ai-textanalytics-py"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-status",
+   "name": "ops-status",
+   "split": "train",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-deploy",
+    "anthropics/claude-plugins-official:plugins/project-artifact/skills/project-artifact",
+    "skillret:cc76823d-a12e-4cdb-84fb-1193d65cfa24"
+   ]
+  },
+  {
+   "id": "skillret:49ceb5e0-df8e-42fc-9709-f6c59297b0e2",
+   "name": "ios-debugger-agent",
+   "split": "test",
+   "repo": "Dimillian/Skills",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "openai/skills:skills/.curated/gh-fix-ci",
+    "skillret:1c2cf483-ed12-43b4-81d4-bbed32e1a357",
+    "openai/skills:skills/.system/openai-docs"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/origin/skills/read",
+   "name": "read",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "huggingface/skills:skills/huggingface-paper-publisher",
+    "anthropics/claude-plugins-official:plugins/session-report/skills/session-report",
+    "huggingface/skills:skills/huggingface-datasets"
+   ]
+  },
+  {
+   "id": "skillret:8f668f85-575a-42f6-aa3b-6136e430b9c9",
+   "name": "clickup",
+   "split": "val",
+   "repo": "civitai/civitai",
+   "license": "Apache-2.0",
+   "origin": "skillret",
+   "siblings": [
+    "obra/superpowers:skills/using-superpowers",
+    "skillret:eabfb4a1-5371-4a35-9d8f-4e014d021201",
+    "alirezarezvani/claude-skills:marketing-skill/skills/onboarding-cro"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:compliance-os/skills/aims-audit",
+   "name": "aims-audit",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:ra-qm-team/skills/soc2-compliance",
+    "alirezarezvani/claude-skills:marketing-skill/skills/seo-audit",
+    "alirezarezvani/claude-skills:c-level-agents/skills/boardroom"
+   ]
+  },
+  {
+   "id": "davepoon/buildwithclaude:plugins/all-skills/skills/obsidian-bases",
+   "name": "obsidian-bases",
+   "split": "test",
+   "repo": "davepoon/buildwithclaude",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "davepoon/buildwithclaude:plugins/all-skills/skills/obsidian-markdown",
+    "alirezarezvani/claude-skills:engineering/terraform-patterns/skills/terraform-patterns",
+    "davepoon/buildwithclaude:plugins/origin/skills/read"
+   ]
+  },
+  {
+   "id": "skillret:cc9a8fb5-870e-4bee-91d8-2986a85970a6",
+   "name": "Dictation Instructions",
+   "split": "train",
+   "repo": "githubnext/gh-aw",
+   "license": "MIT",
+   "origin": "skillret",
+   "siblings": [
+    "openai/skills:skills/.curated/transcribe",
+    "microsoft/skills:.github/plugins/microsoft-365-agents-toolkit/skills/declarative-agent-developer",
+    "openai/skills:skills/.curated/speech"
+   ]
+  },
+  {
+   "id": "alirezarezvani/claude-skills:ra-qm-team/skills/soc2-compliance",
+   "name": "soc2-compliance",
+   "split": "train",
+   "repo": "alirezarezvani/claude-skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "alirezarezvani/claude-skills:compliance-os/skills/aims-audit",
+    "skillret:9b5dc27a-57ce-455d-a1e7-bbca8066c1e1",
+    "alirezarezvani/claude-skills:business-operations/skills/process-mapper"
+   ]
+  },
+  {
+   "id": "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-communication-chat-java",
+   "name": "azure-communication-chat-java",
+   "split": "test",
+   "repo": "microsoft/skills",
+   "license": "MIT",
+   "origin": "github",
+   "siblings": [
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-communication-common-java",
+    "microsoft/skills:.github/plugins/azure-sdk-java/skills/azure-ai-vision-imageanalysis-java",
+    "microsoft/skills:.github/plugins/azure-sdk-typescript/skills/azure-ai-contentsafety-ts"
+   ]
+  }
+ ]
+}

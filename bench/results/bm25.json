@@ -1,0 +1,255 @@
+{
+ "system": "bm25",
+ "label": "BM25 only",
+ "retrieval": "bm25",
+ "scorer": "features",
+ "model": null,
+ "n_gate": 12,
+ "calibration": {
+  "a": 5996845.725343707,
+  "b": -1442470124335912.0,
+  "threshold": 0.05
+ },
+ "val": {
+  "n": 312,
+  "n_labeled": 200,
+  "n_none": 112,
+  "recall@1": 0.8441666666666666,
+  "recall@3": 0.9508333333333333,
+  "recall@5": 0.9758333333333333,
+  "recall@10": 0.9875,
+  "recall@20": 1.0,
+  "recall@40": 1.0,
+  "top1": 0.89,
+  "precision": NaN,
+  "recall": 0.0,
+  "f1": NaN,
+  "exact_match": 0.358974358974359,
+  "false_injection_rate": 0.0,
+  "none_accuracy": 1.0,
+  "hit_rate": 0.0,
+  "ece": 0.05822649572649572,
+  "reliability": [
+   {
+    "lo": 0.0,
+    "hi": 0.06666666666666667,
+    "confidence": 4.248354255291588e-18,
+    "accuracy": 0.05822649572649573,
+    "n": 3744
+   }
+  ],
+  "brier": 0.05822649572649573,
+  "exact_by_kind": {
+   "hard_negative_none": 1.0,
+   "hard_negative_sibling": 0.0,
+   "multi": 0.0,
+   "none": 1.0,
+   "positive": 0.0
+  },
+  "latency_ms_p50": 0.1507500055595301,
+  "latency_ms_p95": 0.2662950064404867
+ },
+ "test": {
+  "10": {
+   "n": 527,
+   "n_labeled": 340,
+   "n_none": 187,
+   "recall@1": 0.9112745098039216,
+   "recall@3": 0.9970588235294118,
+   "recall@5": 1.0,
+   "recall@10": 1.0,
+   "recall@20": 1.0,
+   "recall@40": 1.0,
+   "top1": 0.9705882352941176,
+   "precision": NaN,
+   "recall": 0.0,
+   "f1": NaN,
+   "exact_match": 0.3548387096774194,
+   "false_injection_rate": 0.0,
+   "none_accuracy": 1.0,
+   "hit_rate": 0.0,
+   "ece": 0.07229601518026565,
+   "reliability": [
+    {
+     "lo": 0.0,
+     "hi": 0.06666666666666667,
+     "confidence": 4.248354255291588e-18,
+     "accuracy": 0.07229601518026565,
+     "n": 5270
+    }
+   ],
+   "brier": 0.07229601518026565,
+   "exact_by_kind": {
+    "hard_negative_none": 1.0,
+    "hard_negative_sibling": 0.0,
+    "multi": 0.0,
+    "none": 1.0,
+    "positive": 0.0
+   },
+   "latency_ms_p50": 0.12660000356845558,
+   "latency_ms_p95": 0.25814999535214156,
+   "catalog_size": 10
+  },
+  "100": {
+   "n": 527,
+   "n_labeled": 340,
+   "n_none": 187,
+   "recall@1": 0.8745098039215685,
+   "recall@3": 0.975,
+   "recall@5": 0.9852941176470589,
+   "recall@10": 0.9926470588235294,
+   "recall@20": 0.9985294117647059,
+   "recall@40": 0.9985294117647059,
+   "top1": 0.9323529411764706,
+   "precision": NaN,
+   "recall": 0.0,
+   "f1": NaN,
+   "exact_match": 0.3548387096774194,
+   "false_injection_rate": 0.0,
+   "none_accuracy": 1.0,
+   "hit_rate": 0.0,
+   "ece": 0.059772296015180255,
+   "reliability": [
+    {
+     "lo": 0.0,
+     "hi": 0.06666666666666667,
+     "confidence": 4.248354255291588e-18,
+     "accuracy": 0.05977229601518026,
+     "n": 6324
+    }
+   ],
+   "brier": 0.05977229601518026,
+   "exact_by_kind": {
+    "hard_negative_none": 1.0,
+    "hard_negative_sibling": 0.0,
+    "multi": 0.0,
+    "none": 1.0,
+    "positive": 0.0
+   },
+   "latency_ms_p50": 0.15570000687148422,
+   "latency_ms_p95": 0.34736999368760724,
+   "catalog_size": 100
+  },
+  "1000": {
+   "n": 527,
+   "n_labeled": 340,
+   "n_none": 187,
+   "recall@1": 0.7700980392156862,
+   "recall@3": 0.9205882352941176,
+   "recall@5": 0.9588235294117647,
+   "recall@10": 0.9676470588235294,
+   "recall@20": 0.9823529411764705,
+   "recall@40": 0.986764705882353,
+   "top1": 0.8176470588235294,
+   "precision": NaN,
+   "recall": 0.0,
+   "f1": NaN,
+   "exact_match": 0.3548387096774194,
+   "false_injection_rate": 0.0,
+   "none_accuracy": 1.0,
+   "hit_rate": 0.0,
+   "ece": 0.05866540164452877,
+   "reliability": [
+    {
+     "lo": 0.0,
+     "hi": 0.06666666666666667,
+     "confidence": 4.248354255291588e-18,
+     "accuracy": 0.05866540164452878,
+     "n": 6324
+    }
+   ],
+   "brier": 0.05866540164452878,
+   "exact_by_kind": {
+    "hard_negative_none": 1.0,
+    "hard_negative_sibling": 0.0,
+    "multi": 0.0,
+    "none": 1.0,
+    "positive": 0.0
+   },
+   "latency_ms_p50": 0.24539999139960855,
+   "latency_ms_p95": 0.4954700038069859,
+   "catalog_size": 1000
+  },
+  "10000": {
+   "n": 527,
+   "n_labeled": 340,
+   "n_none": 187,
+   "recall@1": 0.6068627450980392,
+   "recall@3": 0.7401960784313725,
+   "recall@5": 0.7838235294117647,
+   "recall@10": 0.8588235294117647,
+   "recall@20": 0.9161764705882353,
+   "recall@40": 0.9529411764705882,
+   "top1": 0.65,
+   "precision": NaN,
+   "recall": 0.0,
+   "f1": NaN,
+   "exact_match": 0.3548387096774194,
+   "false_injection_rate": 0.0,
+   "none_accuracy": 1.0,
+   "hit_rate": 0.0,
+   "ece": 0.052024035420619855,
+   "reliability": [
+    {
+     "lo": 0.0,
+     "hi": 0.06666666666666667,
+     "confidence": 4.248354255291588e-18,
+     "accuracy": 0.05202403542061986,
+     "n": 6324
+    }
+   ],
+   "brier": 0.05202403542061986,
+   "exact_by_kind": {
+    "hard_negative_none": 1.0,
+    "hard_negative_sibling": 0.0,
+    "multi": 0.0,
+    "none": 1.0,
+    "positive": 0.0
+   },
+   "latency_ms_p50": 1.291499997023493,
+   "latency_ms_p95": 2.058710000710562,
+   "catalog_size": 10000
+  },
+  "100000": {
+   "n": 527,
+   "n_labeled": 340,
+   "n_none": 187,
+   "recall@1": 0.5362745098039216,
+   "recall@3": 0.6906862745098039,
+   "recall@5": 0.7352941176470589,
+   "recall@10": 0.7838235294117647,
+   "recall@20": 0.8705882352941177,
+   "recall@40": 0.9176470588235294,
+   "top1": 0.5735294117647058,
+   "precision": NaN,
+   "recall": 0.0,
+   "f1": NaN,
+   "exact_match": 0.3548387096774194,
+   "false_injection_rate": 0.0,
+   "none_accuracy": 1.0,
+   "hit_rate": 0.0,
+   "ece": 0.04791271347248576,
+   "reliability": [
+    {
+     "lo": 0.0,
+     "hi": 0.06666666666666667,
+     "confidence": 4.248354255291588e-18,
+     "accuracy": 0.04791271347248577,
+     "n": 6324
+    }
+   ],
+   "brier": 0.04791271347248577,
+   "exact_by_kind": {
+    "hard_negative_none": 1.0,
+    "hard_negative_sibling": 0.0,
+    "multi": 0.0,
+    "none": 1.0,
+    "positive": 0.0
+   },
+   "latency_ms_p50": 2.2899000032339245,
+   "latency_ms_p95": 3.1659200074500404,
+   "catalog_size": 18719
+  }
+ },
+ "wall_s": 29.9
+}

@@ -1,0 +1,74 @@
+{
+  "anthropics/skills": {
+    "repo": "anthropics/skills",
+    "commit": "34040c9c568585f6929bedeaad110ad08f079624",
+    "branch": "main",
+    "license": null
+  },
+  "openai/skills": {
+    "repo": "openai/skills",
+    "commit": "49f948faa9258a0c61caceaf225e179651397431",
+    "branch": "main",
+    "license": null
+  },
+  "huggingface/skills": {
+    "repo": "huggingface/skills",
+    "commit": "a45d887031922ddbd7af533fc735feb098963ab7",
+    "branch": "main",
+    "license": "Apache-2.0"
+  },
+  "anthropics/claude-plugins-official": {
+    "repo": "anthropics/claude-plugins-official",
+    "commit": "6bfd4e0c6d3da6050984fa5ed8281d915fa7ed69",
+    "branch": "main",
+    "license": "Apache-2.0"
+  },
+  "microsoft/skills": {
+    "repo": "microsoft/skills",
+    "commit": "0c6debe98769a2a78f3ae3d3239f943118e4f0ad",
+    "branch": "main",
+    "license": "MIT"
+  },
+  "obra/superpowers": {
+    "repo": "obra/superpowers",
+    "commit": "5bf4e78011075bcfc0dc295f0724994cd123ee71",
+    "branch": "main",
+    "license": "MIT"
+  },
+  "alirezarezvani/claude-skills": {
+    "repo": "alirezarezvani/claude-skills",
+    "commit": "19392f7a08264ed00486a251f5b2098321771f94",
+    "branch": "main",
+    "license": "MIT"
+  },
+  "davepoon/buildwithclaude": {
+    "repo": "davepoon/buildwithclaude",
+    "commit": "bbb2a94bb06ea150c03091ce18c9908037ef4fcc",
+    "branch": "main",
+    "license": "MIT"
+  },
+  "VoltAgent/awesome-agent-skills": {
+    "repo": "VoltAgent/awesome-agent-skills",
+    "commit": "d9111a919d4f5be5b81135a5e71fa2770340bfc1",
+    "branch": "main",
+    "license": "MIT"
+  },
+  "travisvn/awesome-claude-skills": {
+    "repo": "travisvn/awesome-claude-skills",
+    "commit": "1da55aa810f206d3fe2005e7e3989b15a275d942",
+    "branch": "main",
+    "license": null
+  },
+  "ComposioHQ/awesome-claude-skills": {
+    "repo": "ComposioHQ/awesome-claude-skills",
+    "commit": "be2a406907dbc61b73e6827ded415c96139d13a2",
+    "branch": "master",
+    "license": null
+  },
+  "sickn33/agentic-awesome-skills": {
+    "repo": "sickn33/agentic-awesome-skills",
+    "commit": "4b57740b1048475aeb21d9adfc9ecea0affa97b7",
+    "branch": "main",
+    "license": "MIT"
+  }
+}

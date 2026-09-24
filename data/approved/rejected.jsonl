@@ -1,0 +1,95 @@
+{"id": "anthropics/skills:template", "reason": "license None not permissive or unknown"}
+{"id": "anthropics/skills:skills/doc-coauthoring", "reason": "license None not permissive or unknown"}
+{"id": "anthropics/skills:skills/docx", "reason": "license 'proprietary' not permissive or unknown"}
+{"id": "anthropics/skills:skills/pdf", "reason": "license 'proprietary' not permissive or unknown"}
+{"id": "anthropics/skills:skills/pptx", "reason": "license 'proprietary' not permissive or unknown"}
+{"id": "anthropics/skills:skills/xlsx", "reason": "license 'proprietary' not permissive or unknown"}
+{"id": "openai/skills:skills/.curated/figma", "reason": "license None not permissive or unknown"}
+{"id": "openai/skills:skills/.curated/figma-code-connect-components", "reason": "license None not permissive or unknown"}
+{"id": "openai/skills:skills/.curated/figma-create-design-system-rules", "reason": "license None not permissive or unknown"}
+{"id": "openai/skills:skills/.curated/figma-create-new-file", "reason": "license None not permissive or unknown"}
+{"id": "openai/skills:skills/.curated/figma-generate-design", "reason": "license None not permissive or unknown"}
+{"id": "openai/skills:skills/.curated/figma-generate-library", "reason": "license None not permissive or unknown"}
+{"id": "openai/skills:skills/.curated/figma-implement-design", "reason": "license None not permissive or unknown"}
+{"id": "openai/skills:skills/.curated/figma-use", "reason": "license None not permissive or unknown"}
+{"id": "anthropics/claude-plugins-official:plugins/claude-security/skills/claude-security", "reason": "license 'proprietary' not permissive or unknown"}
+{"id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-app-onboard-prereq", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-shell": 1}, "high": []}}
+{"id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-deploy", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"pipe-to-shell": 1}, "high": []}}
+{"id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-diagnostics", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-shell": 4}, "high": []}}
+{"id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-prepare", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"pipe-to-shell": 1}, "high": []}}
+{"id": "microsoft/skills:.github/plugins/azure-skills/skills/azure-upgrade", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3, "py-exec": 2}, "high": []}}
+{"id": "microsoft/skills:.github/plugins/azure-skills/skills/microsoft-foundry", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"dyn-eval": 1, "net-python": 6, "py-exec": 1, "net-shell": 4}, "high": []}}
+{"id": "microsoft/skills:.github/plugins/foundry-iq-skills/skills/foundry-iq", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 6, "net-python": 3}, "high": []}}
+{"id": "microsoft/skills:.github/plugins/microsoft-365-agents-toolkit/skills/declarative-agent-developer", "reason": "static scan found high-severity issues", "scan": {"verdict": "fail", "counts": {"hide-from-user": 1, "override-instructions": 1}, "high": [{"rule": "hide-from-user", "category": "injection", "severity": "high", "file": "references/workspace-gates.md", "line": 96, "excerpt": "ediately editing it without telling the user it's broken - ❌ Fix"}]}}
+{"id": "microsoft/skills:.github/plugins/microsoft-365-agents-toolkit/skills/teams-app-developer", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"pipe-to-shell": 6}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/hivemind", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"js-exec": 6, "net-js": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:agent-launcher/skills/agent-launcher-orchestrator", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-shell": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:agent-launcher/skills/run-without-you", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-shell": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:agent-launcher/skills/stage-launch", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-shell": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/skills/changelog-generator", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 2}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/skills/feature-flags-architect", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/skills/full-page-screenshot", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-js": 3, "js-exec": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/skills/git-worktree-manager", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 2}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/skills/pr-review-expert", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"secret-files": 2}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/skills/runbook-generator", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-shell": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/skills/skill-security-auditor", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"pipe-to-shell": 2, "secret-files": 3, "persistence": 1, "role-hijack": 1, "net-python": 2, "net-js": 1, "py-exec": 3, "py-shell-true": 1, "js-exec": 2}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/skills/skill-tester", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 9, "py-shell-true": 6, "env-secrets": 3, "dyn-eval": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/skills/tech-debt-tracker", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-js": 3, "net-python": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering-team/skills/ai-security", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"role-hijack": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering-team/skills/code-reviewer", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering-team/skills/epic-design", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"role-hijack": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering-team/skills/security-pen-testing", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 1, "py-shell-true": 2}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering-team/skills/senior-backend", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering-team/skills/senior-devops", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering-team/skills/senior-fullstack", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-js": 2, "env-secrets": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering-team/skills/senior-qa", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"env-secrets": 2}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering-team/skills/senior-secops", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-shell-true": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:marketing-skill/skills/aeo", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:marketing-skill/skills/page-cro", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:marketing-skill/skills/prompt-engineer-toolkit", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:marketing-skill/skills/seo-audit", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:marketing-skill/skills/site-architecture", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:product-team/skills/roadmap-communicator", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:ra-qm-team/skills/quality-manager-qms-iso13485", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-shell": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/agent-harness/skills/agent-harness", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 1, "py-shell-true": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/agenthub/skills/agenthub", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 7, "py-shell-true": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/autoresearch-agent/skills/autoresearch-agent", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 5, "py-shell-true": 3}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/book-to-skill/skills/book-to-skill", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"hidden-comment-instruction": 1, "py-exec": 4}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/deep-learning-book/skills/deep-learning-book", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"dyn-eval": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/docker-development/skills/docker-development", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-shell": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/feature-flags-architect/skills/feature-flags-architect", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/human-gate/skills/human-gate", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/karpathy-coder/skills/karpathy-coder", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/skill-doctor/skills/skill-doctor", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/universal-scraping-architect/skills/universal-scraping-architect", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"env-secrets": 2, "net-python": 1, "net-js": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering/workflow-builder/skills/workflow-builder", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-js": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:engineering-team/google-workspace-cli/skills/google-workspace-cli", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 7}, "high": []}}
+{"id": "alirezarezvani/claude-skills:productivity/handoff/skills/handoff", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 2}, "high": []}}
+{"id": "alirezarezvani/claude-skills:research/dossier/skills/dossier", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-js": 1}, "high": []}}
+{"id": "alirezarezvani/claude-skills:research/litreview/skills/litreview", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/atlas-cloud-media", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/de-ai-writer", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/docx", "reason": "license 'proprietary' not permissive or unknown"}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/ecommerce-material-studio", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/ios-hig-design-guide", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/muapi-media", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/obsidian-rest-api", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-shell": 2}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/pdf", "reason": "license 'proprietary' not permissive or unknown"}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/pptx", "reason": "license 'proprietary' not permissive or unknown"}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/rag-evaluation-harness", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"js-exec": 1}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/video-downloader", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/video-to-text", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3, "net-shell": 2, "py-exec": 6}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/voice-persona", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 3, "py-exec": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/webapp-testing", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"py-exec": 2, "py-shell-true": 2}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/x-research", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-python": 6, "env-secrets": 1}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/all-skills/skills/xlsx", "reason": "license 'proprietary' not permissive or unknown"}
+{"id": "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-daemon", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"persistence": 1}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-ecom", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"secret-files": 2}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-marketing", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"secret-files": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-package", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"net-shell": 20}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/claude-ops/skills/ops-voice", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"secret-files": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/claude-ops/skills/setup", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"pipe-to-shell": 1, "secret-files": 3, "persistence": 3}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/claude-ops/skills/uninstall", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"secret-files": 1}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/cohesivity/skills/cohesivity", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"pipe-to-shell": 2}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/drill-me/skills/me", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"role-hijack": 1}, "high": []}}
+{"id": "davepoon/buildwithclaude:plugins/origin/skills/init", "reason": "tier 3 requires a clean scan", "scan": {"verdict": "warn", "counts": {"pipe-to-shell": 1}, "high": []}}
