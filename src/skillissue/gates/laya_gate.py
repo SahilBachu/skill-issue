@@ -36,7 +36,9 @@ def question() -> dict[str, Any]:
     return {"t": "choice", "ins": INSTRUCTIONS, "crit": dict(OPTIONS)}
 
 
-def encode_rows(tok: Any, prompt: str, skill_blocks: Sequence[str], max_len: int = MAX_LEN) -> list[list[dict[str, Any]]]:
+def encode_rows(
+    tok: Any, prompt: str, skill_blocks: Sequence[str], max_len: int = MAX_LEN
+) -> list[list[dict[str, Any]]]:
     from laya.common import QTYPES, build_sequence
 
     q = question()
@@ -50,7 +52,9 @@ def encode_rows(tok: Any, prompt: str, skill_blocks: Sequence[str], max_len: int
 class LayaGate(Gate):
     name = "laya"
 
-    def __init__(self, model_dir: str | Path, device: str = "auto", calibration: Calibration | None = None, body_chars: int = 300):
+    def __init__(
+        self, model_dir: str | Path, device: str = "auto", calibration: Calibration | None = None, body_chars: int = 300
+    ):
         os.environ.setdefault("USE_TF", "0")  # laya docs: avoids a hang when TensorFlow is installed
         import laya
         import torch
@@ -91,7 +95,8 @@ class LayaGate(Gate):
                     b["qtype"].to(dev),
                 )
         lg = logits.float().cpu().numpy()
-        return lg[:, 0] - lg[:, 1]
+        diff: np.ndarray = (lg[:, 0] - lg[:, 1]).astype(np.float64)
+        return diff
 
 
 class _null:

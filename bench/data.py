@@ -48,7 +48,15 @@ def pool() -> Pool:
     recs = load_pool()
     vecs = pool_embeddings(recs)
     skills = [
-        Skill(id=r["id"], name=r["name"], description=r["description"], body=r["body"], source=r["repo"], sha256=r["sha256"], license=r["license"])
+        Skill(
+            id=r["id"],
+            name=r["name"],
+            description=r["description"],
+            body=r["body"],
+            source=r["repo"],
+            sha256=r["sha256"],
+            license=r["license"],
+        )
         for r in recs
     ]
     return Pool(recs, skills, vecs, {r["id"]: i for i, r in enumerate(recs)}, [_norm_name(r["name"]) for r in recs])

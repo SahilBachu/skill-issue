@@ -43,13 +43,29 @@ SYSTEMS: dict[str, System] = {
     for s in [
         System("bm25", "bm25", "features", features=["log_bm25"], label="BM25 only"),
         System("dense", "dense", "features", features=["cosine"], label="Embeddings only (bge-small)"),
-        System("hybrid", "hybrid", "features", features=["cosine", "log_bm25", "rrf60"], label="Hybrid BM25 + embeddings"),
+        System(
+            "hybrid", "hybrid", "features", features=["cosine", "log_bm25", "rrf60"], label="Hybrid BM25 + embeddings"
+        ),
         System("laya-zs", "hybrid", "laya", "convaiinnovations/laya", label="Hybrid + Laya (zero-shot)"),
         System("bge-m3-zs", "hybrid", "cross", "BAAI/bge-reranker-v2-m3", label="Hybrid + bge-reranker-v2-m3"),
-        System("gte-mb-zs", "hybrid", "cross", "Alibaba-NLP/gte-reranker-modernbert-base", label="Hybrid + gte-reranker-modernbert-base"),
-        System("minilm-zs", "hybrid", "cross", "cross-encoder/ms-marco-MiniLM-L6-v2", label="Hybrid + ms-marco-MiniLM-L6"),
+        System(
+            "gte-mb-zs",
+            "hybrid",
+            "cross",
+            "Alibaba-NLP/gte-reranker-modernbert-base",
+            label="Hybrid + gte-reranker-modernbert-base",
+        ),
+        System(
+            "minilm-zs", "hybrid", "cross", "cross-encoder/ms-marco-MiniLM-L6-v2", label="Hybrid + ms-marco-MiniLM-L6"
+        ),
         System("laya-ft", "hybrid", "laya", "checkpoints/laya-ft", label="Hybrid + Laya (fine-tuned)"),
-        System("gte-mb-ft", "hybrid", "cross", "checkpoints/gte-mb-ft", label="Hybrid + gte-reranker-modernbert (fine-tuned)"),
+        System(
+            "gte-mb-ft",
+            "hybrid",
+            "cross",
+            "checkpoints/gte-mb-ft",
+            label="Hybrid + gte-reranker-modernbert (fine-tuned)",
+        ),
         System("minilm-ft", "hybrid", "cross", "checkpoints/minilm-ft", label="Hybrid + MiniLM-L6 (fine-tuned)"),
     ]
 }

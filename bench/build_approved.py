@@ -12,7 +12,6 @@ import json
 import re
 import sys
 from collections.abc import Iterator
-from pathlib import Path
 from typing import Any
 
 from bench.corpus import CACHE, CORPUS, LOCK, ROOT, SOURCES
@@ -87,12 +86,17 @@ def main() -> None:
     lines += ["", "## License texts", ""]
     for repo, commit in repos:
         root = CORPUS / repo.replace("/", "__") / commit[:12]
-        lic_files = sorted(p for p in root.iterdir() if p.is_file() and p.name.upper().startswith(("LICENSE", "LICENCE")))
+        lic_files = sorted(
+            p for p in root.iterdir() if p.is_file() and p.name.upper().startswith(("LICENSE", "LICENCE"))
+        )
         lines += [f"### {repo}", ""]
         if lic_files:
             lines += ["```text", lic_files[0].read_text(encoding="utf-8", errors="replace").strip(), "```", ""]
         else:
-            lines += ["No top-level LICENSE file. Each included skill carries its own license file in the source repo.", ""]
+            lines += [
+                "No top-level LICENSE file. Each included skill carries its own license file in the source repo.",
+                "",
+            ]
     NOTICES.write_text("\n".join(lines) + "\n", encoding="utf-8")
     reasons: dict[str, int] = {}
     for r in rejected:

@@ -22,8 +22,27 @@ _BLANKS = re.compile(r"\n{3,}")
 # Files larger than this are hashed but never read as text.
 MAX_TEXT_BYTES = 512 * 1024
 SCRIPT_SUFFIXES = {
-    ".py", ".sh", ".bash", ".zsh", ".js", ".mjs", ".cjs", ".ts", ".ps1", ".bat", ".cmd",
-    ".rb", ".pl", ".php", ".go", ".rs", ".lua", ".r", ".swift", ".kt", ".java",
+    ".py",
+    ".sh",
+    ".bash",
+    ".zsh",
+    ".js",
+    ".mjs",
+    ".cjs",
+    ".ts",
+    ".ps1",
+    ".bat",
+    ".cmd",
+    ".rb",
+    ".pl",
+    ".php",
+    ".go",
+    ".rs",
+    ".lua",
+    ".r",
+    ".swift",
+    ".kt",
+    ".java",
 }
 
 
@@ -92,7 +111,7 @@ def parse_skill_md(text: str) -> tuple[dict[str, Any], str]:
     if not m:
         return {}, text.strip()
     raw = m.group(1)
-    body = text[m.end():].strip()
+    body = text[m.end() :].strip()
     try:
         data = yaml.safe_load(raw)
     except yaml.YAMLError:

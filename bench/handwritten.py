@@ -27,14 +27,24 @@ def main() -> None:
             continue
         labels_s, kind, prompt = line.split("\t", 2)
         labels = []
-        for lab in ([] if labels_s == "-" else labels_s.split(",")):
+        for lab in [] if labels_s == "-" else labels_s.split(","):
             cands = by_name.get(lab.strip().lower(), [])
             if len(cands) != 1:
                 bad.append(f"line {n}: {lab!r} -> {cands}")
                 continue
             labels.append(cands[0])
-        rows.append({"id": f"hand-{len(rows):03d}", "prompt": prompt, "labels": labels, "kind": kind, "style": None,
-                     "anchor": None, "split": "handwritten", "source": "handwritten-draft"})
+        rows.append(
+            {
+                "id": f"hand-{len(rows):03d}",
+                "prompt": prompt,
+                "labels": labels,
+                "kind": kind,
+                "style": None,
+                "anchor": None,
+                "split": "handwritten",
+                "source": "handwritten-draft",
+            }
+        )
     if bad:
         print("\n".join(bad), file=sys.stderr)
         print("known names:", sorted(by_name), file=sys.stderr)

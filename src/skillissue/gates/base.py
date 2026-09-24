@@ -42,32 +42,58 @@ class Calibration:
         return cls(float(d.get("a", 1.0)), float(d.get("b", 0.0)), float(d.get("threshold", 0.5)))
 
 
-def fit_platt(raw: np.ndarray, y: np.ndarray, iters: int = 500, l2: float = 1e-4) -> tuple[float, float]:
-    """Fit (a, b) by Newton's method on log loss. Small, dependency free, deterministic."""
+def fit_platt(raw: np.ndarray, y: np.ndarray, iters: int = 100, l2: float = 1e-3) -> tuple[float, float]:
+    """Fit (a, b) for p = sigmoid(a * raw + b) by damped Newton on log loss.
+
+    Inputs are standardized first and every step is backtracked until the loss decreases, so
+    wide score ranges (logits of +-10 and beyond) cannot make it diverge. Dependency free and
+    deterministic."""
     x = np.asarray(raw, dtype=np.float64)
     t = np.asarray(y, dtype=np.float64)
+    if len(x) == 0 or t.min() == t.max():
+        return 1.0, 0.0
+    mu, sd = float(x.mean()), float(x.std()) or 1.0
+    xs = (x - mu) / sd
     # Platt's smoothed targets reduce overfitting on small sets.
     n_pos, n_neg = t.sum(), len(t) - t.sum()
     t = np.where(t > 0.5, (n_pos + 1) / (n_pos + 2), 1 / (n_neg + 2))
-    a, b = 1.0, 0.0
+
+    def loss(a: float, b: float) -> float:
+        z = a * xs + b
+        # log(1 + e^z) - t*z, computed stably
+        return float(np.sum(np.logaddexp(0.0, z) - t * z) + 0.5 * l2 * a * a)
+
+    a, b = 1.0, float(np.log(n_pos / n_neg))
+    cur = loss(a, b)
     for _ in range(iters):
-        z = np.clip(a * x + b, -40, 40)
-        p = 1 / (1 + np.exp(-z))
-        g_a = np.sum((p - t) * x) + l2 * a
-        g_b = np.sum(p - t)
+        p = 1 / (1 + np.exp(-np.clip(a * xs + b, -40, 40)))
+        g_a = float(np.sum((p - t) * xs)) + l2 * a
+        g_b = float(np.sum(p - t))
         w = p * (1 - p)
-        h_aa = np.sum(w * x * x) + l2
-        h_ab = np.sum(w * x)
-        h_bb = np.sum(w) + 1e-12
+        h_aa = float(np.sum(w * xs * xs)) + l2
+        h_ab = float(np.sum(w * xs))
+        h_bb = float(np.sum(w)) + 1e-9
         det = h_aa * h_bb - h_ab * h_ab
-        if abs(det) < 1e-18:
+        if det <= 1e-12:
+            da, db = g_a, g_b  # fall back to gradient descent
+        else:
+            da = (h_bb * g_a - h_ab * g_b) / det
+            db = (h_aa * g_b - h_ab * g_a) / det
+        step = 1.0
+        while step > 1e-6:
+            na, nb = a - step * da, b - step * db
+            new = loss(na, nb)
+            if new <= cur:
+                break
+            step /= 2
+        else:
             break
-        da = (h_bb * g_a - h_ab * g_b) / det
-        db = (h_aa * g_b - h_ab * g_a) / det
-        a, b = a - da, b - db
-        if abs(da) < 1e-9 and abs(db) < 1e-9:
+        converged = abs(cur - new) < 1e-10 * max(1.0, abs(cur))
+        a, b, cur = na, nb, new
+        if converged:
             break
-    return float(a), float(b)
+    # Undo the standardization.
+    return float(a / sd), float(b - a * mu / sd)
 
 
 def gate_text(skill: Skill, body_chars: int = 300) -> str:

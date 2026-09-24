@@ -42,8 +42,8 @@ def _route(request: str, cwd: str | None) -> dict[str, Any]:
         _router = Router()
     from .inject import render_context
 
-    r = _router.route(request, Path(cwd))
-    out = r.to_dict()
+    r = _router.route(request, Path(str(cwd)))
+    out: dict[str, Any] = r.to_dict()
     out["context"] = render_context(r)
     return out
 
@@ -52,10 +52,12 @@ def _slim(s: dict[str, Any]) -> dict[str, Any]:
     keep = ["name", "description", "prob", "installed", "path", "source"]
     d = {k: s.get(k) for k in keep}
     if d.get("path"):
-        d["skill_md"] = str(Path(d["path"]) / "SKILL.md")
+        d["skill_md"] = str(Path(str(d["path"])) / "SKILL.md")
     if not s.get("installed"):
         d.update({k: s.get(k) for k in ("tier", "license", "sha256", "scripts", "id")})
-        d["install_hint"] = f"ask the user first, then: skill-issue install {s.get('name')} --confirm {str(s.get('sha256', ''))[:12]}"
+        d["install_hint"] = (
+            f"ask the user first, then: skill-issue install {s.get('name')} --confirm {str(s.get('sha256', ''))[:12]}"
+        )
     return d
 
 
@@ -76,8 +78,15 @@ def explain_route(request: str, cwd: str | None = None) -> dict[str, Any]:
     lines = [f"catalog={res['catalog_size']} gate={res['gate']} threshold={res['threshold']:.2f}"]
     for c in res.get("candidates", []):
         mark = "SELECTED" if any(s["id"] == c["id"] for s in res["selected"]) else ""
-        lines.append(f"p={c['prob'] if c['prob'] is not None else 0:.3f} rank={c['retrieval_rank']} bm25={c['bm25']} cos={c['cosine']} {c['name']} {mark}")
-    return {"summary": "\n".join(lines), "selected": [s["name"] for s in res["selected"]], "candidates": res.get("candidates", []), "timings_ms": res.get("timings_ms")}
+        lines.append(
+            f"p={c['prob'] if c['prob'] is not None else 0:.3f} rank={c['retrieval_rank']} bm25={c['bm25']} cos={c['cosine']} {c['name']} {mark}"
+        )
+    return {
+        "summary": "\n".join(lines),
+        "selected": [s["name"] for s in res["selected"]],
+        "candidates": res.get("candidates", []),
+        "timings_ms": res.get("timings_ms"),
+    }
 
 
 def build_server() -> Any:

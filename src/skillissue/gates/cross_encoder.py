@@ -29,7 +29,9 @@ class CrossEncoderGate(Gate):
         from sentence_transformers import CrossEncoder
 
         meta = load_gate_meta(Path(model)) if Path(str(model)).exists() else {}
-        super().__init__(calibration or Calibration.from_dict(meta.get("calibration")), int(meta.get("body_chars", body_chars)))
+        super().__init__(
+            calibration or Calibration.from_dict(meta.get("calibration")), int(meta.get("body_chars", body_chars))
+        )
         self.model_ref = str(model)
         dev = resolve_device(device)
         import torch

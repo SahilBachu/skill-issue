@@ -27,11 +27,11 @@ import torch.nn.functional as F
 
 os.environ.setdefault("USE_TF", "0")
 
-from bench.corpus import CACHE, ROOT  # noqa: E402
-from skillissue import models  # noqa: E402
-from skillissue.gates.base import gate_text  # noqa: E402
-from skillissue.gates.laya_gate import encode_rows  # noqa: E402
-from skillissue.skill import Skill  # noqa: E402
+from bench.corpus import CACHE, ROOT
+from skillissue import models
+from skillissue.gates.base import gate_text
+from skillissue.gates.laya_gate import encode_rows
+from skillissue.skill import Skill
 
 PAIRS = CACHE / "train" / "pairs.jsonl"
 SKILLS = CACHE / "train" / "skills.json"
@@ -78,7 +78,9 @@ def tokenize(tok: Any, pairs: list[dict[str, Any]], skills: dict[str, Any], body
     return items
 
 
-def batches(items: list[dict[str, Any]], bs: int, rng: random.Random, shuffle: bool = True) -> list[list[dict[str, Any]]]:
+def batches(
+    items: list[dict[str, Any]], bs: int, rng: random.Random, shuffle: bool = True
+) -> list[list[dict[str, Any]]]:
     """Length-bucketed batches: sort within shuffled windows so padding stays small."""
     idx = list(range(len(items)))
     if shuffle:
@@ -129,7 +131,12 @@ def save(model: Any, base_dir: Path, out: Path, meta: dict[str, Any]) -> None:
             shutil.rmtree(out / sub)
         shutil.copytree(base_dir / sub, out / sub)
     shutil.copy2(base_dir / "rl_agent_config.json", out / "rl_agent_config.json")
-    sd = {k: (v.detach().to(torch.float16) if v.is_floating_point() and k != "temperature" else v.detach()).contiguous().cpu() for k, v in model.state_dict().items()}
+    sd = {
+        k: (v.detach().to(torch.float16) if v.is_floating_point() and k != "temperature" else v.detach())
+        .contiguous()
+        .cpu()
+        for k, v in model.state_dict().items()
+    }
     save_file(sd, str(out / "model.safetensors"))
     (out / "skill_issue_gate.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
 
@@ -172,32 +179,48 @@ def main(argv: list[str] | None = None) -> None:
     enc_params = [p for n, p in model.named_parameters() if p.requires_grad and n.startswith("encoder.")]
     head_params = [p for n, p in model.named_parameters() if p.requires_grad and not n.startswith("encoder.")]
     n_train = sum(p.numel() for p in enc_params + head_params)
-    print(f"trainable params: {n_train / 1e6:.1f}M of {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M", file=sys.stderr)
-    opt = bnb.optim.AdamW8bit([
-        {"params": enc_params, "lr": a.lr, "weight_decay": 0.01},
-        {"params": head_params, "lr": a.head_lr, "weight_decay": 0.01},
-    ])
+    print(
+        f"trainable params: {n_train / 1e6:.1f}M of {sum(p.numel() for p in model.parameters()) / 1e6:.1f}M",
+        file=sys.stderr,
+    )
+    opt = bnb.optim.AdamW8bit(
+        [
+            {"params": enc_params, "lr": a.lr, "weight_decay": 0.01},
+            {"params": head_params, "lr": a.head_lr, "weight_decay": 0.01},
+        ]
+    )
 
     skills = json.loads(SKILLS.read_text(encoding="utf-8"))
     t0 = time.time()
     train_items = tokenize(tok, load_pairs(a.neg_ratio, a.seed), skills, a.body_chars)
     val_items = tokenize(tok, val_pairs(), skills, a.body_chars)
-    print(f"train {len(train_items)} rows, val {len(val_items)} rows, tokenized in {time.time() - t0:.0f}s; "
-          f"mean len {np.mean([len(i['ids']) for i in train_items]):.0f}", file=sys.stderr)
+    print(
+        f"train {len(train_items)} rows, val {len(val_items)} rows, tokenized in {time.time() - t0:.0f}s; "
+        f"mean len {np.mean([len(i['ids']) for i in train_items]):.0f}",
+        file=sys.stderr,
+    )
 
     accum = a.bs // a.micro
     steps_per_epoch = math.ceil(len(train_items) / a.bs)
     total = int(steps_per_epoch * a.epochs) if not a.max_steps else a.max_steps
     warm = max(1, int(total * 0.05))
-    sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: min(1.0, (s + 1) / warm) * max(0.0, (total - s) / max(1, total - warm)))
+    sched = torch.optim.lr_scheduler.LambdaLR(
+        opt, lambda s: min(1.0, (s + 1) / warm) * max(0.0, (total - s) / max(1, total - warm))
+    )
     cw = torch.tensor([a.pos_weight, 1.0], device=dev)
     base_eval = evaluate(model, val_items, tok.pad_token_id, dev)
     print(f"step 0 val {base_eval}", file=sys.stderr)
     best = base_eval["ap"]
     log = [{"step": 0, **base_eval}]
     out = ROOT / a.out if not Path(a.out).is_absolute() else Path(a.out)
-    meta = {"base": a.base, "template_version": 1, "body_chars": a.body_chars, "task": "skill-relevance gate",
-            "train_rows": len(train_items), "args": vars(a)}
+    meta = {
+        "base": a.base,
+        "template_version": 1,
+        "body_chars": a.body_chars,
+        "task": "skill-relevance gate",
+        "train_rows": len(train_items),
+        "args": vars(a),
+    }
     step = 0
     mb_i = 0
     model.train()
@@ -220,8 +243,12 @@ def main(argv: list[str] | None = None) -> None:
                 step += 1
                 if step % 50 == 0:
                     el = time.time() - t0
-                    print(f"step {step}/{total} loss {loss.item() * accum:.4f} {el / step:.2f}s/step "
-                          f"mem {torch.cuda.max_memory_allocated() / 1e9:.2f}GB", file=sys.stderr, flush=True)
+                    print(
+                        f"step {step}/{total} loss {loss.item() * accum:.4f} {el / step:.2f}s/step "
+                        f"mem {torch.cuda.max_memory_allocated() / 1e9:.2f}GB",
+                        file=sys.stderr,
+                        flush=True,
+                    )
                 if step % a.eval_every == 0 or step == total:
                     ev = evaluate(model, val_items, tok.pad_token_id, dev)
                     log.append({"step": step, **ev})

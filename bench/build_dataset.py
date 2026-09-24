@@ -131,16 +131,28 @@ def main() -> None:
     out: dict[str, list[dict[str, Any]]] = {"train": [], "val": [], "test": []}
     for r in rows:
         out[r["split"]].append(r)
-    stats: dict[str, Any] = {"errors": len(errors), "exact_duplicates_removed": dup_exact, "cross_split_near_dups_removed": len(drop)}
+    stats: dict[str, Any] = {
+        "errors": len(errors),
+        "exact_duplicates_removed": dup_exact,
+        "cross_split_near_dups_removed": len(drop),
+    }
     for split, rs in out.items():
         for i, r in enumerate(rs):
             r["id"] = f"{split}-{i:05d}"
         path = OUT_DIR / f"{split}.jsonl"
         with path.open("w", encoding="utf-8") as f:
             for r in rs:
-                f.write(json.dumps({k: r[k] for k in ("id", "prompt", "labels", "kind", "style", "anchor", "split", "source")}, ensure_ascii=False) + "\n")
+                f.write(
+                    json.dumps(
+                        {k: r[k] for k in ("id", "prompt", "labels", "kind", "style", "anchor", "split", "source")},
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
         pos = [r for r in rs if r["kind"] == "positive"]
-        named = sum(1 for r in pos if names[r["labels"][0]].lower().replace("-", " ") in r["prompt"].lower().replace("-", " "))
+        named = sum(
+            1 for r in pos if names[r["labels"][0]].lower().replace("-", " ") in r["prompt"].lower().replace("-", " ")
+        )
         stats[split] = {
             "total": len(rs),
             "kinds": dict(Counter(r["kind"] for r in rs)),

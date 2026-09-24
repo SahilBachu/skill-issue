@@ -63,7 +63,11 @@ def build_index(
         mentions = int(list_mentions.get(r["repo"].lower(), 0))
         tier = assign_tier(r["repo"], mentions, summary["verdict"])
         if tier is None:
-            reason = "static scan found high-severity issues" if summary["verdict"] == "fail" else "tier 3 requires a clean scan"
+            reason = (
+                "static scan found high-severity issues"
+                if summary["verdict"] == "fail"
+                else "tier 3 requires a clean scan"
+            )
             rejected.append({"id": r["id"], "reason": reason, "scan": summary})
             continue
         skills.append(
@@ -122,7 +126,13 @@ def index_to_skills(index: dict[str, Any]) -> list[Skill]:
                 license=s.get("license"),
                 tier=s.get("tier"),
                 scripts=list(s.get("scripts", [])),
-                meta={"repo": s["repo"], "commit": s["commit"], "path": s["path"], "scan": s.get("scan", {}), "index_id": s["id"]},
+                meta={
+                    "repo": s["repo"],
+                    "commit": s["commit"],
+                    "path": s["path"],
+                    "scan": s.get("scan", {}),
+                    "index_id": s["id"],
+                },
             )
         )
     return out

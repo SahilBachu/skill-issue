@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import io
 import json
 import os
 import re
@@ -47,12 +46,27 @@ SOURCES: list[tuple[str, int | None, str]] = [
     ("sickn33/agentic-awesome-skills", None, "list"),
 ]
 
-TEXT_SUFFIXES = SCRIPT_SUFFIXES | {".md", ".txt", ".json", ".yaml", ".yml", ".toml", ".cfg", ".ini", ".xml", ".html", ".css", ""}
+TEXT_SUFFIXES = SCRIPT_SUFFIXES | {
+    ".md",
+    ".txt",
+    ".json",
+    ".yaml",
+    ".yml",
+    ".toml",
+    ".cfg",
+    ".ini",
+    ".xml",
+    ".html",
+    ".css",
+    "",
+}
 MAX_KEEP = 256 * 1024
 
 
 def _gh_json(url: str) -> Any:
-    req = urllib.request.Request(url, headers={"Accept": "application/vnd.github+json", "User-Agent": "skill-issue-bench"})
+    req = urllib.request.Request(
+        url, headers={"Accept": "application/vnd.github+json", "User-Agent": "skill-issue-bench"}
+    )
     tok = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     if tok:
         req.add_header("Authorization", f"Bearer {tok}")
@@ -152,7 +166,7 @@ def _dir_hash(skill_dir: Path, root: Path, binaries: list[dict[str, Any]]) -> tu
     prefix = rel_dir + "/"
     for b in binaries:
         if b["path"].startswith(prefix):
-            entries[b["path"][len(prefix):]] = bytes.fromhex(b["sha256"])
+            entries[b["path"][len(prefix) :]] = bytes.fromhex(b["sha256"])
     h = hashlib.sha256()
     for rel in sorted(entries):
         h.update(rel.encode("utf-8"))
@@ -221,7 +235,21 @@ def cmd_fetch(args: argparse.Namespace) -> None:
     # Committed manifest: metadata only, no skill content.
     with MANIFEST.open("w", encoding="utf-8") as f:
         for r in records:
-            meta = {k: r[k] for k in ("id", "name", "repo", "commit", "path", "license", "license_source", "tier", "sha256", "scripts")}
+            meta = {
+                k: r[k]
+                for k in (
+                    "id",
+                    "name",
+                    "repo",
+                    "commit",
+                    "path",
+                    "license",
+                    "license_source",
+                    "tier",
+                    "sha256",
+                    "scripts",
+                )
+            }
             f.write(json.dumps(meta, ensure_ascii=False) + "\n")
     print(f"wrote {len(records)} skills", file=sys.stderr)
 
@@ -232,7 +260,7 @@ def load_skillret() -> list[dict[str, Any]]:
     with src.open(encoding="utf-8") as f:
         for line in f:
             s = json.loads(line)
-            fm, body = parse_skill_md(s["skill_md"])
+            _, body = parse_skill_md(s["skill_md"])
             out.append(
                 {
                     "id": f"skillret:{s['id']}",

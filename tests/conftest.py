@@ -8,7 +8,10 @@ import numpy as np
 import pytest
 
 SKILLS = {
-    "pdf-tools": ("Extract text and tables from PDF files, merge and split PDFs, fill PDF forms.", "Use pypdf to read pages."),
+    "pdf-tools": (
+        "Extract text and tables from PDF files, merge and split PDFs, fill PDF forms.",
+        "Use pypdf to read pages.",
+    ),
     "sql-tuning": ("Analyze slow SQL queries, read EXPLAIN plans, and suggest indexes.", "Run EXPLAIN ANALYZE first."),
     "vercel-deploy": ("Deploy web apps to Vercel and return the preview URL.", "Use the vercel CLI to deploy."),
     "git-commit": ("Write conventional commit messages from staged diffs.", "Read git diff --staged."),
@@ -19,7 +22,9 @@ SKILLS = {
 def write_skill(root: Path, name: str, desc: str, body: str = "", extra: dict[str, str] | None = None) -> Path:
     d = root / name
     d.mkdir(parents=True, exist_ok=True)
-    (d / "SKILL.md").write_text(f"---\nname: {name}\ndescription: {desc}\n---\n\n# {name}\n\n{body}\n", encoding="utf-8")
+    (d / "SKILL.md").write_text(
+        f"---\nname: {name}\ndescription: {desc}\n---\n\n# {name}\n\n{body}\n", encoding="utf-8"
+    )
     for rel, text in (extra or {}).items():
         p = d / rel
         p.parent.mkdir(parents=True, exist_ok=True)

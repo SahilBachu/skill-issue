@@ -88,20 +88,25 @@ packages = ["src/skillissue"]
 include = ["src/skillissue", "README.md", "LICENSE", "NOTICE"]
 
 [tool.ruff]
-line-length = 100
+line-length = 120
 target-version = "py310"
-src = ["src", "tests", "bench", "training"]
+src = ["src", "."]
+
+[tool.ruff.lint.isort]
+known-first-party = ["skillissue", "bench", "training", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF", "PTH", "N"]
-ignore = ["E501", "RUF001", "RUF002", "RUF003"]
+ignore = ["E501", "RUF001", "RUF002", "RUF003", "B905", "SIM105", "PTH109", "PTH101", "N801", "RUF007"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["PTH", "N802"]
 "hooks/**" = ["PTH"]
+"bench/**" = ["N806", "N803", "N812"]
+"training/**" = ["N806", "N812", "N803"]
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.12"
 files = ["src/skillissue"]
 strict = true
 ignore_missing_imports = true

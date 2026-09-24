@@ -15,11 +15,13 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+
 from . import paths
 from .config import Config
 from .discover import discover, skill_roots
 from .gates import Gate, load_gate
-from .retrieval import Candidate, EmbeddingCache, Embedder, HybridRetriever, STEmbedder
+from .retrieval import Candidate, Embedder, EmbeddingCache, HybridRetriever, STEmbedder
 from .skill import Skill
 
 log = logging.getLogger(__name__)
@@ -168,7 +170,7 @@ class Router:
         gate = self.gate
         if gate is None:
             raise RuntimeError("router has no gate loaded")
-        probs = gate.score(prompt, gated) if gated else []
+        probs = gate.score(prompt, gated) if gated else np.zeros(0)
         for c, p in zip(gated, probs):
             c.prob = float(p)
         t3 = time.perf_counter()

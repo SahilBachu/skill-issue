@@ -40,19 +40,32 @@ def stack(tmp_path: Path):
     for name, (desc, body) in SKILLS.items():
         write_skill(claude / "skills", name, desc, body)
     (si / "config.toml").write_text(CONFIG, encoding="utf-8")
-    env = {**os.environ, "SKILL_ISSUE_HOME": str(si), "CLAUDE_CONFIG_DIR": str(claude), "HOME": str(home), "USERPROFILE": str(home)}
+    env = {
+        **os.environ,
+        "SKILL_ISSUE_HOME": str(si),
+        "CLAUDE_CONFIG_DIR": str(claude),
+        "HOME": str(home),
+        "USERPROFILE": str(home),
+    }
     env.pop("CLAUDE_PLUGIN_DATA", None)
     env["CLAUDE_PLUGIN_ROOT"] = str(ROOT)
     env["SKILL_ISSUE_HOOK_PYTHON"] = sys.executable
-    proc = subprocess.Popen([sys.executable, "-m", "skillissue", "daemon", "run"], env=env, cwd=tmp_path,
-                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    proc = subprocess.Popen(
+        [sys.executable, "-m", "skillissue", "daemon", "run"],
+        env=env,
+        cwd=tmp_path,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
     rt = si / "run" / "daemon.json"
     deadline = time.time() + 60
     ready = False
     while time.time() < deadline and not ready:
         time.sleep(0.2)
         if rt.is_file():
-            r = subprocess.run([sys.executable, "-m", "skillissue", "daemon", "status"], env=env, capture_output=True, text=True)
+            r = subprocess.run(
+                [sys.executable, "-m", "skillissue", "daemon", "status"], env=env, capture_output=True, text=True
+            )
             ready = '"ready"' in r.stdout
     assert ready, "daemon did not become ready"
     yield {"env": env, "proc": proc, "tmp": tmp_path}
@@ -64,9 +77,18 @@ def stack(tmp_path: Path):
 
 
 def run_hook(env: dict, prompt: str, cwd: Path) -> tuple[str, int, float]:
-    payload = json.dumps({"session_id": "e2e", "hook_event_name": "UserPromptSubmit", "prompt": prompt, "cwd": str(cwd)})
+    payload = json.dumps(
+        {"session_id": "e2e", "hook_event_name": "UserPromptSubmit", "prompt": prompt, "cwd": str(cwd)}
+    )
     t = time.perf_counter()
-    r = subprocess.run([SH, str(ROOT / "hooks" / "run-hook.sh"), "prompt"], input=payload, env=env, capture_output=True, text=True, timeout=10)
+    r = subprocess.run(
+        [SH, str(ROOT / "hooks" / "run-hook.sh"), "prompt"],
+        input=payload,
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=10,
+    )
     return r.stdout, r.returncode, (time.perf_counter() - t) * 1000
 
 

@@ -143,7 +143,9 @@ def _write_runtime(port: int, token: str) -> None:
     paths.ensure(rt.parent)
     tmp = rt.with_suffix(".tmp")
     tmp.write_text(
-        json.dumps({"port": port, "pid": os.getpid(), "token": token, "version": __version__, "python": sys.executable}),
+        json.dumps(
+            {"port": port, "pid": os.getpid(), "token": token, "version": __version__, "python": sys.executable}
+        ),
         encoding="utf-8",
     )
     try:
@@ -172,7 +174,9 @@ def run(cfg: Config | None = None, port: int | None = None) -> None:
     token = secrets.token_urlsafe(24)
     server_ref: dict[str, Any] = {}
     host = str(cfg.get("daemon.host", "127.0.0.1"))
-    server = ThreadingHTTPServer((host, int(port if port is not None else cfg.get("daemon.port", 0))), make_handler(state, token, server_ref))
+    server = ThreadingHTTPServer(
+        (host, int(port if port is not None else cfg.get("daemon.port", 0))), make_handler(state, token, server_ref)
+    )
     server.daemon_threads = True
     server_ref["server"] = server
     _write_runtime(server.server_address[1], token)
@@ -223,7 +227,9 @@ def request(method: str, route: str, payload: dict[str, Any] | None = None, time
         raise ConnectionError("daemon not running")
     url = f"http://127.0.0.1:{rt['port']}{route}"
     data = json.dumps(payload).encode() if payload is not None else None
-    req = urllib.request.Request(url, data=data, method=method, headers={"X-Skill-Issue-Token": rt["token"], "Content-Type": "application/json"})
+    req = urllib.request.Request(
+        url, data=data, method=method, headers={"X-Skill-Issue-Token": rt["token"], "Content-Type": "application/json"}
+    )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             body: dict[str, Any] = json.loads(r.read())

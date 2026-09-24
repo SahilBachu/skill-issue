@@ -12,7 +12,6 @@ from __future__ import annotations
 import json
 import random
 import sys
-from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -54,7 +53,10 @@ def pool_embeddings(pool: list[dict[str, Any]]) -> np.ndarray:
     from skillissue.skill import Skill
 
     emb = STEmbedder(EMBED_MODEL, device="cuda")
-    texts = [Skill(id=r["id"], name=r["name"], description=r["description"], body=r["body"]).routing_text(BODY_CHARS) for r in pool]
+    texts = [
+        Skill(id=r["id"], name=r["name"], description=r["description"], body=r["body"]).routing_text(BODY_CHARS)
+        for r in pool
+    ]
     vecs = emb.encode_docs(texts)
     np.save(EMB, vecs)
     EMB_IDS.write_text(json.dumps(ids))
@@ -165,7 +167,9 @@ def main() -> None:
             }
         )
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps({"seed": SEED, "embed_model": EMBED_MODEL, "skills": skills_out}, indent=1), encoding="utf-8")
+    OUT.write_text(
+        json.dumps({"seed": SEED, "embed_model": EMBED_MODEL, "skills": skills_out}, indent=1), encoding="utf-8"
+    )
     print(f"wrote {OUT}", file=sys.stderr)
     _ = idx_by_id
 

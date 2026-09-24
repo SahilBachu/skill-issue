@@ -51,8 +51,10 @@ def cmd_route(a: argparse.Namespace) -> int:
         return 0
     sel = res["selected"]
     t = res.get("timings_ms", {})
-    print(f"mode={res['mode']} gate={res['gate']} catalog={res['catalog_size']} threshold={res['threshold']:.2f} "
-          f"time={t.get('total', 0):.0f}ms")
+    print(
+        f"mode={res['mode']} gate={res['gate']} catalog={res['catalog_size']} threshold={res['threshold']:.2f} "
+        f"time={t.get('total', 0):.0f}ms"
+    )
     if not sel:
         print("-> no skill (nothing injected)")
     for s in sel:
@@ -73,7 +75,9 @@ def cmd_index(a: argparse.Namespace) -> int:
     roots = skill_roots(cfg, cwd)
     skills = discover(cfg, cwd, roots)
     if a.json:
-        _print_json([{"id": s.id, "name": s.name, "source": s.source, "path": s.path, "sha256": s.sha256} for s in skills])
+        _print_json(
+            [{"id": s.id, "name": s.name, "source": s.source, "path": s.path, "sha256": s.sha256} for s in skills]
+        )
         return 0
     print(f"{len(skills)} installed skills")
     by_src: dict[str, int] = {}
@@ -186,27 +190,55 @@ def cmd_doctor(a: argparse.Namespace) -> int:
     try:
         import torch
 
-        dev = "cuda " + torch.cuda.get_device_name(0) if torch.cuda.is_available() else (
-            "mps" if torch.backends.mps.is_available() else "cpu only")
-        line("ok" if dev != "cpu only" else "warn", "torch " + torch.__version__, dev + (
-            "" if dev != "cpu only" else " (the Laya gate is slow on CPU; consider `skill-issue config set gate.name cross-encoder`)"))
+        dev = (
+            "cuda " + torch.cuda.get_device_name(0)
+            if torch.cuda.is_available()
+            else ("mps" if torch.backends.mps.is_available() else "cpu only")
+        )
+        line(
+            "ok" if dev != "cpu only" else "warn",
+            "torch " + torch.__version__,
+            dev
+            + (
+                ""
+                if dev != "cpu only"
+                else " (the Laya gate is slow on CPU; consider `skill-issue config set gate.name cross-encoder`)"
+            ),
+        )
     except Exception as e:
         line("fail", "torch", str(e))
-    line("ok", "config", f"{paths.config_file()} ({'exists' if paths.config_file().is_file() else 'defaults'}), mode={cfg.mode}")
+    line(
+        "ok",
+        "config",
+        f"{paths.config_file()} ({'exists' if paths.config_file().is_file() else 'defaults'}), mode={cfg.mode}",
+    )
     gname = cfg.get("gate.name")
     ref = cfg.get("gate.model") or models.DEFAULT_GATE_MODELS.get(gname, "")
     if ref:
-        line("ok" if models.is_downloaded(ref) else "warn", f"gate model ({gname})", ref + ("" if models.is_downloaded(ref) else " not downloaded yet; run `skill-issue models download`"))
+        line(
+            "ok" if models.is_downloaded(ref) else "warn",
+            f"gate model ({gname})",
+            ref + ("" if models.is_downloaded(ref) else " not downloaded yet; run `skill-issue models download`"),
+        )
     emb = cfg.get("retrieval.embed_model")
     line("ok", "embedding model", emb)
     skills = discover(cfg, Path.cwd())
-    line("ok" if skills else "warn", "installed skills", f"{len(skills)} found" + ("" if skills else " (nothing to route to yet)"))
+    line(
+        "ok" if skills else "warn",
+        "installed skills",
+        f"{len(skills)} found" + ("" if skills else " (nothing to route to yet)"),
+    )
     h = daemon.health()
     if h is None:
         line("warn", "daemon", "not running (it starts on first prompt, or `skill-issue daemon start`)")
     else:
         st = h.get("status")
-        line("ok" if st == "ready" else ("fail" if st == "error" else "warn"), "daemon", f"{st}, pid {h.get('pid')}, gate {h.get('gate')}" + (f", error: {h.get('error')}" if h.get("error") else ""))
+        line(
+            "ok" if st == "ready" else ("fail" if st == "error" else "warn"),
+            "daemon",
+            f"{st}, pid {h.get('pid')}, gate {h.get('gate')}"
+            + (f", error: {h.get('error')}" if h.get("error") else ""),
+        )
         if st == "ready":
             times = []
             for _ in range(5):
@@ -221,7 +253,11 @@ def cmd_doctor(a: argparse.Namespace) -> int:
         installed = "skill-issue@" in plugin_hint.read_text(encoding="utf-8")
     except OSError:
         installed = False
-    line("ok" if installed else "warn", "Claude Code plugin", "installed" if installed else "not installed (/plugin marketplace add SahilBachu/skill-issue)")
+    line(
+        "ok" if installed else "warn",
+        "Claude Code plugin",
+        "installed" if installed else "not installed (/plugin marketplace add SahilBachu/skill-issue)",
+    )
     return 0 if ok else 1
 
 

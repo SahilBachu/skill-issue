@@ -17,7 +17,6 @@ import os
 import pickle
 import sys
 import time
-from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -58,13 +57,20 @@ def query_vecs(prompts: list[dict[str, Any]]) -> dict[str, np.ndarray]:
     missing = [p for p in prompts if p["id"] not in _QVECS]
     if missing:
         emb = STEmbedder(EMBED_MODEL, device="cuda")
-        vecs = emb.model.encode([emb.prefix + p["prompt"] for p in missing], batch_size=128, normalize_embeddings=True, show_progress_bar=False)
+        vecs = emb.model.encode(
+            [emb.prefix + p["prompt"] for p in missing],
+            batch_size=128,
+            normalize_embeddings=True,
+            show_progress_bar=False,
+        )
         for p, v in zip(missing, vecs):
             _QVECS[p["id"]] = np.asarray(v, dtype=np.float32)
     return _QVECS
 
 
-def retrieval_runs(mode: str, split: str, size: int, prompts: list[dict[str, Any]], top_k: int = 40) -> dict[str, dict[str, Any]]:
+def retrieval_runs(
+    mode: str, split: str, size: int, prompts: list[dict[str, Any]], top_k: int = 40
+) -> dict[str, dict[str, Any]]:
     """{prompt id: {"cands": [...], "ms": retrieval ms}} for one retrieval mode and catalog size."""
     key = hashlib.sha1(json.dumps([mode, split, size, top_k, [p["id"] for p in prompts]]).encode()).hexdigest()[:16]
     path = RETR_CACHE / f"{mode}-{split}-{size}-{key}.pkl"
@@ -114,7 +120,11 @@ class ScoreCache:
 
 
 def score_prompts(
-    system: System, scorer: Scorer | None, cache: ScoreCache, prompts: list[dict[str, Any]], runs: dict[str, dict[str, Any]]
+    system: System,
+    scorer: Scorer | None,
+    cache: ScoreCache,
+    prompts: list[dict[str, Any]],
+    runs: dict[str, dict[str, Any]],
 ) -> dict[str, dict[str, Any]]:
     """Raw scores for each prompt's top-G candidates. Uses the cache; loads the model lazily."""
     out = {}
@@ -140,7 +150,9 @@ def score_prompts(
     return out
 
 
-def to_records(prompts: list[dict[str, Any]], scored: dict[str, dict[str, Any]], runs: dict[str, dict[str, Any]], cal: Calibration) -> list[dict[str, Any]]:
+def to_records(
+    prompts: list[dict[str, Any]], scored: dict[str, dict[str, Any]], runs: dict[str, dict[str, Any]], cal: Calibration
+) -> list[dict[str, Any]]:
     recs = []
     for p in prompts:
         s = scored[p["id"]]
@@ -160,7 +172,13 @@ def to_records(prompts: list[dict[str, Any]], scored: dict[str, dict[str, Any]],
     return recs
 
 
-def calibrate(system: System, scorer: Scorer | None, scored: dict[str, dict[str, Any]], prompts: list[dict[str, Any]], runs: dict[str, dict[str, Any]]) -> Calibration:
+def calibrate(
+    system: System,
+    scorer: Scorer | None,
+    scored: dict[str, dict[str, Any]],
+    prompts: list[dict[str, Any]],
+    runs: dict[str, dict[str, Any]],
+) -> Calibration:
     labels = {p["id"]: set(p["labels"]) for p in prompts}
     if system.scorer == "features" and len(system.features) > 1:
         from sklearn.linear_model import LogisticRegression
@@ -172,7 +190,7 @@ def calibrate(system: System, scorer: Scorer | None, scored: dict[str, dict[str,
         lr = LogisticRegression(C=1.0, max_iter=1000).fit(np.vstack(X), np.array(y))
         assert scorer is not None
         scorer.weights = np.concatenate([lr.coef_[0], lr.intercept_])
-        for pid, s in scored.items():  # rescore with the fitted weights
+        for s in scored.values():  # rescore with the fitted weights
             s["raw"] = scorer.raw("", s["cands"])
     xs, ys = [], []
     for pid, s in scored.items():
@@ -194,7 +212,11 @@ def run_system(system: System, sizes: list[int], quick: bool = False) -> dict[st
     val = load_split("val")
     test = load_split("test")
     hand = ROOT / "data" / "bench" / "handwritten.jsonl"
-    extra = {"handwritten": [json.loads(x) for x in hand.read_text(encoding="utf-8").splitlines() if x.strip()]} if hand.is_file() else {}
+    extra = (
+        {"handwritten": [json.loads(x) for x in hand.read_text(encoding="utf-8").splitlines() if x.strip()]}
+        if hand.is_file()
+        else {}
+    )
     if quick:
         import random
 
@@ -245,8 +267,11 @@ def run_system(system: System, sizes: list[int], quick: bool = False) -> dict[st
         m["catalog_size"] = int(np.median([runs[p["id"]]["catalog"] for p in test]))
         result["test"][str(size)] = m
         all_records[str(size)] = recs
-        print(f"  {system.name:12s} N={m['catalog_size']:>6} exact={m['exact_match']:.3f} top1={m['top1']:.3f} "
-              f"r@10={m['recall@10']:.3f} none={m['none_accuracy']:.3f} fir={m['false_injection_rate']:.3f} ece={m['ece']:.3f}", file=sys.stderr)
+        print(
+            f"  {system.name:12s} N={m['catalog_size']:>6} exact={m['exact_match']:.3f} top1={m['top1']:.3f} "
+            f"r@10={m['recall@10']:.3f} none={m['none_accuracy']:.3f} fir={m['false_injection_rate']:.3f} ece={m['ece']:.3f}",
+            file=sys.stderr,
+        )
     for name, prompts in extra.items():
         runs = retrieval_runs(system.retrieval, name, CAL_SIZE, prompts, system.top_k)
         need_model(prompts, runs)
@@ -272,7 +297,9 @@ def run_system(system: System, sizes: list[int], quick: bool = False) -> dict[st
 
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(prog="python -m bench.run")
-    ap.add_argument("--systems", nargs="*", default=["bm25", "dense", "hybrid", "laya-zs", "bge-m3-zs", "gte-mb-zs", "minilm-zs"])
+    ap.add_argument(
+        "--systems", nargs="*", default=["bm25", "dense", "hybrid", "laya-zs", "bge-m3-zs", "gte-mb-zs", "minilm-zs"]
+    )
     ap.add_argument("--sizes", nargs="*", type=int, default=SIZES)
     ap.add_argument("--n-gate", type=int, help="override how many candidates the gate scores")
     ap.add_argument("--quick", action="store_true")

@@ -8,7 +8,6 @@ bench.build_dataset.
 from __future__ import annotations
 
 import json
-from pathlib import Path
 from typing import Any
 
 from bench.corpus import CACHE, POOL, ROOT
@@ -34,7 +33,12 @@ def _pool_index() -> dict[str, dict[str, Any]]:
 
 
 def brief(r: dict[str, Any], body_chars: int = 1200) -> dict[str, Any]:
-    return {"id": r["id"], "name": r["name"], "description": r["description"][:1200], "body_excerpt": body_excerpt(r["body"], body_chars)}
+    return {
+        "id": r["id"],
+        "name": r["name"],
+        "description": r["description"][:1200],
+        "body_excerpt": body_excerpt(r["body"], body_chars),
+    }
 
 
 def main() -> None:
@@ -54,8 +58,7 @@ def main() -> None:
                 "positives_per_skill": n_pos,
                 "hard_negatives_per_skill": 2,
                 "skills": [
-                    {**brief(pool[s["id"]]), "siblings": [brief(pool[x], 300) for x in s["siblings"]]}
-                    for s in chunk
+                    {**brief(pool[s["id"]]), "siblings": [brief(pool[x], 300) for x in s["siblings"]]} for s in chunk
                 ],
             }
             (GEN / "in" / f"{name}.json").write_text(json.dumps(data, indent=1, ensure_ascii=False), encoding="utf-8")
@@ -67,10 +70,14 @@ def main() -> None:
             "count": {"train": 80, "val": 20, "test": 40}[split],
             "skills": [brief(pool[s["id"]], 200) for s in skills],
         }
-        (GEN / "in" / f"{split}-multi.json").write_text(json.dumps(multi, indent=1, ensure_ascii=False), encoding="utf-8")
+        (GEN / "in" / f"{split}-multi.json").write_text(
+            json.dumps(multi, indent=1, ensure_ascii=False), encoding="utf-8"
+        )
         batches.append(f"{split}-multi")
     # "None" batches see every core skill (name + short description) so they can avoid all of them.
-    allskills = [{"id": s["id"], "name": pool[s["id"]]["name"], "description": pool[s["id"]]["description"][:240]} for s in core]
+    allskills = [
+        {"id": s["id"], "name": pool[s["id"]]["name"], "description": pool[s["id"]]["description"][:240]} for s in core
+    ]
     focus = {
         "none-a": "everyday code edits and debugging in the user's own code: refactors, renames, small bug fixes on pasted snippets, adding a parameter, fixing an off-by-one, reading a stack trace from their own app",
         "none-b": "questions and conversation: explain a concept, compare two approaches, what does this regex/line do, chit-chat, thanks, meta questions about the session, planning talk that needs no special workflow",

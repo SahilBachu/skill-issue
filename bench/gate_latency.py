@@ -14,10 +14,10 @@ from typing import Any
 
 os.environ.setdefault("USE_TF", "0")
 
-import torch  # noqa: E402
+import torch
 
-from bench.data import RESULTS, load_split, pool, save_json  # noqa: E402
-from skillissue.retrieval import Candidate  # noqa: E402
+from bench.data import RESULTS, load_split, pool, save_json
+from skillissue.retrieval import Candidate
 
 MODELS = {
     "laya": ("laya", "convaiinnovations/laya"),
@@ -53,7 +53,11 @@ def main() -> None:
     P = pool()
     prompts = [p["prompt"] for p in load_split("test")]
     rng = random.Random(0)
-    out: dict[str, Any] = {"device": a.device, "gpu": torch.cuda.get_device_name(0) if a.device == "cuda" else None, "results": []}
+    out: dict[str, Any] = {
+        "device": a.device,
+        "gpu": torch.cuda.get_device_name(0) if a.device == "cuda" else None,
+        "results": [],
+    }
     for name in a.models:
         kind, ref = MODELS[name]
         g = load(kind, ref, a.device, 300)
@@ -73,8 +77,13 @@ def main() -> None:
                     if i >= 3:
                         times.append((time.perf_counter() - t) * 1000)
                 times.sort()
-                row = {"model": name, "body_chars": body, "candidates": G, "p50_ms": statistics.median(times),
-                       "p95_ms": times[int(0.95 * (len(times) - 1))]}
+                row = {
+                    "model": name,
+                    "body_chars": body,
+                    "candidates": G,
+                    "p50_ms": statistics.median(times),
+                    "p95_ms": times[int(0.95 * (len(times) - 1))],
+                }
                 out["results"].append(row)
                 print(row, flush=True)
         del g

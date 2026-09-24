@@ -86,11 +86,21 @@ def test_render_context_installed(skills, hash_embedder):
 
 
 def test_render_context_uninstalled_requires_confirmation(hash_embedder):
-    s = Skill(id="approved:x", name="xlsx-helper", description="Edit Excel spreadsheets and formulas", installed=False,
-              tier=1, license="MIT", sha256="a" * 64, scripts=["scripts/recalc.py"],
-              meta={"repo": "o/r", "commit": "c" * 40, "path": "skills/xlsx"})
+    s = Skill(
+        id="approved:x",
+        name="xlsx-helper",
+        description="Edit Excel spreadsheets and formulas",
+        installed=False,
+        tier=1,
+        license="MIT",
+        sha256="a" * 64,
+        scripts=["scripts/recalc.py"],
+        meta={"repo": "o/r", "commit": "c" * 40, "path": "skills/xlsx"},
+    )
     gate = RetrievalGate({"cosine": 10.0}, Calibration(1.0, -2.0, 0.5))
-    res = Router(Config(), embedder=hash_embedder, gate=gate, skills=[s], load_models=False).route("edit excel spreadsheet formulas")
+    res = Router(Config(), embedder=hash_embedder, gate=gate, skills=[s], load_models=False).route(
+        "edit excel spreadsheet formulas"
+    )
     ctx = render_context(res)
     assert "NOT INSTALLED" in ctx
     assert "Never install a skill yourself" in ctx
@@ -101,3 +111,18 @@ def test_route_result_to_dict(skills, hash_embedder):
     d = _router(skills, hash_embedder, 0.5).route("pdf tables").to_dict()
     assert {"mode", "gate", "threshold", "selected", "candidates", "timings_ms"} <= set(d)
     assert all(0 <= c["prob"] <= 1 for c in d["candidates"])
+
+
+def test_fit_platt_wide_scores_do_not_diverge():
+    # Regression: undamped Newton diverged (a = -6.7e6) on cross-encoder logits in [-11, 9].
+    rng = np.random.default_rng(1)
+    y = (rng.random(5000) < 0.08).astype(float)
+    raw = np.where(y > 0, rng.normal(5, 2, 5000), rng.normal(-6, 3, 5000))
+    a, b = fit_platt(raw, y)
+    assert 0 < a < 10 and abs(b) < 50
+    p = Calibration(a, b).apply(raw)
+    assert p[y > 0].mean() > 0.7 and p[y == 0].mean() < 0.1
+
+
+def test_fit_platt_degenerate_labels():
+    assert fit_platt(np.array([1.0, 2.0]), np.array([1.0, 1.0])) == (1.0, 0.0)

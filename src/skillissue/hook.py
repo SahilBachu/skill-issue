@@ -23,6 +23,7 @@ import time
 import urllib.error
 import urllib.request
 from pathlib import Path
+from typing import Any
 
 HERE = Path(__file__).resolve()
 # In the plugin layout this file is <root>/src/skillissue/hook.py.
@@ -61,7 +62,7 @@ def _timeout_s() -> float:
 def _detached_popen(cmd: list[str], log_path: Path) -> None:
     log_path.parent.mkdir(parents=True, exist_ok=True)
     log_f = log_path.open("ab")
-    kwargs: dict = {"stdin": subprocess.DEVNULL, "stdout": log_f, "stderr": log_f, "close_fds": True}
+    kwargs: dict[str, Any] = {"stdin": subprocess.DEVNULL, "stdout": log_f, "stderr": log_f, "close_fds": True}
     if os.name == "nt":
         kwargs["creationflags"] = 0x00000008 | 0x00000200 | 0x08000000
     else:
@@ -123,7 +124,11 @@ def install_in_background() -> bool:
         script = f'"{py}" -m venv "{v}" && "{vpy}" -m pip install -q "{root}" && echo ok > "{stamp}"'
     lockfile = home() / "run" / "install.lock"
     script += f'; rm -f "{lockfile}"'
-    shell = ["cmd", "/c", script.replace("rm -f", "del /f")] if os.name == "nt" and not shutil.which("sh") else ["sh", "-c", script]
+    shell = (
+        ["cmd", "/c", script.replace("rm -f", "del /f")]
+        if os.name == "nt" and not shutil.which("sh")
+        else ["sh", "-c", script]
+    )
     _detached_popen(shell, log)
     return True
 
@@ -138,7 +143,7 @@ def start_daemon() -> None:
     _detached_popen([py, "-m", "skillissue", "daemon", "run"], home() / "run" / "daemon.log")
 
 
-def post(route: str, payload: dict, timeout: float) -> dict | None:
+def post(route: str, payload: dict[str, Any], timeout: float) -> dict[str, Any] | None:
     try:
         rt = json.loads(runtime_file().read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -152,7 +157,7 @@ def post(route: str, payload: dict, timeout: float) -> dict | None:
     )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
-            body: dict = json.loads(r.read())
+            body: dict[str, Any] = json.loads(r.read())
             return body
     except urllib.error.HTTPError:
         return None  # 503 while loading, 403, 500: fail open
@@ -192,7 +197,9 @@ def cmd_session_start() -> str:
     if daemon_python() is None:
         if install_in_background():
             return json.dumps(
-                {"systemMessage": "skill-issue: first run, installing the router in the background (a few minutes). Prompts run normally meanwhile."}
+                {
+                    "systemMessage": "skill-issue: first run, installing the router in the background (a few minutes). Prompts run normally meanwhile."
+                }
             )
         return ""
     try:

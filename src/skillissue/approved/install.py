@@ -61,7 +61,7 @@ def fetch_skill(s: dict[str, Any], dest: Path) -> None:
             rel = m.name.split("/", 1)[1] if "/" in m.name else ""
             if not rel.startswith(prefix):
                 continue
-            sub = PurePosixPath(rel[len(prefix):])
+            sub = PurePosixPath(rel[len(prefix) :])
             if sub.is_absolute() or ".." in sub.parts:
                 raise InstallError(f"unsafe path in archive: {rel}")
             f = tar.extractfile(m)
@@ -75,7 +75,13 @@ def fetch_skill(s: dict[str, Any], dest: Path) -> None:
         raise InstallError("skill folder not found in the pinned commit")
 
 
-def install(s: dict[str, Any], confirm: str | None, scope: str = "user", cwd: Path | None = None, interactive: bool | None = None) -> Path:
+def install(
+    s: dict[str, Any],
+    confirm: str | None,
+    scope: str = "user",
+    cwd: Path | None = None,
+    interactive: bool | None = None,
+) -> Path:
     print(describe(s))
     print()
     want = s["sha256"][:CONFIRM_CHARS]

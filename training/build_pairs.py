@@ -47,9 +47,16 @@ def our_pairs(P: Pool, blocked: set[int], emb: STEmbedder) -> list[dict[str, Any
     prompts = load_split("train")
     # Build a pool view without held-out skills.
     keep = [i for i in range(len(P.skills)) if i not in blocked]
-    sub = Pool([P.records[i] for i in keep], [P.skills[i] for i in keep], P.vecs[keep],
-               {P.records[i]["id"]: j for j, i in enumerate(keep)}, [P.names[i] for i in keep])
-    qv = emb.model.encode([emb.prefix + p["prompt"] for p in prompts], batch_size=128, normalize_embeddings=True, show_progress_bar=False)
+    sub = Pool(
+        [P.records[i] for i in keep],
+        [P.skills[i] for i in keep],
+        P.vecs[keep],
+        {P.records[i]["id"]: j for j, i in enumerate(keep)},
+        [P.names[i] for i in keep],
+    )
+    qv = emb.model.encode(
+        [emb.prefix + p["prompt"] for p in prompts], batch_size=128, normalize_embeddings=True, show_progress_bar=False
+    )
     qvec = {p["id"]: v for p, v in zip(prompts, qv)}
     out = []
     for size in (100, CATALOG):
@@ -59,7 +66,14 @@ def our_pairs(P: Pool, blocked: set[int], emb: STEmbedder) -> list[dict[str, Any
                 cands = r.retrieve(p["prompt"], N_CANDS, query_vec=qvec[p["id"]])
                 ids = {c.skill.id for c in cands}
                 for c in cands:
-                    out.append({"prompt": p["prompt"], "skill": c.skill.id, "label": int(c.skill.id in p["labels"]), "src": f"ours-{size}"})
+                    out.append(
+                        {
+                            "prompt": p["prompt"],
+                            "skill": c.skill.id,
+                            "label": int(c.skill.id in p["labels"]),
+                            "src": f"ours-{size}",
+                        }
+                    )
                 # Gold skills retrieval missed are still useful positives.
                 for g in p["labels"]:
                     if g not in ids:
@@ -67,7 +81,9 @@ def our_pairs(P: Pool, blocked: set[int], emb: STEmbedder) -> list[dict[str, Any
     return out
 
 
-def skillret_pairs(P: Pool, blocked: set[int], emb: STEmbedder) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
+def skillret_pairs(
+    P: Pool, blocked: set[int], emb: STEmbedder
+) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
     base = CACHE / "skillret" / "data"
     train_q = [json.loads(x) for x in (base / "queries" / "train.jsonl").open(encoding="utf-8")]
     skills_raw = {}
@@ -89,7 +105,9 @@ def skillret_pairs(P: Pool, blocked: set[int], emb: STEmbedder) -> tuple[list[di
     near = (vecs @ blocked_vecs.T).max(axis=1) >= 0.90 if len(blocked_vecs) else np.zeros(len(skills), bool)
     import re
 
-    keep = [i for i, s in enumerate(skills) if not near[i] and re.sub(r"[^a-z0-9]", "", s.name.lower()) not in blocked_names]
+    keep = [
+        i for i, s in enumerate(skills) if not near[i] and re.sub(r"[^a-z0-9]", "", s.name.lower()) not in blocked_names
+    ]
     dropped = {skills[i].id for i in range(len(skills)) if i not in set(keep)}
     skills = [skills[i] for i in keep]
     vecs = vecs[keep]
@@ -98,7 +116,9 @@ def skillret_pairs(P: Pool, blocked: set[int], emb: STEmbedder) -> tuple[list[di
     rng.shuffle(qs)
     qs = qs[:SKILLRET_QUERIES]
     r = HybridRetriever(skills, _NullEmbedder(), doc_vecs=vecs)
-    qv = emb.model.encode([emb.prefix + q["query"] for q in qs], batch_size=128, normalize_embeddings=True, show_progress_bar=False)
+    qv = emb.model.encode(
+        [emb.prefix + q["query"] for q in qs], batch_size=128, normalize_embeddings=True, show_progress_bar=False
+    )
     out = []
     for q, v in zip(qs, qv):
         gold = {f"skillret:{x}" for x in q["skill_ids"]}

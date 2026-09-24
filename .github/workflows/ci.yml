@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uvx ruff check .
+      - run: uvx ruff format --check .
+      - name: Validate plugin and marketplace manifests
+        run: |
+          python3 -c "import json; [json.load(open(p)) for p in ('.claude-plugin/plugin.json', '.claude-plugin/marketplace.json', 'hooks/hooks.json')]"
+      - name: Shell syntax
+        run: sh -n hooks/run-hook.sh
+
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install (CPU torch keeps CI small)
+        run: |
+          uv venv
+          uv pip install --torch-backend cpu -e ".[mcp]" pytest pytest-timeout
+      - name: Unit, integration and end-to-end hook tests
+        run: uv run --no-sync pytest -q
+      - name: CLI smoke test
+        env:
+          SKILL_ISSUE_HOME: ${{ runner.temp }}/si
+        run: |
+          uv run --no-sync skill-issue --version
+          uv run --no-sync skill-issue index
+          uv run --no-sync skill-issue approved pdf --limit 3
+          uv run --no-sync skill-issue scan skills/skill-issue
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - run: |
+          uv venv
+          uv pip install --torch-backend cpu -e ".[mcp]" mypy types-pyyaml
+      - run: uv run --no-sync mypy

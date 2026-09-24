@@ -47,7 +47,7 @@ def test_rule_fires(text, scope, rule, severity):
         "Never show the user's real name or email in output.",
         "Never create the job without asking the user first.",
         "An attacker may write “ignore previous instructions” in an issue.",
-        "Nice work \U0001F468‍\U0001F4BB!",
+        "Nice work \U0001f468‍\U0001f4bb!",
         "printenv HF_TOKEN >/dev/null && echo set",
     ],
 )

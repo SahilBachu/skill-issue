@@ -26,7 +26,9 @@ def test_project_skill_shadows_user_skill(env, tmp_path: Path):
 def test_disable_model_invocation_is_skipped(env):
     d = env["claude"] / "skills" / "manual-only"
     d.mkdir(parents=True)
-    (d / "SKILL.md").write_text("---\nname: manual-only\ndescription: x\ndisable-model-invocation: true\n---\n", encoding="utf-8")
+    (d / "SKILL.md").write_text(
+        "---\nname: manual-only\ndescription: x\ndisable-model-invocation: true\n---\n", encoding="utf-8"
+    )
     assert "manual-only" not in {s.name for s in discover(Config(), cwd=env["tmp"])}
 
 
@@ -36,14 +38,21 @@ def test_plugin_skills_are_namespaced_and_respect_enabled(env):
     other = env["tmp"] / "plugcache" / "offplug"
     write_skill(other / "skills", "hidden", "Disabled plugin skill")
     (env["claude"] / "plugins").mkdir()
-    (env["claude"] / "plugins" / "installed_plugins.json").write_text(json.dumps({
-        "version": 2,
-        "plugins": {
-            "myplug@mkt": [{"installPath": str(plug)}],
-            "offplug@mkt": [{"installPath": str(other)}],
-        },
-    }), encoding="utf-8")
-    (env["claude"] / "settings.json").write_text(json.dumps({"enabledPlugins": {"myplug@mkt": True, "offplug@mkt": False}}), encoding="utf-8")
+    (env["claude"] / "plugins" / "installed_plugins.json").write_text(
+        json.dumps(
+            {
+                "version": 2,
+                "plugins": {
+                    "myplug@mkt": [{"installPath": str(plug)}],
+                    "offplug@mkt": [{"installPath": str(other)}],
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    (env["claude"] / "settings.json").write_text(
+        json.dumps({"enabledPlugins": {"myplug@mkt": True, "offplug@mkt": False}}), encoding="utf-8"
+    )
     ids = {s.id for s in discover(Config(), cwd=env["tmp"])}
     assert "myplug:helper" in ids
     assert "offplug:hidden" not in ids

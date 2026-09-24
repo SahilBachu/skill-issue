@@ -73,7 +73,9 @@ def compute(records: list[dict[str, Any]], ks: tuple[int, ...] = (1, 3, 5, 10, 2
     out["exact_match"] = exact / len(records) if records else float("nan")
     out["false_injection_rate"] = false_inject / len(records) if records else float("nan")
     out["none_accuracy"] = float(np.mean([not r["selected"] for r in unlabeled])) if unlabeled else float("nan")
-    out["hit_rate"] = float(np.mean([bool(set(r["labels"]) & set(r["selected"])) for r in labeled])) if labeled else float("nan")
+    out["hit_rate"] = (
+        float(np.mean([bool(set(r["labels"]) & set(r["selected"])) for r in labeled])) if labeled else float("nan")
+    )
 
     # Calibration over every gated (prompt, candidate) pair.
     probs, ys = [], []

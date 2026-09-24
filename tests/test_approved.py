@@ -12,8 +12,18 @@ from .conftest import write_skill
 
 
 def rec(repo: str, name: str, lic: str = "MIT") -> dict:
-    return {"id": f"{repo}:skills/{name}", "name": name, "description": f"{name} does things", "body": "body",
-            "repo": repo, "commit": "c" * 40, "path": f"skills/{name}", "license": lic, "sha256": "f" * 64, "scripts": []}
+    return {
+        "id": f"{repo}:skills/{name}",
+        "name": name,
+        "description": f"{name} does things",
+        "body": "body",
+        "repo": repo,
+        "commit": "c" * 40,
+        "path": f"skills/{name}",
+        "license": lic,
+        "sha256": "f" * 64,
+        "scripts": [],
+    }
 
 
 def test_assign_tier():
@@ -66,9 +76,18 @@ def _tarball(skill_src: Path, repo_prefix: str = "repo-abc", evil: bool = False)
 @pytest.fixture
 def pinned(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, env):
     src = write_skill(tmp_path / "src", "xlsx-helper", "Edit spreadsheets", extra={"scripts/recalc.py": "print('hi')"})
-    entry = {"name": "xlsx-helper", "description": "Edit spreadsheets", "repo": "o/r", "commit": "c" * 40,
-             "path": "skills/xlsx-helper", "tier": 1, "license": "MIT", "sha256": hash_skill_dir(src),
-             "scripts": ["scripts/recalc.py"], "scan": {"verdict": "pass", "counts": {}}}
+    entry = {
+        "name": "xlsx-helper",
+        "description": "Edit spreadsheets",
+        "repo": "o/r",
+        "commit": "c" * 40,
+        "path": "skills/xlsx-helper",
+        "tier": 1,
+        "license": "MIT",
+        "sha256": hash_skill_dir(src),
+        "scripts": ["scripts/recalc.py"],
+        "scan": {"verdict": "pass", "counts": {}},
+    }
     payload = {"data": _tarball(src)}
     monkeypatch.setattr(inst.urllib.request, "urlopen", lambda req, timeout=0: io.BytesIO(payload["data"]))
     return entry, payload, src

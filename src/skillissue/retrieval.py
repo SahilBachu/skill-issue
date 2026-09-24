@@ -46,7 +46,7 @@ def _tokenize(texts: list[str]) -> list[list[str]]:
     import bm25s
 
     out = bm25s.tokenize(texts, stopwords="en", stemmer=_STEMMER, return_ids=False, show_progress=False)
-    return out  # type: ignore[return-value]
+    return [list(x) for x in out]
 
 
 class BM25Index:

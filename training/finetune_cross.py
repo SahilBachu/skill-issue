@@ -17,12 +17,12 @@ from pathlib import Path
 
 os.environ.setdefault("USE_TF", "0")
 
-import torch  # noqa: E402
+import torch
 
-from bench.corpus import ROOT  # noqa: E402
-from skillissue.gates.base import clip_prompt, gate_text  # noqa: E402
-from skillissue.skill import Skill  # noqa: E402
-from training.finetune_laya import SKILLS, load_pairs, val_pairs  # noqa: E402
+from bench.corpus import ROOT
+from skillissue.gates.base import clip_prompt, gate_text
+from skillissue.skill import Skill
+from training.finetune_laya import SKILLS, load_pairs, val_pairs
 
 
 def to_columns(pairs: list[dict], skills: dict, body_chars: int) -> dict[str, list]:
@@ -90,8 +90,14 @@ def main(argv: list[str] | None = None) -> None:
     trainer = CrossEncoderTrainer(model=model, args=args, train_dataset=train, eval_dataset=val, loss=loss)
     trainer.train()
     model.save_pretrained(str(out))
-    meta = {"base": a.base, "template_version": 1, "body_chars": a.body_chars, "task": "skill-relevance gate", "args": vars(a),
-            "log": [h for h in trainer.state.log_history if "eval_loss" in h]}
+    meta = {
+        "base": a.base,
+        "template_version": 1,
+        "body_chars": a.body_chars,
+        "task": "skill-relevance gate",
+        "args": vars(a),
+        "log": [h for h in trainer.state.log_history if "eval_loss" in h],
+    }
     (Path(out) / "skill_issue_gate.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
     print(f"saved {out}", file=sys.stderr)
 
