@@ -66,6 +66,16 @@ score gte-mb-zs "cross:Alibaba-NLP/gte-reranker-modernbert-base" skillret
 report gte-mb-ft minilm-ft
 say "=== part 1 finished ==="
 
+# Optional hand-off: while $OUT/PAUSE exists (for example during the Claude Code agent benchmark, which
+# needs the GPU for its gate), wait before the long jobs. Gives up waiting after PAUSE_MAX_MIN minutes.
+waited=0
+while [ -e "$OUT/PAUSE" ] && [ $waited -lt $((${PAUSE_MAX_MIN:-180} * 60)) ]; do
+    [ $waited -eq 0 ] && say "paused (remove $OUT/PAUSE to continue)"
+    sleep 30
+    waited=$((waited + 30))
+done
+[ $waited -gt 0 ] && say "resumed after $((waited / 60)) min"
+
 # Part 2: SkillRouter baseline (slowest on a small GPU: about 0.25 s per document to embed).
 step "SkillRouter embed (bench)" "$OUT/sr_vecs.npz" \
     $PY -m cloud.sr_embed --docs "$D/sr_docs.jsonl" --queries "$D/sr_queries.jsonl" --out "$OUT/sr_vecs.npz"
