@@ -70,7 +70,7 @@ def core() -> dict[str, dict[str, Any]]:
 
 def load_split(name: str) -> list[dict[str, Any]]:
     path = BENCH_DIR / f"{name}.jsonl"
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").split("\n") if line.strip()]
 
 
 def required_skills(p: dict[str, Any]) -> list[str]:

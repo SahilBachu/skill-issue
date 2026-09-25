@@ -232,7 +232,7 @@ def run_system(system: System, sizes: list[int], quick: bool = False) -> dict[st
     test = load_split("test")
     hand = ROOT / "data" / "bench" / "handwritten.jsonl"
     extra = (
-        {"handwritten": [json.loads(x) for x in hand.read_text(encoding="utf-8").splitlines() if x.strip()]}
+        {"handwritten": [json.loads(x) for x in hand.read_text(encoding="utf-8").split("\n") if x.strip()]}
         if hand.is_file()
         else {}
     )

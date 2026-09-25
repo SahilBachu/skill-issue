@@ -41,7 +41,7 @@ SKILLS = CACHE / "train" / "skills.json"
 
 
 def load_pairs(max_neg_ratio: float, seed: int, path: Path = PAIRS) -> list[dict[str, Any]]:
-    rows = [json.loads(x) for x in Path(path).read_text(encoding="utf-8").splitlines() if x.strip()]
+    rows = [json.loads(x) for x in Path(path).read_text(encoding="utf-8").split("\n") if x.strip()]
     pos = [r for r in rows if r["label"]]
     neg = [r for r in rows if not r["label"]]
     rng = random.Random(seed)
@@ -57,7 +57,9 @@ def load_val(path: Path | None) -> list[dict[str, Any]]:
     if path is None:
         return val_pairs()
     out = []
-    for line in Path(path).read_text(encoding="utf-8").splitlines():
+    for line in Path(path).read_text(encoding="utf-8").split("\n"):
+        if not line.strip():
+            continue
         r = json.loads(line)
         out.append({"prompt": r["prompt"], "skill_obj": Skill(**r["skill"]), "label": r["label"]})
     return out

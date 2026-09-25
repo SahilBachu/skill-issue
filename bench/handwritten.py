@@ -22,7 +22,7 @@ def main() -> None:
     for sid in test:
         by_name.setdefault(P.records[P.index[sid]]["name"].lower(), []).append(sid)
     rows, bad = [], []
-    for n, line in enumerate(SRC.read_text(encoding="utf-8").splitlines(), 1):
+    for n, line in enumerate(SRC.read_text(encoding="utf-8").split("\n"), 1):
         if not line.strip() or line.startswith("#"):
             continue
         labels_s, kind, prompt = line.split("\t", 2)

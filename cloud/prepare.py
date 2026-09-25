@@ -70,7 +70,7 @@ def bench_requests(d: Path, n_gate: int = 12) -> None:
     hand = ROOT / "data" / "bench" / "handwritten.jsonl"
     if hand.is_file():
         splits.append(
-            ("handwritten", 100, [json.loads(x) for x in hand.read_text(encoding="utf-8").splitlines() if x.strip()])
+            ("handwritten", 100, [json.loads(x) for x in hand.read_text(encoding="utf-8").split("\n") if x.strip()])
         )
     seen: dict[str, dict[str, Any]] = {}
     for name, size, prompts in splits:
@@ -120,7 +120,7 @@ def skillrouter_inputs(d: Path) -> None:
     hand = ROOT / "data" / "bench" / "handwritten.jsonl"
     if hand.is_file():
         splits.append(
-            ("handwritten", 100, [json.loads(x) for x in hand.read_text(encoding="utf-8").splitlines() if x.strip()])
+            ("handwritten", 100, [json.loads(x) for x in hand.read_text(encoding="utf-8").split("\n") if x.strip()])
         )
     for name, size, prompts in splits:
         chunks = build_chunks(prompts, size, P)
@@ -136,7 +136,7 @@ def skillrouter_inputs(d: Path) -> None:
     qs = load_split("val") + load_split("test")
     hand = ROOT / "data" / "bench" / "handwritten.jsonl"
     if hand.is_file():
-        qs += [json.loads(x) for x in hand.read_text(encoding="utf-8").splitlines() if x.strip()]
+        qs += [json.loads(x) for x in hand.read_text(encoding="utf-8").split("\n") if x.strip()]
     write_jsonl(d / "sr_queries.jsonl", [{"id": p["id"], "text": p["prompt"]} for p in qs])
     print(f"skillrouter: {len(P.skills)} docs, {len(qs)} queries", file=sys.stderr)
 

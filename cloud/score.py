@@ -47,7 +47,9 @@ def main() -> None:
     ap.add_argument("--device", default="cuda")
     a = ap.parse_args()
     groups: OrderedDict[str, list[dict[str, Any]]] = OrderedDict()
-    for line in Path(a.requests).read_text(encoding="utf-8").splitlines():
+    for line in Path(a.requests).read_text(encoding="utf-8").split("\n"):
+        if not line.strip():
+            continue
         r = json.loads(line)
         groups.setdefault(r["prompt"], []).append(r)
     out_path = Path(a.out)

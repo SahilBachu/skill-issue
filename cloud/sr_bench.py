@@ -35,9 +35,10 @@ def main() -> None:
     z = np.load(a.vecs)
     dv = z["doc_vecs"].astype(np.float32)
     qvec = {str(i): v.astype(np.float32) for i, v in zip(z["query_ids"], z["query_vecs"])}
-    docs = [json.loads(x) for x in Path(a.docs).read_text(encoding="utf-8").splitlines()]
+    docs = [json.loads(x) for x in Path(a.docs).read_text(encoding="utf-8").split("\n") if x.strip()]
     texts = {
-        q["id"]: q["text"] for q in (json.loads(x) for x in Path(a.queries).read_text(encoding="utf-8").splitlines())
+        q["id"]: q["text"]
+        for q in (json.loads(x) for x in Path(a.queries).read_text(encoding="utf-8").split("\n") if x.strip())
     }
     chunks = json.loads(Path(a.chunks).read_text(encoding="utf-8"))
     out_path = Path(a.out)

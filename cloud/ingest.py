@@ -42,7 +42,7 @@ def merge_scores(path: Path, system: str) -> None:
 def prompts_for(split: str) -> list[dict[str, Any]]:
     if split == "handwritten":
         p = ROOT / "data" / "bench" / "handwritten.jsonl"
-        return [json.loads(x) for x in p.read_text(encoding="utf-8").splitlines() if x.strip()]
+        return [json.loads(x) for x in p.read_text(encoding="utf-8").split("\n") if x.strip()]
     return load_split(split)
 
 

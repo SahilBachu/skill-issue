@@ -29,8 +29,10 @@ def main() -> None:
     ap.add_argument("--k", type=int, default=20)
     a = ap.parse_args()
     z = np.load(a.vecs)
-    docs = {d["id"]: d for d in (json.loads(x) for x in Path(a.docs).read_text(encoding="utf-8").splitlines())}
-    queries = [json.loads(x) for x in Path(a.queries).read_text(encoding="utf-8").splitlines()]
+    docs = {
+        d["id"]: d for d in (json.loads(x) for x in Path(a.docs).read_text(encoding="utf-8").split("\n") if x.strip())
+    }
+    queries = [json.loads(x) for x in Path(a.queries).read_text(encoding="utf-8").split("\n") if x.strip()]
     doc_ids = [str(x) for x in z["doc_ids"]]
     dv = z["doc_vecs"].astype(np.float32)
     qvec = {str(i): v.astype(np.float32) for i, v in zip(z["query_ids"], z["query_vecs"])}

@@ -41,7 +41,7 @@ def _norm(p: str) -> str:
 
 def load_batch(path: Path, allowed: set[str], split: str, errors: list[str]) -> list[dict[str, Any]]:
     rows = []
-    for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+    for n, line in enumerate(path.read_text(encoding="utf-8").split("\n"), 1):
         if not line.strip():
             continue
         try:

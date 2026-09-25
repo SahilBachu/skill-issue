@@ -22,8 +22,8 @@ def main() -> None:
     ap.add_argument("--queries", required=True)
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
-    docs = [json.loads(x) for x in Path(a.docs).read_text(encoding="utf-8").splitlines()]
-    queries = [json.loads(x) for x in Path(a.queries).read_text(encoding="utf-8").splitlines()]
+    docs = [json.loads(x) for x in Path(a.docs).read_text(encoding="utf-8").split("\n") if x.strip()]
+    queries = [json.loads(x) for x in Path(a.queries).read_text(encoding="utf-8").split("\n") if x.strip()]
     emb = SkillRouterEmbedder()
     t0 = time.time()
     dv = emb.encode_docs([doc_text(Skill(**d)) for d in docs])
