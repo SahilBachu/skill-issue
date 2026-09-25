@@ -28,8 +28,8 @@ DEFAULTS: dict[str, Any] = {
         "rrf_k": 60,
     },
     "gate": {
-        # laya | cross-encoder | retrieval | typesafe
-        "name": "laya",
+        # auto (cross-encoder: gte on GPU/MPS, MiniLM on CPU) | cross-encoder | laya | retrieval | typesafe
+        "name": "auto",
         # HF repo id or local path. Empty means the gate's built-in default.
         "model": "",
         # Only the top-N retrieval candidates are scored by the gate (latency bound).

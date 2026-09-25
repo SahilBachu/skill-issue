@@ -13,8 +13,14 @@ from . import paths
 
 log = logging.getLogger(__name__)
 
-# Default weights per gate. The fine-tuned checkpoint is used when present locally or once
-# published; until then the base model is the fallback (see `resolve_gate_model`).
+# Model behind each "auto" slot. These are the public base checkpoints, calibrated on our
+# validation split (skillissue/data/gate_calibration.json). Point gate.model at a fine-tuned
+# checkpoint (a local path or HF repo) to use it instead.
+DEFAULT_MODELS = {
+    "gte": "Alibaba-NLP/gte-reranker-modernbert-base",
+    "minilm": "cross-encoder/ms-marco-MiniLM-L6-v2",
+}
+# Default weights when a gate is named explicitly.
 DEFAULT_GATE_MODELS = {
     "laya": "convaiinnovations/laya",
     "cross-encoder": "Alibaba-NLP/gte-reranker-modernbert-base",

@@ -212,8 +212,10 @@ def cmd_doctor(a: argparse.Namespace) -> int:
         "config",
         f"{paths.config_file()} ({'exists' if paths.config_file().is_file() else 'defaults'}), mode={cfg.mode}",
     )
-    gname = cfg.get("gate.name")
-    ref = cfg.get("gate.model") or models.DEFAULT_GATE_MODELS.get(gname, "")
+    from .gates import resolve
+
+    gname, ref, gdev = resolve(cfg)
+    line("ok", "gate", f"{gname} on {gdev}")
     if ref:
         line(
             "ok" if models.is_downloaded(ref) else "warn",
@@ -263,10 +265,10 @@ def cmd_doctor(a: argparse.Namespace) -> int:
 
 def cmd_models(a: argparse.Namespace) -> int:
     from . import models
+    from .gates import resolve
 
     cfg = Config.load()
-    gname = a.gate or cfg.get("gate.name")
-    ref = cfg.get("gate.model") or models.DEFAULT_GATE_MODELS.get(gname, "")
+    gname, ref, _ = resolve(cfg, **({"name": a.gate} if a.gate else {}))
     if ref:
         print(f"gate ({gname}): {ref}")
         models.ensure_model(ref, allow_patterns=models.LAYA_FILES if gname == "laya" else None)

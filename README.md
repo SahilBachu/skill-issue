@@ -223,7 +223,8 @@ embed_model = "BAAI/bge-small-en-v1.5"   # or "none" for BM25 only
 body_chars = 1500             # how much of each SKILL.md body retrieval reads
 
 [gate]
-name = "cross-encoder"        # cross-encoder | laya | retrieval | typesafe
+name = "auto"                 # auto | cross-encoder | laya | retrieval | typesafe
+                              # auto = gte-reranker-modernbert on a GPU or Apple Silicon, MiniLM-L6 on CPU
 model = ""                    # HF repo id or local path; empty = the default for that gate
 max_candidates = 12           # how many candidates the gate scores (latency scales with this)
 threshold = 0.5               # leave unset to use the value tuned on the validation split

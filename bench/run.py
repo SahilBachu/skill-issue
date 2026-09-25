@@ -310,8 +310,33 @@ def run_system(system: System, sizes: list[int], quick: bool = False) -> dict[st
         scorer.close()
     result["wall_s"] = round(time.time() - t0, 1)
     save_json(RESULTS / f"{system.name}.json", result)
+    export_calibration(system, result)
     save_json(CACHE / "bench" / "records" / f"{system.name}.json", all_records)
     return result
+
+
+PKG_DATA = ROOT / "src" / "skillissue" / "data"
+
+
+def export_calibration(system: System, result: dict[str, Any]) -> None:
+    """Ship what was fitted on the validation split to where the router reads it."""
+    cal = result["calibration"]
+    if system.scorer == "features" and system.name == "hybrid":
+        save_json(
+            PKG_DATA / "retrieval_gate.json",
+            {"weights": result.get("feature_weights"), "calibration": cal, "fitted_on": "val@100"},
+        )
+    elif system.scorer == "cross" and system.model and not system.model.startswith("checkpoints/"):
+        path = PKG_DATA / "gate_calibration.json"
+        data = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+        data[system.model] = {**cal, "fitted_on": "val@100", "n_gate": system.n_gate}
+        save_json(path, data)
+    elif system.model and system.model.startswith("checkpoints/"):
+        meta_path = ROOT / system.model / "skill_issue_gate.json"
+        if meta_path.is_file():
+            meta = json.loads(meta_path.read_text(encoding="utf-8"))
+            meta["calibration"] = {**cal, "fitted_on": "val@100", "n_gate": system.n_gate}
+            save_json(meta_path, meta)
 
 
 def main(argv: list[str] | None = None) -> None:

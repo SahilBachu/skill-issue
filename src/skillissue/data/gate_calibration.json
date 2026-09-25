@@ -1,0 +1,23 @@
+{
+ "cross-encoder/ms-marco-MiniLM-L6-v2": {
+  "a": 0.5334267698499253,
+  "b": 1.429111216982323,
+  "threshold": 0.51,
+  "fitted_on": "val@100",
+  "n_gate": 12
+ },
+ "Alibaba-NLP/gte-reranker-modernbert-base": {
+  "a": 3.299761788257989,
+  "b": -5.13678834779208,
+  "threshold": 0.38,
+  "fitted_on": "val@100",
+  "n_gate": 12
+ },
+ "BAAI/bge-reranker-v2-m3": {
+  "a": 0.7717127034643281,
+  "b": 1.7864612396193307,
+  "threshold": 0.36,
+  "fitted_on": "val@100",
+  "n_gate": 12
+ }
+}
