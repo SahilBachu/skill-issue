@@ -67,9 +67,6 @@ npx skills add SahilBachu/skill-issue --skill skill-issue
 It teaches the agent to call `find_skills` (or `skill-issue route`) and how to handle
 suggestions safely.
 
-> The repository is private during development. The commands above work once it is public, or
-> today for anyone with access and GitHub credentials configured for git.
-
 ## How it works
 
 ```mermaid
