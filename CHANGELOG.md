@@ -34,3 +34,4 @@ All notable changes to this project are documented here. The format follows
   text and broke every cloud scoring job.
 - Re-ingesting cloud results no longer drops the calibration fitted into `checkpoints/`.
 - The agent benchmark records the `UserPromptSubmit` hook output, not the last hook event.
+- The SkillRouter reranker baseline keeps only last-position logits, so it fits a 6 GB GPU.
