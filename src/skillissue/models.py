@@ -110,7 +110,7 @@ def _download_zip(url: str, target: Path, sha256: str | None) -> None:
         h = hashlib.sha256()
         log.info("downloading %s", url)
         req = urllib.request.Request(url, headers={"User-Agent": "skill-issue"})
-        with urllib.request.urlopen(req, timeout=60) as r, open(zpath, "wb") as f:
+        with urllib.request.urlopen(req, timeout=60) as r, zpath.open("wb") as f:
             while chunk := r.read(1 << 20):
                 h.update(chunk)
                 f.write(chunk)

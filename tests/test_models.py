@@ -84,7 +84,7 @@ def test_unreachable_release_falls_back_to_base(env, monkeypatch):
         return Path("/models") / ref
 
     monkeypatch.setattr(models, "ensure_model", fake_ensure)
-    path, used = models.ensure_gate_model(url)
+    _, used = models.ensure_gate_model(url)
     assert used == "org/base-model" and calls == [url, "org/base-model"]
 
 
