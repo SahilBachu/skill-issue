@@ -111,9 +111,15 @@ def main() -> None:
         d = src / ck
         if (d / "skill_issue_gate.json").is_file() and any(d.glob("*.safetensors")):
             dst = ROOT / "checkpoints" / ck
+            meta_path = dst / "skill_issue_gate.json"
+            # bench.run writes the fitted calibration into the local copy; a re-ingest must keep it.
+            cal = json.loads(meta_path.read_text(encoding="utf-8")).get("calibration") if meta_path.is_file() else None
             if dst.exists():
                 shutil.rmtree(dst)
             shutil.copytree(d, dst, ignore=shutil.ignore_patterns("checkpoint-*"))
+            if cal:
+                meta = json.loads(meta_path.read_text(encoding="utf-8"))
+                save_json(meta_path, {**meta, "calibration": cal})
             print(f"checkpoint {ck} -> {dst}", file=sys.stderr)
 
 

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-09-24T01:22:30.730253</dc:date>
+    <dc:date>2026-09-25T14:43:23.675607</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -42,95 +42,95 @@ z
      <g id="line2d_1">
       <path d="M 191.678125 200.240355 
 L 191.678125 39.464355 
-" clip-path="url(#p0fa1105b45)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#pd047ca6437)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_2"/>
      <g id="text_1">
-      <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="191.678125" y="211.020629" transform="rotate(-0 191.678125 211.020629)">0</text>
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="191.678125" y="211.020629" transform="rotate(-0 191.678125 211.020629)">0</text>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_3">
       <path d="M 270.880006 200.240355 
 L 270.880006 39.464355 
-" clip-path="url(#p0fa1105b45)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#pd047ca6437)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_4"/>
      <g id="text_2">
-      <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="270.880006" y="211.020629" transform="rotate(-0 270.880006 211.020629)">50</text>
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="270.880006" y="211.020629" transform="rotate(-0 270.880006 211.020629)">50</text>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_5">
       <path d="M 350.081887 200.240355 
 L 350.081887 39.464355 
-" clip-path="url(#p0fa1105b45)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#pd047ca6437)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_6"/>
      <g id="text_3">
-      <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="350.081887" y="211.020629" transform="rotate(-0 350.081887 211.020629)">100</text>
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="350.081887" y="211.020629" transform="rotate(-0 350.081887 211.020629)">100</text>
      </g>
     </g>
     <g id="xtick_4">
      <g id="line2d_7">
       <path d="M 429.283767 200.240355 
 L 429.283767 39.464355 
-" clip-path="url(#p0fa1105b45)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#pd047ca6437)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_8"/>
      <g id="text_4">
-      <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="429.283767" y="211.020629" transform="rotate(-0 429.283767 211.020629)">150</text>
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="429.283767" y="211.020629" transform="rotate(-0 429.283767 211.020629)">150</text>
      </g>
     </g>
     <g id="xtick_5">
      <g id="line2d_9">
       <path d="M 508.485648 200.240355 
 L 508.485648 39.464355 
-" clip-path="url(#p0fa1105b45)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#pd047ca6437)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_10"/>
      <g id="text_5">
-      <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="508.485648" y="211.020629" transform="rotate(-0 508.485648 211.020629)">200</text>
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="508.485648" y="211.020629" transform="rotate(-0 508.485648 211.020629)">200</text>
      </g>
     </g>
     <g id="xtick_6">
      <g id="line2d_11">
       <path d="M 587.687529 200.240355 
 L 587.687529 39.464355 
-" clip-path="url(#p0fa1105b45)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#pd047ca6437)" style="fill: none; stroke: #2c2c2a; stroke-width: 0.8; stroke-linecap: square"/>
      </g>
      <g id="line2d_12"/>
      <g id="text_6">
-      <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="587.687529" y="211.020629" transform="rotate(-0 587.687529 211.020629)">250</text>
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="587.687529" y="211.020629" transform="rotate(-0 587.687529 211.020629)">250</text>
      </g>
     </g>
     <g id="text_7">
-     <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="403.718125" y="224.528246" transform="rotate(-0 403.718125 224.528246)">gate latency, p50, 12 candidates (NVIDIA GeForce RTX 4050 Laptop GPU)</text>
+     <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: middle; fill: #898781" x="403.718125" y="224.528246" transform="rotate(-0 403.718125 224.528246)">gate latency, p50, 12 candidates (NVIDIA GeForce RTX 4050 Laptop GPU)</text>
     </g>
    </g>
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
      <g id="line2d_13"/>
      <g id="text_8">
-      <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: end; fill: #c3c2b7" x="188.178125" y="185.091313" transform="rotate(-0 188.178125 185.091313)">ms-marco-MiniLM-L6 (22M)</text>
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: end; fill: #c3c2b7" x="188.178125" y="185.091313" transform="rotate(-0 188.178125 185.091313)">ms-marco-MiniLM-L6 (22M)</text>
      </g>
     </g>
     <g id="ytick_2">
      <g id="line2d_14"/>
      <g id="text_9">
-      <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: end; fill: #c3c2b7" x="188.178125" y="144.082008" transform="rotate(-0 188.178125 144.082008)">gte-reranker-modernbert-base (150M)</text>
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: end; fill: #c3c2b7" x="188.178125" y="144.082008" transform="rotate(-0 188.178125 144.082008)">gte-reranker-modernbert-base (150M)</text>
      </g>
     </g>
     <g id="ytick_3">
      <g id="line2d_15"/>
      <g id="text_10">
-      <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: end; fill: #c3c2b7" x="188.178125" y="103.025828" transform="rotate(-0 188.178125 103.025828)">bge-reranker-v2-m3 (568M)</text>
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: end; fill: #c3c2b7" x="188.178125" y="103.025828" transform="rotate(-0 188.178125 103.025828)">bge-reranker-v2-m3 (568M)</text>
      </g>
     </g>
     <g id="ytick_4">
      <g id="line2d_16"/>
      <g id="text_11">
-      <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: end; fill: #c3c2b7" x="188.178125" y="61.908223" transform="rotate(-0 188.178125 61.908223)">Laya (421M)</text>
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: end; fill: #c3c2b7" x="188.178125" y="61.908223" transform="rotate(-0 188.178125 61.908223)">Laya (421M)</text>
      </g>
     </g>
    </g>
@@ -140,7 +140,7 @@ L 213.52533 192.932355
 L 213.52533 169.940895 
 L 191.678125 169.940895 
 z
-" clip-path="url(#p0fa1105b45)" style="fill: #3987e5"/>
+" clip-path="url(#pd047ca6437)" style="fill: #3987e5"/>
    </g>
    <g id="patch_4">
     <path d="M 191.678125 151.876176 
@@ -148,7 +148,7 @@ L 304.140915 151.876176
 L 304.140915 128.884715 
 L 191.678125 128.884715 
 z
-" clip-path="url(#p0fa1105b45)" style="fill: #3987e5"/>
+" clip-path="url(#pd047ca6437)" style="fill: #3987e5"/>
    </g>
    <g id="patch_5">
     <path d="M 191.678125 110.819996 
@@ -156,7 +156,7 @@ L 389.736447 110.819996
 L 389.736447 87.828535 
 L 191.678125 87.828535 
 z
-" clip-path="url(#p0fa1105b45)" style="fill: #3987e5"/>
+" clip-path="url(#pd047ca6437)" style="fill: #3987e5"/>
    </g>
    <g id="patch_6">
     <path d="M 191.678125 69.763816 
@@ -164,27 +164,27 @@ L 595.563839 69.763816
 L 595.563839 46.772355 
 L 191.678125 46.772355 
 z
-" clip-path="url(#p0fa1105b45)" style="fill: #3987e5"/>
+" clip-path="url(#pd047ca6437)" style="fill: #3987e5"/>
    </g>
    <g id="text_12">
-    <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #c3c2b7" x="219.52533" y="184.024516" transform="rotate(-0 219.52533 184.024516)">14 ms</text>
+    <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #c3c2b7" x="219.52533" y="184.024516" transform="rotate(-0 219.52533 184.024516)">14 ms</text>
    </g>
    <g id="text_13">
-    <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #c3c2b7" x="310.140915" y="142.968336" transform="rotate(-0 310.140915 142.968336)">71 ms</text>
+    <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #c3c2b7" x="310.140915" y="142.968336" transform="rotate(-0 310.140915 142.968336)">71 ms</text>
    </g>
    <g id="text_14">
-    <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #c3c2b7" x="395.736447" y="101.912156" transform="rotate(-0 395.736447 101.912156)">125 ms</text>
+    <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #c3c2b7" x="395.736447" y="101.912156" transform="rotate(-0 395.736447 101.912156)">125 ms</text>
    </g>
    <g id="text_15">
-    <text style="font-size: 10px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #c3c2b7" x="601.563839" y="60.855976" transform="rotate(-0 601.563839 60.855976)">255 ms</text>
+    <text style="font-size: 10px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #c3c2b7" x="601.563839" y="60.855976" transform="rotate(-0 601.563839 60.855976)">255 ms</text>
    </g>
    <g id="text_16">
-    <text style="font-weight: 600; font-size: 13px; font-family: 'system-ui', 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #ffffff" x="191.678125" y="27.464355" transform="rotate(-0 191.678125 27.464355)">Gate cost per prompt</text>
+    <text style="font-weight: 600; font-size: 13px; font-family: 'Segoe UI', 'Helvetica', 'Arial', 'DejaVu Sans'; text-anchor: start; fill: #ffffff" x="191.678125" y="27.464355" transform="rotate(-0 191.678125 27.464355)">Gate cost per prompt</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p0fa1105b45">
+  <clipPath id="pd047ca6437">
    <rect x="191.678125" y="39.464355" width="424.08" height="160.776"/>
   </clipPath>
  </defs>

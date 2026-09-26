@@ -102,6 +102,17 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
 ### Exact match at 100 installed skills (test split, 527 prompts)
 
 <!-- results:main -->
+| System | Exact match | Top-1 | Recall@10 | None acc. | False inj. | F1 | ECE |
+|---|---|---|---|---|---|---|---|
+| BM25 only | 35.5% | 93.2% | 99.3% | 100.0% | 0.0% | n/a | 0.060 |
+| Embeddings only (bge-small) | 65.3% | 86.5% | 97.9% | 98.4% | 6.1% | 65.7% | 0.015 |
+| Hybrid BM25 + embeddings | 67.0% | 95.0% | 99.9% | 97.9% | 8.2% | 71.2% | 0.010 |
+| Hybrid + ms-marco-MiniLM-L6 | 57.9% | 86.5% | 99.9% | 97.9% | 6.3% | 55.9% | 0.010 |
+| Hybrid + gte-reranker-modernbert-base | 75.1% | 95.9% | 99.9% | 96.3% | 8.9% | 78.4% | 0.010 |
+| Hybrid + bge-reranker-v2-m3 | 71.3% | 92.1% | 99.9% | 98.4% | 7.2% | 75.3% | 0.008 |
+| Hybrid + Laya (zero-shot) | 35.5% | 15.3% | 99.9% | 100.0% | 0.0% | n/a | 0.004 |
+| Hybrid + MiniLM-L6 (fine-tuned) | 74.4% | 93.8% | 99.9% | 94.7% | 13.5% | 80.4% | 0.009 |
+| Hybrid + gte-reranker-modernbert (fine-tuned) | 85.8% | 97.9% | 99.9% | 98.9% | 4.9% | 88.9% | 0.007 |
 <!-- /results:main -->
 
 ### Scaling from 10 to 18,719 skills
@@ -117,6 +128,17 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
 </picture>
 
 <!-- results:scaling -->
+| System | 10 | 100 | 1,000 | 10,000 | 18,719 |
+|---|---|---|---|---|---|
+| BM25 only | 35.5% | 35.5% | 35.5% | 35.5% | 35.5% |
+| Embeddings only (bge-small) | 69.3% | 65.3% | 52.9% | 31.5% | 24.9% |
+| Hybrid BM25 + embeddings | 59.6% | 67.0% | 58.1% | 39.5% | 35.9% |
+| Hybrid + ms-marco-MiniLM-L6 | 61.9% | 57.9% | 49.5% | 34.9% | 31.5% |
+| Hybrid + gte-reranker-modernbert-base | 81.2% | 75.1% | 65.8% | 46.3% | 39.1% |
+| Hybrid + bge-reranker-v2-m3 | 76.3% | 71.3% | 61.9% | 43.8% | 37.2% |
+| Hybrid + Laya (zero-shot) | 35.5% | 35.5% | 35.5% | 35.5% | 35.5% |
+| Hybrid + MiniLM-L6 (fine-tuned) | 84.6% | 74.4% | 57.7% | 30.0% | 24.1% |
+| Hybrid + gte-reranker-modernbert (fine-tuned) | 89.8% | 85.8% | 78.2% | 51.8% | 43.3% |
 <!-- /results:scaling -->
 
 ### Claude Code with and without skill-issue
@@ -127,16 +149,37 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
 </picture>
 
 <!-- results:agent -->
+| Catalog | Setup | n | Exact match | Hit rate | None acc. | False inj. | Median time | Reported cost / prompt |
+|---|---|---|---|---|---|---|---|---|
+| 100 | Claude Code alone | 100 | 93.0% | 93.8% | 100.0% | 1.0% | 6.8 s | $0.084 |
+| 1,000 | Claude Code alone | 100 | 77.0% | 70.8% | 100.0% | 2.0% | 7.2 s | $0.090 |
 <!-- /results:agent -->
 
 ### Hand-written prompts (draft set, 64 prompts)
 
 <!-- results:handwritten -->
+| System | Exact match | Hit rate | None acc. | False inj. |
+|---|---|---|---|---|
+| Hybrid BM25 + embeddings | 46.9% | 23.8% | 100.0% | 0.0% |
+| Hybrid + ms-marco-MiniLM-L6 | 56.2% | 47.6% | 86.4% | 4.7% |
+| Hybrid + gte-reranker-modernbert-base | 68.8% | 66.7% | 81.8% | 6.2% |
+| Hybrid + bge-reranker-v2-m3 | 57.8% | 52.4% | 86.4% | 4.7% |
+| Hybrid + Laya (zero-shot) | 34.4% | 0.0% | 100.0% | 0.0% |
+| Hybrid + MiniLM-L6 (fine-tuned) | 67.2% | 69.0% | 86.4% | 6.2% |
+| Hybrid + gte-reranker-modernbert (fine-tuned) | 71.9% | 66.7% | 90.9% | 3.1% |
 <!-- /results:handwritten -->
 
 ### External benchmark: SkillRet
 
 <!-- results:skillret -->
+| System (1,000 queries, 6,006 skills) | nDCG@10 | Recall@1 | Recall@10 | MRR@10 |
+|---|---|---|---|---|
+| BM25 | 0.638 | 0.447 | 0.704 | 0.718 |
+| Embeddings (bge-small) | 0.551 | 0.417 | 0.599 | 0.646 |
+| Hybrid (skill-issue retrieval) | 0.630 | 0.455 | 0.693 | 0.725 |
+| Hybrid + gte-reranker-modernbert-base | 0.705 | 0.509 | 0.741 | 0.799 |
+| Hybrid + gte-reranker-modernbert (fine-tuned) | 0.742 | 0.567 | 0.743 | 0.847 |
+| Hybrid + MiniLM-L6 (fine-tuned) | 0.671 | 0.476 | 0.726 | 0.765 |
 <!-- /results:skillret -->
 
 ### Latency and memory
@@ -147,6 +190,10 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
 </picture>
 
 <!-- results:latency -->
+| Gate | Candidates | Hook p50 | Hook p95 | Process floor | Daemon RAM | GPU memory |
+|---|---|---|---|---|---|---|
+| cross-encoder gte-reranker-modernbert-base (cpu) | 12 | 1983 ms | 2194 ms | 324 ms | 876 MB | n/a |
+| cross-encoder ms-marco-MiniLM-L6-v2 (cpu) | 12 | 519 ms | 638 ms | 164 ms | 1276 MB | n/a |
 <!-- /results:latency -->
 
 ### Calibration

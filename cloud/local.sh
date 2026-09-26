@@ -20,7 +20,7 @@ say() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$LOG"; }
 step() {  # step <name> <done-file or -> <command...>
     local name=$1 done=$2
     shift 2
-    if [ "$done" != "-" ] && [ -s "$done" ]; then
+    if [ "$done" != "-" ] && [ -e "$done" ]; then
         say "skip $name (have $done)"
         return 0
     fi
@@ -43,7 +43,7 @@ report() {
     step "ingest" - $PY -m cloud.ingest --from "$OUT"
     step "bench.run $*" - $PY -m bench.run --systems "$@"
     step "skillret_eval" - $PY -m bench.skillret_eval --device cuda --systems bm25 dense hybrid gte-mb-zs \
-        $(for s in gte-mb-ft minilm-ft laya-ft; do [ -s "$OUT/scores_${s}_skillret.json.done" ] && echo "$s"; done)
+        $(for s in gte-mb-ft minilm-ft laya-ft; do [ -e "$OUT/scores_${s}_skillret.json.done" ] && echo "$s"; done)
     step "ingest (SkillRouter SkillRet rows)" - $PY -m cloud.ingest --from "$OUT"
     step "report" - $PY -m bench.report
 }
