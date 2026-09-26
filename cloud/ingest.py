@@ -21,6 +21,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from bench.catalogs import build_chunks
 from bench.corpus import CACHE, ROOT
 from bench.data import RESULTS, load_split, pool, save_json
 from bench.run import SCORE_CACHE, retrieval_cache_path
@@ -57,6 +58,8 @@ def ingest_sr_bench(path: Path) -> None:
         if not all(p["id"] in runs for p in prompts):
             print(f"  {tag}: incomplete ({len(runs)}/{len(prompts)}), skipped", file=sys.stderr)
             continue
+        # Same chunks cloud.prepare exported (seeded), for the real per-prompt catalog size.
+        n_cat = {q["id"]: len(ch.catalog) for ch in build_chunks(prompts, int(size), P) for q in ch.prompts}
         out: dict[str, dict[str, Any]] = {}
         for p in prompts:
             cands = []
@@ -65,7 +68,7 @@ def ingest_sr_bench(path: Path) -> None:
             out[p["id"]] = {
                 "cands": cands,
                 "ms": float("nan"),
-                "catalog": int(size) if int(size) < len(P.skills) else len(P.skills),
+                "catalog": n_cat[p["id"]],
             }
         cp = retrieval_cache_path("srouter", split, int(size), prompts)
         cp.parent.mkdir(parents=True, exist_ok=True)

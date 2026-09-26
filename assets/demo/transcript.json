@@ -1,0 +1,34 @@
+[
+ [
+  "skill-issue index",
+  [
+   "12 installed skills",
+   "    12  user"
+  ],
+  0.15797150001162663
+ ],
+ [
+  "skill-issue route \"the GitHub Actions checks on my PR keep failing, can you look at the logs and fix it\"",
+  [
+   "mode=installed gate=cross-encoder catalog=12 threshold=0.37 time=66ms",
+   "-> gh-fix-ci  p=0.94"
+  ],
+  0.25477040000259876
+ ],
+ [
+  "skill-issue route \"rename getUserData to fetchUser everywhere in src/\"",
+  [
+   "mode=installed gate=cross-encoder catalog=12 threshold=0.37 time=70ms",
+   "-> no skill (nothing injected)"
+  ],
+  0.30405430000973865
+ ],
+ [
+  "skill-issue route \"how much GPU memory does Qwen3-32B need in bf16? check the weights on the Hub\"",
+  [
+   "mode=installed gate=cross-encoder catalog=12 threshold=0.37 time=73ms",
+   "-> hf-mem  p=0.93"
+  ],
+  0.26015370001550764
+ ]
+]

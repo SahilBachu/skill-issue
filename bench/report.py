@@ -8,6 +8,7 @@ and includes the tables between <!-- results:NAME --> markers, which this script
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -67,6 +68,14 @@ def figure(t: dict[str, Any], w: float = 7.6, h: float = 4.2) -> tuple[Any, Any]
 def save(fig: Any, name: str, mode: str) -> None:
     CHARTS.mkdir(parents=True, exist_ok=True)
     fig.savefig(CHARTS / f"{name}-{mode}.svg", facecolor=fig.get_facecolor(), bbox_inches="tight", pad_inches=0.25)
+    if os.environ.get("REPORT_PNG_DIR"):  # previews for eyeballing the charts
+        fig.savefig(
+            Path(os.environ["REPORT_PNG_DIR"]) / f"{name}-{mode}.png",
+            facecolor=fig.get_facecolor(),
+            bbox_inches="tight",
+            pad_inches=0.25,
+            dpi=90,
+        )
     plt.close(fig)
 
 
@@ -79,7 +88,6 @@ def scaling_chart(
         return
     for mode, t in THEME.items():
         fig, ax = figure(t)
-        ends = []
         for i, (label, d) in enumerate(data):
             pts = sorted((v["catalog_size"], v[metric]) for v in d["test"].values())
             xs, ys = [p[0] for p in pts], [p[1] for p in pts]
@@ -95,30 +103,11 @@ def scaling_chart(
                 markeredgewidth=1.5,
                 label=label,
             )
-            ends.append([ys[-1], label, c])
-        # Direct labels at the right end, nudged apart so they never overlap.
-        ends.sort(key=lambda e: e[0])
-        gap = 0.045
-        for k in range(1, len(ends)):
-            if ends[k][0] - ends[k - 1][0] < gap:
-                ends[k][0] = ends[k - 1][0] + gap
-        xmax = max(v["catalog_size"] for _, d in data for v in d["test"].values())
-        for y, label, c in ends:
-            ax.annotate(
-                label,
-                xy=(xmax, y),
-                xytext=(10, 0),
-                textcoords="offset points",
-                va="center",
-                fontsize=10,
-                color=t["ink2"],
-            )
-            ax.plot([xmax * 1.02], [y], marker="s", markersize=6, color=c, clip_on=False)
         ax.set_xscale("log")
         ticks = sorted({v["catalog_size"] for _, d in data for v in d["test"].values()})
         ax.xaxis.set_major_locator(FixedLocator(ticks))
         ax.xaxis.set_minor_locator(NullLocator())
-        ax.set_xticklabels([f"{x:,}" for x in ticks])
+        ax.set_xticklabels([f"{x:,}" if x < 10_000 else f"{x / 1000:.3g}k" for x in ticks])
         ax.yaxis.set_major_formatter(PercentFormatter(1.0, decimals=0))
         ax.set_ylim(0, 1)
         ax.set_xlabel("skills in catalog (log scale)", color=t["muted"], fontsize=10)
@@ -193,7 +182,7 @@ def calibration_chart(system: str, size: str = "100") -> None:
         ax.set_title(
             f"Calibration (ECE {ece:.3f})", loc="left", color=t["ink"], fontsize=13, pad=12, fontweight="semibold"
         )
-        leg = ax.legend(loc="upper left", frameon=False, fontsize=9)
+        leg = ax.legend(loc="lower right", frameon=False, fontsize=9)
         for text in leg.get_texts():
             text.set_color(t["ink2"])
         save(fig, "calibration", mode)
@@ -237,7 +226,8 @@ def agent_chart() -> None:
         ax.set_xticks(range(len(sizes)))
         ax.set_xticklabels([f"{s:,} skills" for s in sizes], color=t["ink2"])
         ax.yaxis.set_major_formatter(PercentFormatter(1.0, decimals=0))
-        ax.set_ylim(0, 1.08)
+        ax.set_ylim(0, 1.18)
+        ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
         ax.set_title(
             "Right skills loaded (exact match), Claude Code headless",
             loc="left",

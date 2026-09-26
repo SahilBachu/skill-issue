@@ -137,6 +137,7 @@ class SkillRouterReranker:
                 pad = self.tok.pad_token_id
                 ids = torch.tensor([[pad] * (L - len(s)) + s for s in chunk], device=self.device)
                 att = torch.tensor([[0] * (L - len(s)) + [1] * len(s) for s in chunk], device=self.device)
-                logits = self.model(input_ids=ids, attention_mask=att).logits[:, -1, :].float()
+                # Only the last position is needed; full logits (seq x 152k vocab) do not fit in 6 GB.
+                logits = self.model(input_ids=ids, attention_mask=att, logits_to_keep=1).logits[:, -1, :].float()
                 out += (logits[:, self.yes] - logits[:, self.no]).cpu().tolist()
         return np.array(out)

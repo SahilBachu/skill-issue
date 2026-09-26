@@ -1,0 +1,17 @@
+{
+ "gate": "cross-encoder",
+ "model": "checkpoints/minilm-ft",
+ "max_candidates": 12,
+ "catalog": 100,
+ "n": 100,
+ "device": "cpu",
+ "p50_ms": 402.7714499970898,
+ "p95_ms": 488.9491999638267,
+ "mean_ms": 402.8689699975075,
+ "process_floor_p50_ms": 150.6474999769125,
+ "injected_fraction": 0.02,
+ "daemon_rss_mb": 2065.2,
+ "daemon_gpu_mb": null,
+ "cold_start_s": 16.4,
+ "platform": "win32"
+}

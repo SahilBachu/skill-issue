@@ -1,0 +1,17 @@
+{
+ "gate": "cross-encoder",
+ "model": "checkpoints/gte-mb-ft",
+ "max_candidates": 12,
+ "catalog": 100,
+ "n": 100,
+ "device": "cuda",
+ "p50_ms": 282.4155999987852,
+ "p95_ms": 330.9683999978006,
+ "mean_ms": 286.3747690018499,
+ "process_floor_p50_ms": 151.5326999942772,
+ "injected_fraction": 0.01,
+ "daemon_rss_mb": 1999.1,
+ "daemon_gpu_mb": null,
+ "cold_start_s": 13.6,
+ "platform": "win32"
+}

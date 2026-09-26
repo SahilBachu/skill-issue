@@ -16,14 +16,19 @@ body), asks a small calibrated model "is this skill relevant?" for each one, and
 to load only the ones that clear the bar.
 
 <!-- demo -->
+<p align="center">
+  <img src="assets/demo.gif" alt="skill-issue routing three prompts: a CI failure goes to gh-fix-ci, a rename gets no skill, a GPU memory question goes to hf-mem" width="100%">
+</p>
 
 ## Why
 
 Coding agents decide which skill to use by reading every skill's one-line description in their
 context. That works for a handful of skills. It degrades as the catalog grows: Claude Code gives
 the skill listing about 1% of the context window and starts dropping descriptions when it
-overflows. skill-issue moves the decision out of the prompt and into a fast local router that
-reads the whole skill, not just its description.
+overflows. Jiang et al. report the same pattern across agents: as the skill pool grows from 5 to
+100, the share of skills agents actually use that are the right ones falls from 29.6% to 3.3%
+([arXiv:2608.14036](https://arxiv.org/abs/2608.14036)). skill-issue moves the decision out of the
+prompt and into a fast local router that reads the whole skill, not just its description.
 
 ## Install
 
@@ -35,7 +40,8 @@ reads the whole skill, not just its description.
 ```
 
 The first session installs the router into the plugin's data folder in the background (needs
-[uv](https://docs.astral.sh/uv/) or Python 3.10+) and downloads the models from Hugging Face.
+[uv](https://docs.astral.sh/uv/) or Python 3.10+) and downloads the models: the gate from this
+repository's release, the embedder from Hugging Face.
 Prompts work normally meanwhile. Check progress with `skill-issue doctor`.
 
 ### Codex, Gemini CLI, Cursor, and other MCP clients
@@ -92,15 +98,41 @@ flowchart LR
    machines without a GPU); see the [model card](docs/model-card.md). The weights download once
    from this repository's `gates-v1` release and are checked against a pinned SHA-256. If that
    download is not possible, the router uses the public base model with its own calibration.
-3. **Threshold.** Scores are Platt-calibrated on held-out data, so 0.8 means about 80%. Skills
-   above the threshold are injected, three at most. Injecting nothing is the most common outcome.
+3. **Threshold.** Scores are Platt-calibrated on held-out data, so they behave like probabilities
+   (see Calibration below). Skills above the threshold are injected, three at most. Injecting
+   nothing is a normal outcome.
 
 The Claude Code hook is a standard-library Python script with a hard timeout. If the daemon is
 starting, slow, or broken, the hook prints nothing and your prompt goes through untouched.
 
+A walkthrough of the code, following one prompt from hook to injected hint, is in
+[docs/architecture.md](docs/architecture.md).
+
 ## Results
 
 <!-- results:findings -->
+- **With 1,000 skills installed, Claude Code loaded exactly the right skills for 77% of prompts on
+  its own and 93% with skill-issue.** On the same 100 prompts the router fixed 16 and broke none
+  (exact McNemar p = 3e-5). Cost per prompt did not change; the median prompt took 0.6 s longer.
+- **With 100 skills, Claude Code alone is already at 93%.** skill-issue took it to 96% (3 fixed,
+  0 broken), which is within noise at this sample size.
+- **Fine-tuning is what made the gate good.** The 150M gte reranker went from 75.1% to 85.8% exact
+  match at 100 skills and MiniLM-L6 from 57.9% to 74.4%. Laya went from 35.5% (zero-shot, it never
+  said yes) to 83.1%, close to gte but nearly three times its size and slower.
+- **Against SkillRouter** (two 0.6B models, about six times the parameters of the default gate
+  plus embedder), the fine-tuned gte gate is ahead at 100 and 1,000 skills (85.8% vs 78.4%, 78.2%
+  vs 70.0%). At 10,000 and 18,719 skills SkillRouter is slightly ahead (52.6% vs 51.8%, 43.5% vs
+  43.3%). On SkillRet it wins clearly: nDCG@10 0.794 against 0.742.
+- **Every system degrades as the catalog grows.** At 18,719 skills the best systems reach about 44%
+  exact match, a wrong skill is injected for about half of prompts, and the right skill is missing
+  from the retrieval top 10 for about one prompt in five. The calibration was fitted at 100 skills;
+  at very large catalogs a higher threshold would trade missed skills for fewer wrong ones.
+- **The gate is cautious.** On the 64 hand-written prompts, the default gate injected nothing for a
+  third of the prompts that had a matching skill, and a wrong skill for 3.1% of prompts.
+- **Latency.** With a laptop RTX 4050 the whole hook takes 282 ms at the median on Windows; 152 ms
+  of that is starting the Python process and the rest is routing. The fine-tuned MiniLM on CPU
+  takes 403 ms. On a GPU the routing itself fits in about 150 ms; the full hook does not on
+  Windows, because of process start-up.
 <!-- /results:findings -->
 
 ### Exact match at 100 installed skills (test split, 527 prompts)
@@ -111,12 +143,14 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
 | BM25 only | 35.5% | 93.2% | 99.3% | 100.0% | 0.0% | n/a | 0.060 |
 | Embeddings only (bge-small) | 65.3% | 86.5% | 97.9% | 98.4% | 6.1% | 65.7% | 0.015 |
 | Hybrid BM25 + embeddings | 67.0% | 95.0% | 99.9% | 97.9% | 8.2% | 71.2% | 0.010 |
+| SkillRouter (SR-Emb-0.6B + SR-Rank-0.6B) | 78.4% | 97.4% | 100.0% | 98.9% | 6.1% | 82.7% | 0.005 |
 | Hybrid + ms-marco-MiniLM-L6 | 57.9% | 86.5% | 99.9% | 97.9% | 6.3% | 55.9% | 0.010 |
 | Hybrid + gte-reranker-modernbert-base | 75.1% | 95.9% | 99.9% | 96.3% | 8.9% | 78.4% | 0.010 |
 | Hybrid + bge-reranker-v2-m3 | 71.3% | 92.1% | 99.9% | 98.4% | 7.2% | 75.3% | 0.008 |
 | Hybrid + Laya (zero-shot) | 35.5% | 15.3% | 99.9% | 100.0% | 0.0% | n/a | 0.004 |
 | Hybrid + MiniLM-L6 (fine-tuned) | 74.4% | 93.8% | 99.9% | 94.7% | 13.5% | 80.4% | 0.009 |
 | Hybrid + gte-reranker-modernbert (fine-tuned) | 85.8% | 97.9% | 99.9% | 98.9% | 4.9% | 88.9% | 0.007 |
+| Hybrid + Laya (fine-tuned) | 83.1% | 96.5% | 99.9% | 98.9% | 5.7% | 87.3% | 0.010 |
 <!-- /results:main -->
 
 ### Scaling from 10 to 18,719 skills
@@ -137,12 +171,14 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
 | BM25 only | 35.5% | 35.5% | 35.5% | 35.5% | 35.5% |
 | Embeddings only (bge-small) | 69.3% | 65.3% | 52.9% | 31.5% | 24.9% |
 | Hybrid BM25 + embeddings | 59.6% | 67.0% | 58.1% | 39.5% | 35.9% |
+| SkillRouter (SR-Emb-0.6B + SR-Rank-0.6B) | 82.5% | 78.4% | 70.0% | 52.6% | 43.5% |
 | Hybrid + ms-marco-MiniLM-L6 | 61.9% | 57.9% | 49.5% | 34.9% | 31.5% |
 | Hybrid + gte-reranker-modernbert-base | 81.2% | 75.1% | 65.8% | 46.3% | 39.1% |
 | Hybrid + bge-reranker-v2-m3 | 76.3% | 71.3% | 61.9% | 43.8% | 37.2% |
 | Hybrid + Laya (zero-shot) | 35.5% | 35.5% | 35.5% | 35.5% | 35.5% |
 | Hybrid + MiniLM-L6 (fine-tuned) | 84.6% | 74.4% | 57.7% | 30.0% | 24.1% |
 | Hybrid + gte-reranker-modernbert (fine-tuned) | 89.8% | 85.8% | 78.2% | 51.8% | 43.3% |
+| Hybrid + Laya (fine-tuned) | 88.2% | 83.1% | 72.9% | 52.6% | 43.8% |
 <!-- /results:scaling -->
 
 ### Claude Code with and without skill-issue
@@ -164,18 +200,24 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
 - At 1,000 skills, on the same 100 prompts: skill-issue fixed 16 that Claude Code alone got wrong and broke 0 (exact McNemar p = 3.1e-05).
 <!-- /results:agent -->
 
+Claude Code ran headless (`claude -p`, Sonnet, isolated project settings, no shell, edit or web tools) with
+the benchmark catalog as project skills; the router arm adds this plugin with the fine-tuned gte
+gate on the GPU. Codex was not benchmarked.
+
 ### Hand-written prompts (draft set, 64 prompts)
 
 <!-- results:handwritten -->
 | System | Exact match | Hit rate | None acc. | False inj. |
 |---|---|---|---|---|
 | Hybrid BM25 + embeddings | 46.9% | 23.8% | 100.0% | 0.0% |
+| SkillRouter (SR-Emb-0.6B + SR-Rank-0.6B) | 54.7% | 47.6% | 81.8% | 6.2% |
 | Hybrid + ms-marco-MiniLM-L6 | 56.2% | 47.6% | 86.4% | 4.7% |
 | Hybrid + gte-reranker-modernbert-base | 68.8% | 66.7% | 81.8% | 6.2% |
 | Hybrid + bge-reranker-v2-m3 | 57.8% | 52.4% | 86.4% | 4.7% |
 | Hybrid + Laya (zero-shot) | 34.4% | 0.0% | 100.0% | 0.0% |
 | Hybrid + MiniLM-L6 (fine-tuned) | 67.2% | 69.0% | 86.4% | 6.2% |
 | Hybrid + gte-reranker-modernbert (fine-tuned) | 71.9% | 66.7% | 90.9% | 3.1% |
+| Hybrid + Laya (fine-tuned) | 73.4% | 71.4% | 90.9% | 4.7% |
 <!-- /results:handwritten -->
 
 ### External benchmark: SkillRet
@@ -189,6 +231,9 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
 | Hybrid + gte-reranker-modernbert-base | 0.705 | 0.509 | 0.741 | 0.799 |
 | Hybrid + gte-reranker-modernbert (fine-tuned) | 0.742 | 0.567 | 0.743 | 0.847 |
 | Hybrid + MiniLM-L6 (fine-tuned) | 0.671 | 0.476 | 0.726 | 0.765 |
+| Hybrid + Laya (fine-tuned) | 0.718 | 0.525 | 0.745 | 0.814 |
+| SkillRouter SR-Emb-0.6B (retrieval only) | 0.713 | 0.525 | 0.765 | 0.810 |
+| SkillRouter (SR-Emb-0.6B + SR-Rank-0.6B) | 0.794 | 0.600 | 0.805 | 0.891 |
 <!-- /results:skillret -->
 
 ### Latency and memory
@@ -202,8 +247,15 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
 | Gate | Candidates | Hook p50 | Hook p95 | Process floor | Daemon RAM | GPU memory |
 |---|---|---|---|---|---|---|
 | cross-encoder gte-reranker-modernbert-base (cpu) | 12 | 1983 ms | 2194 ms | 324 ms | 876 MB | n/a |
+| cross-encoder gte-mb-ft (cuda) | 12 | 282 ms | 331 ms | 152 ms | 1999 MB | n/a |
 | cross-encoder ms-marco-MiniLM-L6-v2 (cpu) | 12 | 519 ms | 638 ms | 164 ms | 1276 MB | n/a |
+| cross-encoder minilm-ft (cpu) | 12 | 403 ms | 489 ms | 151 ms | 2065 MB | n/a |
 <!-- /results:latency -->
+
+Hook latency is measured end to end: a new process per prompt, exactly as Claude Code runs it, 100
+test prompts against 100 randomly chosen installed skills. The process floor is the same script
+doing nothing, so the difference is the routing itself. GPU memory could not be read per process
+on Windows.
 
 ### Calibration
 
@@ -211,6 +263,10 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/calibration-dark.svg">
   <img alt="Reliability diagram" src="assets/charts/calibration-light.svg" width="45%">
 </picture>
+
+Most (prompt, skill) pairs score near zero, which keeps the overall calibration error low. In the
+middle of the range the default gate is underconfident: skills it scores at 30% to 60% turn out to
+be relevant more often than that, which is part of why it errs toward injecting nothing.
 
 Full tables, including every system at every catalog size: [docs/results.md](docs/results.md).
 Method, splits and leakage precautions: [docs/benchmark.md](docs/benchmark.md).
@@ -333,18 +389,20 @@ reproduce byte for byte; the instructions they followed are in
 ## FAQ
 
 **Does anything leave my machine?** No. Routing is local. The network is used to download models
-from Hugging Face, and for approved-mode installs you confirm. The optional TypeSafe gate calls
+(this repository's release and Hugging Face), and for approved-mode installs you confirm. The optional TypeSafe gate calls
 TypeSafe's API, and only if you set `TYPESAFE_API_KEY` and pick that gate.
 
-**What if I have no GPU?** It runs on CPU. The default gate stays usable there; see the latency
-table. Set `gate.device = "cpu"` to force it, or `gate.name = "retrieval"` for the fastest
-model-free mode.
+**What if I have no GPU?** It runs on CPU. Without a GPU the default gate is the fine-tuned
+MiniLM-L6: about 0.4 s per prompt end to end, and 74% exact match at 100 skills against 86% for
+the GPU default. Set `gate.device = "cpu"` to force it, or `gate.name = "retrieval"` for the
+fastest model-free mode.
 
 **Does it replace Claude Code's own skill selection?** No, it adds a hint. Claude still sees its
 normal skill listing and still decides. The hook adds a short block naming the skills that fit.
 
-**Why not let the main model pick?** It can, and at small catalogs it does well (see the results).
-The router matters when you have many skills, or skills whose descriptions undersell them.
+**Why not let the main model pick?** It can, and at small catalogs it does well: Claude Code alone
+picked exactly the right skills 93% of the time with 100 skills installed. With 1,000 it fell to
+77%, and that is where the router earns its keep.
 
 **Windows?** Linux, macOS and WSL2 are the supported targets and run in CI. Native Windows works
 for development (this project was built on it) but the hook goes through Git Bash's `sh`.

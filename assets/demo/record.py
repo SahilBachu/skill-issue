@@ -42,12 +42,12 @@ SKILLS = [  # real skills from the pinned corpus (pool ids)
 ]
 SCRIPT = [
     ("skill-issue index", []),
-    ('skill-issue route "ci is red on my PR again, can you figure out why"', []),
+    ('skill-issue route "the GitHub Actions checks on my PR keep failing, can you look at the logs and fix it"', []),
     ('skill-issue route "rename getUserData to fetchUser everywhere in src/"', []),
-    ('skill-issue route "will Qwen3-32B in bf16 fit on two 24GB cards?"', []),
+    ('skill-issue route "how much GPU memory does Qwen3-32B need in bf16? check the weights on the Hub"', []),
 ]
 
-W, H = 1100, 560
+W, H = 1180, 560
 BG, FG, DIM, ACC, OK, PROMPT = "#0d1117", "#e6edf3", "#7d8590", "#5eead4", "#7ee787", "#818cf8"
 FONT_SIZE = 17
 LINE_H = 25
@@ -75,7 +75,11 @@ def sandbox() -> tuple[dict[str, str], Path]:
             f"---\nname: {s.name}\ndescription: {json.dumps(' '.join(s.description.split()))}\n---\n\n{s.body}\n",
             encoding="utf-8",
         )
-    (home / "config.toml").write_text("[sources]\nagents = false\nclaude_plugins = false\n", encoding="utf-8")
+    cfg = "[sources]\nagents = false\nclaude_plugins = false\n"
+    ckpt = ROOT / "checkpoints" / "gte-mb-ft"  # same weights as the gates-v1 release zip
+    if ckpt.is_dir():
+        cfg += f'\n[gate]\nmodel = "{ckpt.as_posix()}"\n'
+    (home / "config.toml").write_text(cfg, encoding="utf-8")
     env = {**os.environ, "SKILL_ISSUE_HOME": str(home), "CLAUDE_CONFIG_DIR": str(claude), "PYTHONIOENCODING": "utf-8"}
     return env, tmp
 
