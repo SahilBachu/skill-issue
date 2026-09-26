@@ -88,6 +88,10 @@ flowchart LR
 2. **Gate.** Each of the top candidates is scored independently: "would this skill help with this
    request?" The gate is a swappable model behind one interface. Scoring candidates one by one,
    instead of asking one model to pick from dozens of options, keeps it accurate as the catalog grows.
+   The default gate is `gte-reranker-modernbert-base` fine-tuned for this question (MiniLM-L6 on
+   machines without a GPU); see the [model card](docs/model-card.md). The weights download once
+   from this repository's `gates-v1` release and are checked against a pinned SHA-256. If that
+   download is not possible, the router uses the public base model with its own calibration.
 3. **Threshold.** Scores are Platt-calibrated on held-out data, so 0.8 means about 80%. Skills
    above the threshold are injected, three at most. Injecting nothing is the most common outcome.
 
@@ -152,7 +156,12 @@ starting, slow, or broken, the hook prints nothing and your prompt goes through 
 | Catalog | Setup | n | Exact match | Hit rate | None acc. | False inj. | Median time | Reported cost / prompt |
 |---|---|---|---|---|---|---|---|---|
 | 100 | Claude Code alone | 100 | 93.0% | 93.8% | 100.0% | 1.0% | 6.8 s | $0.084 |
+| 100 | Claude Code + skill-issue | 100 | 96.0% | 96.9% | 100.0% | 0.0% | 7.0 s | $0.083 |
 | 1,000 | Claude Code alone | 100 | 77.0% | 70.8% | 100.0% | 2.0% | 7.2 s | $0.090 |
+| 1,000 | Claude Code + skill-issue | 100 | 93.0% | 93.8% | 100.0% | 0.0% | 7.8 s | $0.091 |
+
+- At 100 skills, on the same 100 prompts: skill-issue fixed 3 that Claude Code alone got wrong and broke 0 (exact McNemar p = 0.25).
+- At 1,000 skills, on the same 100 prompts: skill-issue fixed 16 that Claude Code alone got wrong and broke 0 (exact McNemar p = 3.1e-05).
 <!-- /results:agent -->
 
 ### Hand-written prompts (draft set, 64 prompts)
@@ -271,8 +280,9 @@ body_chars = 1500             # how much of each SKILL.md body retrieval reads
 
 [gate]
 name = "auto"                 # auto | cross-encoder | laya | retrieval | typesafe
-                              # auto = gte-reranker-modernbert on a GPU or Apple Silicon, MiniLM-L6 on CPU
-model = ""                    # HF repo id or local path; empty = the default for that gate
+                              # auto = fine-tuned gte-reranker-modernbert on a GPU or Apple Silicon,
+                              #        fine-tuned MiniLM-L6 on CPU
+model = ""                    # HF repo id, release zip URL, or local path; empty = the default
 max_candidates = 12           # how many candidates the gate scores (latency scales with this)
 threshold = 0.5               # leave unset to use the value tuned on the validation split
 max_skills = 3
@@ -306,8 +316,14 @@ python -m bench.run --systems gte-mb-ft
 python -m bench.skillret_eval
 python -m bench.hook_latency --gate cross-encoder --model checkpoints/gte-mb-ft
 python -m bench.agent_baseline --arm vanilla --size 100 --n 100 # uses your Claude Code login
+python -m bench.agent_baseline --arm router --size 100 --n 100
 python -m bench.report                                          # charts + README tables
 ```
+
+The GPU-heavy steps (fine-tuning, SkillRouter, Laya) can also run as a batch: `python -m
+cloud.prepare` bundles their inputs, then either `bash cloud/local.sh` on your own GPU or the
+Colab notebook in `cloud/` on a free T4, and `python -m cloud.ingest` merges the outputs back.
+`python -m training.export_gate` packages a checkpoint as a release zip.
 
 The prompt splits are committed (`data/bench/`), so you do not need to regenerate them. Their
 SHA-256 hashes are in `data/bench/stats.json`. Regenerating them uses LLM subagents and will not
@@ -335,7 +351,7 @@ for development (this project was built on it) but the hook goes through Git Bas
 
 ## Roadmap
 
-- Publish the fine-tuned gate weights on Hugging Face (pending).
+- Mirror the fine-tuned gates on Hugging Face (today they ship as GitHub release assets).
 - ONNX export of the default gate for faster CPU inference.
 - A feedback loop: learn per-user thresholds from which suggested skills actually get loaded.
 - More agents with native hooks (Codex and Gemini CLI hooks, once stable).

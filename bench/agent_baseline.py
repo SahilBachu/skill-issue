@@ -110,7 +110,11 @@ def run_claude(
                 continue
             if ev.get("type") == "system" and ev.get("subtype") == "init":
                 init_skills = list(ev.get("skills") or [])
-            if ev.get("type") == "system" and ev.get("subtype") == "hook_response":
+            if (
+                ev.get("type") == "system"
+                and ev.get("subtype") == "hook_response"
+                and ev.get("hook_event") == "UserPromptSubmit"
+            ):
                 injected = ev.get("output") or ev.get("stdout")
             if ev.get("type") == "assistant":
                 for c in ev["message"].get("content", []):

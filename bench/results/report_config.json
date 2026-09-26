@@ -1,0 +1,9 @@
+{
+  "default": "gte-mb-ft",
+  "scaling": [
+    ["hybrid", "Hybrid retrieval only"],
+    ["gte-mb-zs", "+ gte reranker (base)"],
+    ["gte-mb-ft", "+ gte reranker (fine-tuned, default)"],
+    ["skillrouter", "SkillRouter 0.6B + 0.6B"]
+  ]
+}

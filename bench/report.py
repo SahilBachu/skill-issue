@@ -305,8 +305,8 @@ def hand_table(systems: list[str]) -> str:
 def agent_table() -> str:
     head = "| Catalog | Setup | n | Exact match | Hit rate | None acc. | False inj. | Median time | Reported cost / prompt |\n|---|---|---|---|---|---|---|---|---|"
     rows = []
-    for p in sorted((RESULTS / "agent").glob("*.json")):
-        d = json.loads(p.read_text(encoding="utf-8"))
+    runs = [json.loads(p.read_text(encoding="utf-8")) for p in (RESULTS / "agent").glob("*-N*-n*.json")]
+    for d in sorted(runs, key=lambda d: (d["size"], d["arm"] != "vanilla")):
         if d["n"] < 50:
             continue  # pilots
         m = d["metrics"]
@@ -315,7 +315,15 @@ def agent_table() -> str:
             f"| {d['size']:,} | {setup} | {d['n']} | {pct(m['exact_match'])} | {pct(m['hit_rate'])} | {pct(m['none_accuracy'])} | "
             f"{pct(m['false_injection_rate'])} | {m.get('latency_ms_p50', 0) / 1000:.1f} s | ${d['reported_cost_usd_mean']:.3f} |"
         )
-    return "\n".join([head, *rows])
+    notes = []
+    paired = load("agent/paired")
+    for size, p in sorted((paired or {}).items(), key=lambda kv: int(kv[0])):
+        notes.append(
+            f"At {int(size):,} skills, on the same {p['n_paired']} prompts: skill-issue fixed "
+            f"{p['router_only_correct']} that Claude Code alone got wrong and broke {p['vanilla_only_correct']} "
+            f"(exact McNemar p = {p['mcnemar_exact_p']:.2g})."
+        )
+    return "\n".join([head, *rows]) + ("\n\n" + "\n".join(f"- {n}" for n in notes) if notes else "")
 
 
 def skillret_table() -> str:

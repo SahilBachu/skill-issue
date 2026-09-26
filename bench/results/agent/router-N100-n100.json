@@ -1,0 +1,41 @@
+{
+ "arm": "router",
+ "size": 100,
+ "n": 100,
+ "n_requested": 100,
+ "n_api_errors_excluded": 0,
+ "model": "sonnet",
+ "metrics": {
+  "n": 100,
+  "n_labeled": 65,
+  "n_none": 35,
+  "recall@1": 0.0,
+  "recall@3": 0.0,
+  "recall@5": 0.0,
+  "recall@10": 0.0,
+  "recall@20": 0.0,
+  "recall@40": 0.0,
+  "top1": 0.0,
+  "precision": 1.0,
+  "recall": 0.9452054794520548,
+  "f1": 0.971830985915493,
+  "exact_match": 0.96,
+  "false_injection_rate": 0.0,
+  "none_accuracy": 1.0,
+  "hit_rate": 0.9692307692307692,
+  "ece": NaN,
+  "brier": NaN,
+  "exact_by_kind": {
+   "hard_negative_none": 1.0,
+   "hard_negative_sibling": 0.9285714285714286,
+   "multi": 0.75,
+   "none": 1.0,
+   "positive": 0.9767441860465116
+  },
+  "latency_ms_p50": 7000.0,
+  "latency_ms_p95": 18644.999999999996
+ },
+ "reported_cost_usd_total": 8.2841,
+ "reported_cost_usd_mean": 0.0828,
+ "note": "Cost is Claude Code's own reported total_cost_usd; the runs used a subscription login, not an API key."
+}

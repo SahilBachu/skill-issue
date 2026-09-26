@@ -1,0 +1,18 @@
+{
+ "100": {
+  "n_paired": 100,
+  "vanilla_exact": 0.93,
+  "router_exact": 0.96,
+  "router_only_correct": 3,
+  "vanilla_only_correct": 0,
+  "mcnemar_exact_p": 0.25
+ },
+ "1000": {
+  "n_paired": 100,
+  "vanilla_exact": 0.77,
+  "router_exact": 0.93,
+  "router_only_correct": 16,
+  "vanilla_only_correct": 0,
+  "mcnemar_exact_p": 3.1e-05
+ }
+}

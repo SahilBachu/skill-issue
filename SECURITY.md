@@ -30,7 +30,10 @@ from `~/.skill-issue/run/daemon.json` (file mode 0600 on POSIX). Browsers cannot
 header cross-origin without a CORS preflight, which the daemon does not answer.
 
 **Nothing leaves your machine** during routing. Network access happens only when you download
-model weights from Hugging Face, fetch the approved index, or install an approved skill. The
+model weights (the fine-tuned gates from this repository's GitHub release, the embedder and base
+models from Hugging Face), fetch the approved index, or install an approved skill. Release
+weights are checked against a SHA-256 pinned in `src/skillissue/models.py` before they are
+unpacked, and the unpacker refuses paths that escape the target folder. The
 optional TypeSafe gate sends requests to TypeSafe's API, and only if you set `TYPESAFE_API_KEY`
 and choose that gate.
 

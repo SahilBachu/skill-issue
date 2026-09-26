@@ -54,12 +54,13 @@ def load_gate(cfg: Config, **overrides: Any) -> Gate:
     elif name == "cross-encoder":
         from .cross_encoder import CrossEncoderGate
 
-        path = models.ensure_model(ref)
+        path, used = models.ensure_gate_model(ref)
         gate = CrossEncoderGate(path, device=device)
+        gate.model_ref = used
         if not load_gate_meta(path).get("calibration"):
             # Base models from the Hub carry no calibration; use the values fitted on our
             # validation split (bench.run), shipped in skillissue/data/gate_calibration.json.
-            cal = _package_json("gate_calibration.json").get(ref)
+            cal = _package_json("gate_calibration.json").get(used)
             if cal:
                 gate.calibration = Calibration.from_dict(cal)
     elif name == "retrieval":

@@ -24,3 +24,13 @@ All notable changes to this project are documented here. The format follows
 - Benchmark: 300 core skills split by similarity cluster, 2,621 generated prompts, a
   hand-written draft set, catalog sizes from 10 to 18,719, SkillRet as an external set, and
   baselines including vanilla Claude Code.
+- Fine-tuned gates (gte-reranker-modernbert-base and MiniLM-L6) shipped as `gates-v1` release
+  assets, pinned by SHA-256, with fallback to the public base models.
+- `cloud/`: run the GPU jobs on Colab or a local GPU (`cloud/local.sh`) and merge the results.
+
+### Fixed
+
+- JSONL readers split on newlines only; `str.splitlines()` also split on U+2028 inside skill
+  text and broke every cloud scoring job.
+- Re-ingesting cloud results no longer drops the calibration fitted into `checkpoints/`.
+- The agent benchmark records the `UserPromptSubmit` hook output, not the last hook event.

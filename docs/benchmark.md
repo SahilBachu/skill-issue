@@ -107,6 +107,10 @@ cosine, log BM25, and RRF for hybrid), calibrated the same way.
 - SkillRet training queries whose gold skill is a near-duplicate of a val/test skill are dropped.
 - Calibration and thresholds use validation only.
 - Split files are hashed in `data/bench/stats.json`.
+- SkillRet is not a zero-shot test for the fine-tuned gates: their training mix includes 3,000
+  queries from SkillRet's train split. SkillRet's train and test skills are disjoint (no shared
+  ids), and only 12 of the 5,640 test gold skills (0.2%) have a description identical to a train
+  skill. The base-model rows in the SkillRet table are zero-shot.
 
 ## Known biases
 
